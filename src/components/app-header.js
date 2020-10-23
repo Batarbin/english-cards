@@ -7,7 +7,7 @@ const AppHeader = () => {
   return (
     <div className="app-header d-flex justify-content-between align-items-center">
         <a className="mr-auto p-2" href="/">
-          <img src={logoLink} alt='english cards' />
+          <img draggable="false" src={logoLink} alt='english cards' />
         </a> 
         <a className="p-2" href="/">Start</a>
         <a className="p-2" href="/cards/">Cards</a>

@@ -32,9 +32,12 @@ class Welcome extends Component {
             <div className="welcome">
                 <div className="welcome-content d-flex flex-column align-items-center justify-content-center">
                     <h1 className="text-center" >Welcome to English Cards!</h1>
-                    <img className="svg_animation" src={process.env.PUBLIC_URL + '/cards.svg'} alt='english cards' />
+                    <img className="svg_animation" draggable="false" src={process.env.PUBLIC_URL + '/cards.svg'} alt='english cards' />
                 </div>
                 <div className="welcome-form d-flex flex-column text-center align-items-center justify-content-center">
+                    <a rel="noopener noreferrer" target="_blank" href='https://github.com/Batarbin/english_cards'>
+                        <img className="github_logo" draggable="false" src={process.env.PUBLIC_URL + '/github-logo.png'} alt='GitHub link' />
+                    </a>
                     <Dictionary 
                         word={word} 
                         showInfo={showInfo}

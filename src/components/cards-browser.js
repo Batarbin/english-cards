@@ -16,7 +16,7 @@ const CardItem = ({ url, title, transcription, translation }) => {
     return (
         <Card body className='text-center justify-content-center mb-4'>
             <p>{title}</p>
-            <CardImg src={url} alt={title} />    
+            <CardImg draggable="false" src={url} alt={title} />    
             <p>Transcription: '{transcription}'</p>
             <p>Translation: {translation}</p>
         </Card>

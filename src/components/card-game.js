@@ -54,7 +54,7 @@ const CardItem = ({ onItemClick, isAnswered, title, url, transcription, translat
             onClick = {() => {!isAnswered && onItemClick(title, selectedTitle) } }
         >
             {isAnswered && <p>{title}</p>}
-            <CardImg className="card_image" src={url} alt={title} />
+            <CardImg draggable="false" className="card_image" src={url} alt={title} />
             {isAnswered && <p>Transcription: '{transcription}'</p>}
             {isAnswered && <p>Translation: {translation}</p>}
         </Card>

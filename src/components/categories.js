@@ -10,7 +10,7 @@ const CategoryItem = ({ onChooseCat, title, url }) => {
                 onClick = {() => onChooseCat(title)}
             >
                 <span className="capitalize">{title}</span>
-                <CardImg src={url} alt={title} />
+                <CardImg draggable="false" src={url} alt={title} />
             </Card>
         </Zoom>
     )

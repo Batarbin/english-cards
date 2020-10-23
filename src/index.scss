@@ -62,6 +62,15 @@ html {
     h5 {
         margin-bottom: 0;
     }
+    .github_logo {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        &:hover {
+            cursor: pointer;
+            opacity: 70%;
+        }
+    }
     .playgame_button {
         margin-left: 10px;
         

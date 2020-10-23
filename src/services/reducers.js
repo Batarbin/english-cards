@@ -7,9 +7,7 @@ const initialState = {
     foodTitle: null,
     plantsTitle: null,
     result: null,
-    word: null,
     isAnswered: false,
-    chosen: false,
     isStarted: false,
     showInfoBool: false
 }
@@ -51,18 +49,14 @@ const reducer = (state = initialState, action) => {
                 isAnswered: false
             }
         }
-        case 'ON_CHANGE_WORD_INPUT': {
-            return {
-                ...state,
-                showInfoBool: false,
-                word: action.payload
-            }
-        }
         case 'SHOW_INFO': {
+            let showInfoBool = true
+            if (action.payload === null) {
+                showInfoBool = false
+            }
             return {
-                ...state,
                 wordInfo: action.payload,
-                showInfoBool: true
+                showInfoBool
             }
         }
         case 'ON_GAME_STARTED': {

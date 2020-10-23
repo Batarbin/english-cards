@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Button } from 'reactstrap';
-import { onGameStarted } from '../services/actions';
+import { onGameStarted, showInfo } from '../services/actions';
 import Dictionary from './dictionary'
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
-    onGameStarted
+    onGameStarted,
+    showInfo
 }, dispatch)
 
 const PlayGameButton = ({ onGameStarted }) => {
@@ -25,7 +26,7 @@ const PlayGameButton = ({ onGameStarted }) => {
 
 class Welcome extends Component {
     render() {
-        const { onGameStarted } = this.props
+        const { onGameStarted, word, showInfo, showInfoBool, wordInfo } = this.props
 
         return (
             <div className="welcome">
@@ -34,7 +35,12 @@ class Welcome extends Component {
                     <img className="svg_animation" src={process.env.PUBLIC_URL + '/cards.svg'} alt='english cards' />
                 </div>
                 <div className="welcome-form d-flex flex-column text-center align-items-center justify-content-center">
-                    <Dictionary />
+                    <Dictionary 
+                        word={word} 
+                        showInfo={showInfo}
+                        showInfoBool={showInfoBool}
+                        wordInfo={wordInfo}
+                    />
                     <div className="d-flex flex-row text-center align-items-center justify-content-center">
                         <h5>Or just play the game</h5>
                         <PlayGameButton onGameStarted={onGameStarted} />

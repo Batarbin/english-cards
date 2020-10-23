@@ -53,7 +53,6 @@ html {
         }
     }
 }
-
 .welcome-form {
     @extend %center;
     left: 60%;
@@ -122,7 +121,6 @@ html {
         }
 
         .synonyms {
-            margin-top: 5px;
             color: rgb(56, 185, 114);
             span {
                 display: inline-block;
@@ -131,6 +129,7 @@ html {
                 border: solid 1px rgb(91, 112, 104);
                 border-radius: 10px;
                 padding: 1px 5px 2px 8px;
+                margin-top: 5px;
     
                 &:last-child {
                     margin-right: 0;
@@ -148,24 +147,8 @@ html {
             border-radius: 5px;
         }
     }
-
-    /* user-form.js */
-    .user-form {
-        .first_botton {
-            margin-right: 10px;
-        }
-        .second_botton:hover {
-            text-decoration: none;
-        }
-        .second_botton:focus {
-            box-shadow: none;
-            text-decoration: none;
-        }
-        .guest_button {
-            margin-top: 10px;
-        }
-    }
 }
+
 
 /* app-header.js */
 .app-header {
@@ -206,6 +189,7 @@ html {
     }
 }
 
+
 /* categories.js */
 .cat_cards {
     h3 {
@@ -235,6 +219,7 @@ html {
     }
 }
 
+
 /* card-game.js */
 .cards {
     margin: 0 auto;
@@ -257,7 +242,6 @@ html {
         font-weight: 700;
     }
 }
-
 .card {
     height: 420px;
     max-width: 390px;
@@ -270,7 +254,6 @@ html {
 .choose_card {
     height: 300px;
 }
-
 /* cards header */
 .cards_header {
     .toggler {
@@ -294,6 +277,7 @@ html {
         }
     }
 }
+
 
 /* cards-browser.js */
 .browser {

@@ -3,20 +3,15 @@ import debounce from 'lodash.debounce';
 import { Form, FormGroup, Input } from 'reactstrap';
 import '../index.scss';
 
-const getResultArray = (arr) => {
+const getResultArray = (arr, number) => { // if need to limit the number of elements
     const items = []
-    let itemsValue
-    if (arr.length > 3) {
-        itemsValue = 3
-    } else if (arr.length === 1 ) {
-        itemsValue = 1
-    } else {
-        itemsValue = 2
-    } 
-    for (let i = 0; i < itemsValue; i++) {
-        items.push(arr[i])
+    if (arr.length >= number) {
+        for (let i = 0; i < number; i++) {
+            items.push(arr[i])
+        }
+        return items
     }
-    return items
+    return getResultArray(arr, number-1)
 }
 
 const Pronunciation = ({ pronunciation }) => {
@@ -38,17 +33,13 @@ const Pronunciation = ({ pronunciation }) => {
     return null
 }
 const InfoResults = ({ partOfSpeech, definition, examples, synonyms }) => {
-    let items = []
-    if (synonyms) {
-        items = getResultArray(synonyms)
-    }
     return (
         <li className="list-group-item">
             <p className="dictionary_light">{partOfSpeech}</p>
             <p className="dictionary_heavy">{definition}</p>
             {examples &&  <p className="dictionary_light">"{examples[0]}"</p>}
             {synonyms &&  <p className="synonyms">Synonyms: {
-                items.map((item, i) => <span key={i}>{item}&#160;</span>)
+                synonyms.map((item, i) => <span key={i}>{item}&#160;</span>)
             }</p>}
         </li>
     )
@@ -59,7 +50,7 @@ const WordInformation = ({ success, results, word, pronunciation }) => {
             <p className="dictionary_error">Sorry, try another word</p>
         )
     }  
-    let items = getResultArray(results)
+    let items = getResultArray(results, 3)
 
     return (
         <ul className="list-group p-2">

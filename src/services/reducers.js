@@ -1,11 +1,10 @@
 const initialState = {
-    categories: [],
-    foodData: [],
-    plantsData: [],
-    cardList: [],
     wordInfo: [],
-    foodTitle: null,
-    plantsTitle: null,
+    cardList: [],
+    categories: [],
+    chosenCategory: [],
+    category: null,
+    selectedTitle: null,
     result: null,
     isAnswered: false,
     isStarted: false,
@@ -20,8 +19,9 @@ const getUniqueIdx = (collection, length) => {
     }
     return idx
 }
-const getCards = (act, dataArr, cardsArr, type) => {
-    let temp = []
+const getCards = (act, cardsArr, type) => {
+    let temp = [],
+        dataArr = []
     for (let i = 0; i < act.length; i++) {
         if (act[i].type === type) {
             dataArr.push(act[i])
@@ -37,18 +37,6 @@ const getCards = (act, dataArr, cardsArr, type) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOAD_DATA': {
-            return {
-                categories: [],
-                foodData: [],
-                plantsData: [],
-                cardList: [],
-                foodTitle: null,
-                plantsTitle: null,
-                result: null,
-                isAnswered: false
-            }
-        }
         case 'SHOW_INFO': {
             let showInfoBool = true
             if (action.payload === null) {
@@ -61,54 +49,53 @@ const reducer = (state = initialState, action) => {
         }
         case 'ON_GAME_STARTED': {
             return {
-                ...state,
                 isStarted: true
             }
         }
-        case 'ON_CATEGORY_CHOSEN': {
-            let category = action.payload
-            return {
-                ...state,
-                category,
-                chosen: true
-            }
-        }
         case 'CARDS_LOADED': {
-            const data = action.payload
-            let cardList = [...data.cards],
-                foodData = [],
-                foodCards = [],
-                plantsData = [],
-                plantsCards = []
-
-            foodCards = getCards(cardList, foodData, foodCards, 'food')
-            plantsCards = getCards(cardList , plantsData, plantsCards, 'plants')
-        
             return {
                 ...state,
-                foodCards,
-                plantsCards,
-                cardList,
-                categories: [...data.categories],
-                foodTitle: foodCards[ getUniqueIdx([], NUMBER_OF_CARDS) ].title,
-                plantsTitle: plantsCards[ getUniqueIdx([], NUMBER_OF_CARDS) ].title,
+                chosenCategory: [],
+                cardList: [...action.payload.cards],
+                categories: [...action.payload.categories],
                 result: null,
                 isAnswered: false,
                 isStarted: true
             }
         }
+        case 'ON_CATEGORY_CHOSEN': {
+            return {
+                ...state,
+                category: action.payload,
+                chosen: true
+            }
+        }
+        case 'CARDS_TABLE_LOADED': {
+            let chosenCategory = [],
+                selectedTitle = null
+
+            chosenCategory = getCards(state.cardList, chosenCategory, state.category)
+            selectedTitle = chosenCategory[ getUniqueIdx([], NUMBER_OF_CARDS) ].title
+
+            return {
+                ...state,
+                chosenCategory,
+                selectedTitle,
+                result: null,
+                isAnswered: false
+            }
+        }
         case 'ON_ITEM_CLICK': {
             return {
                 ...state,
-                result: action.payload === action.selectedTitle,
+                result: action.payload === state.selectedTitle,
                 isAnswered: true
             }
         }
         case 'ON_BACK_TO_CATEGORIES': {
             return {
-                ...state,
                 chosen: false,
-                isAnswered:false
+                isAnswered: false
             }
         }
         default:

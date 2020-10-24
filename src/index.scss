@@ -297,3 +297,13 @@ html {
         margin-bottom: 10px;
     }
 }
+
+
+/* error-boundry.js */
+.error {
+    @extend %center;
+    a {
+        text-decoration: none;
+        font-size: 30px;
+    }
+}

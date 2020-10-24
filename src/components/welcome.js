@@ -26,7 +26,7 @@ const PlayGameButton = ({ onGameStarted }) => {
 
 class Welcome extends Component {
     render() {
-        const { onGameStarted, word, showInfo, showInfoBool, wordInfo } = this.props
+        const { onGameStarted, showInfo, showInfoBool, wordInfo } = this.props
 
         return (
             <div className="welcome">
@@ -38,8 +38,7 @@ class Welcome extends Component {
                     <a rel="noopener noreferrer" target="_blank" href='https://github.com/Batarbin/english_cards'>
                         <img className="github_logo" draggable="false" src={process.env.PUBLIC_URL + '/github-logo.png'} alt='GitHub link' />
                     </a>
-                    <Dictionary 
-                        word={word} 
+                    <Dictionary
                         showInfo={showInfo}
                         showInfoBool={showInfoBool}
                         wordInfo={wordInfo}

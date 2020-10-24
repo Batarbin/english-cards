@@ -1,6 +1,6 @@
 import React from 'react';
-import Welcome from './welcome'
-import CardGame from './card-game';
+import Welcome from './welcome';
+import Categories from './categories';
 import CardsBrowser from './cards-browser';
 
 export const WelcomePage = () => {
@@ -8,7 +8,7 @@ export const WelcomePage = () => {
 }
 
 export const CardGamePage = () => {
-    return <CardGame />
+    return <Categories />
 }
 
 export const CardsBrowserPage = () => {

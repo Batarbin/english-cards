@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
 import { Zoom } from "react-awesome-reveal";
+import { loadData, onCategoryChosen } from '../services/actions';
+import CardGame from './card-game'
+import LoadingSpinner from './spinner';
 import '../index.scss';
 
-const CategoryItem = ({ onChooseCat, title, url }) => {
+const mstp = (store) => store
+const mdtp = (dispatch) => bindActionCreators({
+    loadData,
+    onCategoryChosen
+}, dispatch)
+
+const CategoryItem = ({ onCategoryChosen, title, url }) => {
     return (
         <Zoom>
             <Card body className='text-center justify-content-center pointer'
-                onClick = {() => onChooseCat(title)}
+                onClick = {() => onCategoryChosen(title)}
             >
                 <span className="capitalize">{title}</span>
                 <CardImg draggable="false" src={url} alt={title} />
@@ -15,14 +26,14 @@ const CategoryItem = ({ onChooseCat, title, url }) => {
         </Zoom>
     )
 }
-const CategoryCards = ({ categories, onChooseCat }) => {
+const CategoryCards = ({ categories, onCategoryChosen }) => {
     return (
         <div className='cat_cards mt-neg'>
             <h3 className="text-center">Please, choose pleasant category</h3>
             <Row>
                 {categories.map((catItem, index) => <CategoryItem
                     key={index}
-                    onChooseCat={onChooseCat}
+                    onCategoryChosen={onCategoryChosen}
                     {...catItem}
                 />)}
             </Row>
@@ -30,4 +41,36 @@ const CategoryCards = ({ categories, onChooseCat }) => {
     )
 }
 
-export default CategoryCards
+class Categories extends Component {
+    componentDidMount() {
+        this.props.loadData();
+    }
+
+    render() {
+        const { chosen, categories, onCategoryChosen,
+                chosenCategory, selectedTitle, onItemClick, isAnswered, onBackToCategories, loadData, result } = this.props;
+
+        if ( !chosen ) {
+            if (!categories || !categories.length) {
+                return <LoadingSpinner />
+            }
+            return (
+                <CategoryCards 
+                    onCategoryChosen={onCategoryChosen}
+                    categories={categories}
+                />
+            )
+        }
+        return <CardGame 
+            chosenCategory={chosenCategory}
+            selectedTitle={selectedTitle}
+            onItemClick={onItemClick}
+            isAnswered={isAnswered}
+            onBackToCategories={onBackToCategories}
+            loadData={loadData}
+            result={result}
+        />
+    }
+};
+
+export default connect(mstp, mdtp)(Categories);

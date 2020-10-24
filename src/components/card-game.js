@@ -3,16 +3,15 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap';
 import { Fade, Zoom } from "react-awesome-reveal";
-import { loadData, onChooseCat, onItemClick, onBackToCategories } from '../services/actions';
-import CategoryCards from './categories';
+import { loadData, onItemClick, onBackToCategories, cardsTableLoaded } from '../services/actions';
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
     loadData,
+    cardsTableLoaded,
     onItemClick,
-    onChooseCat,
     onBackToCategories
 }, dispatch)
 
@@ -48,10 +47,10 @@ const ResultAlert = ({ result }) => {
         </Zoom>
     </>)
 }
-const CardItem = ({ onItemClick, isAnswered, title, url, transcription, translation, selectedTitle }) => {
+const CardItem = ({ onItemClick, isAnswered, title, url, transcription, translation }) => {
     return (
         <Card body className={isAnswered ? 'text-center justify-content-center' : 'choose_card text-center justify-content-center pointer'}
-            onClick = {() => {!isAnswered && onItemClick(title, selectedTitle) } }
+            onClick = {() => {!isAnswered && onItemClick(title) } }
         >
             {isAnswered && <p>{title}</p>}
             <CardImg draggable="false" className="card_image" src={url} alt={title} />
@@ -60,7 +59,7 @@ const CardItem = ({ onItemClick, isAnswered, title, url, transcription, translat
         </Card>
     )
 }
-const Cards = ({ onItemClick, isAnswered, cardsCategory, selectedTitle, result, onBackToCategories, loadData }) => {
+const Cards = ({ onItemClick, isAnswered, chosenCategory    , selectedTitle, result, onBackToCategories, loadData }) => {
     return (
         <div className='cards mt-neg'>
             <div className="cards_header d-flex mb-5 align-items-center">
@@ -73,7 +72,7 @@ const Cards = ({ onItemClick, isAnswered, cardsCategory, selectedTitle, result, 
             </div>
             <Fade direction='up'> 
                 <Row> 
-                    {cardsCategory.map(cardItem => <CardItem
+                    {chosenCategory.map(cardItem => <CardItem
                         key={cardItem.id}
                         onItemClick={onItemClick}
                         isAnswered={isAnswered}
@@ -88,45 +87,27 @@ const Cards = ({ onItemClick, isAnswered, cardsCategory, selectedTitle, result, 
 
 class CardGame extends Component {
     componentDidMount() {
-        this.props.loadData();
+        this.props.cardsTableLoaded();
     }
     componentDidUpdate = (prevProps) => {
         if (!prevProps.isAnswered && this.props.isAnswered) {
-            clearCards(this.props.loadData, 5000)
+            clearCards(this.props.cardsTableLoaded, 3000)
         }
     }
 
     render() {
-        const { chosen, categories, onChooseCat, category,
-            foodCards, foodTitle, plantsCards, plantsTitle,
+        const { chosenCategory, selectedTitle,
             onItemClick, isAnswered, onBackToCategories, loadData, result } = this.props;
 
-        if ( !chosen ) {
-            if (!categories || !categories.length) {
-                return <LoadingSpinner />
-            }
-            return <CategoryCards categories={categories} onChooseCat={onChooseCat} />
-        }
-
-        let cardsCategory = category,
-            selectedTitle = null;
-        if (cardsCategory === 'food') {
-            cardsCategory = foodCards
-            selectedTitle = foodTitle
-        } else if (cardsCategory === 'plants and herbs') {
-            cardsCategory = plantsCards
-            selectedTitle = plantsTitle
-        } 
-        
-        if (!cardsCategory || !cardsCategory.length) {
-            return <div className="text-center"> Loading... </div>
+        if (!chosenCategory || !chosenCategory.length) {
+            return <div className="text-center"> <LoadingSpinner /> </div>
         }
         
         return (
             <Cards 
                 onItemClick={onItemClick}
                 isAnswered={isAnswered}
-                cardsCategory={cardsCategory}
+                chosenCategory={chosenCategory}
                 selectedTitle={selectedTitle}
                 onBackToCategories={onBackToCategories}
                 loadData={loadData}

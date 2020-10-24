@@ -1,17 +1,5 @@
 import data from '../db.json'
 
-// db loading
-export const loadData = () => (dispatch) => {
-    // fetch('http://localhost:3000/cards').then(
-    //     res => res.json()
-    // ).then(data => {
-    //     dispatch({ type: 'CARDS_LOADED', payload: data })
-    // })
-    setTimeout(() => {
-        dispatch({ type: 'CARDS_LOADED', payload: data })
-    }, 500)
-}
-
 // dictionary
 export const showInfo = (wordToInfo) => (dispatch) => {
     if (wordToInfo.length) {
@@ -29,30 +17,36 @@ export const showInfo = (wordToInfo) => (dispatch) => {
             console.error(err);
         });
     } else {
-        dispatch({
-            type: 'SHOW_INFO',
-            payload: null
-        })
+        dispatch({ type: 'SHOW_INFO', payload: null })
     }
 }
 
-// card-game
-export const onItemClick = (title, selectedTitle) => ({
-    type: 'ON_ITEM_CLICK',
-    payload: title,
-    selectedTitle: selectedTitle
-})
-export const onBackToCategories = () => ({
-    type: 'ON_BACK_TO_CATEGORIES'
-})
-
-// categories
-export const onChooseCat = (title) => ({
-    type: 'ON_CATEGORY_CHOSEN',
-    payload: title
-})
+// db loading
+export const loadData = () => (dispatch) => {
+    setTimeout(() => {
+        dispatch({ type: 'CARDS_LOADED', payload: data })
+    }, 500)
+}
 
 // welcome
 export const onGameStarted = () => ({
     type: 'ON_GAME_STARTED'
+})
+
+// categories
+export const onCategoryChosen = (title) => ({
+    type: 'ON_CATEGORY_CHOSEN',
+    payload: title
+})
+
+// card-game
+export const cardsTableLoaded = () => ({
+    type: 'CARDS_TABLE_LOADED'
+})
+export const onItemClick = (title) => ({
+    type: 'ON_ITEM_CLICK',
+    payload: title
+})
+export const onBackToCategories = () => ({
+    type: 'ON_BACK_TO_CATEGORIES'
 })

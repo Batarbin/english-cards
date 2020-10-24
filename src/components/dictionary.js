@@ -14,21 +14,20 @@ const getResultArray = (arr, number) => { // if need to limit the number of elem
     return getResultArray(arr, number-1)
 }
 
-const Pronunciation = ({ pronunciation }) => {
-    const { all, noun, verb } = pronunciation
+const Pronunciation = ({ p }) => {
+    const { all, noun, verb } = p
     if (noun && verb) {
         return (<>
-            <p className="dictionary_light">noun: /{noun}/</p>
-            <p className="dictionary_light">verb: /{verb}/</p>
+            <p>noun: /{noun}/</p> <p>verb: /{verb}/</p>
         </>)
     } else if (!verb && noun) {
-        return <p className="dictionary_light">/{noun}/</p>
+        return <p>/{noun}/</p>
     } else if (!noun && verb) {
-        return <p className="dictionary_light">/{verb}/</p>
+        return <p>/{verb}/</p>
     } else if (!noun && !verb && all) {
-        return <p className="dictionary_light">/{pronunciation.all}/</p>
-    } else if (pronunciation) {
-        return <p className="dictionary_light">/{pronunciation}/</p>
+        return <p>/{p.all}/</p>
+    } else if (p) {
+        return <p >/{p}/</p>
     }
     return null
 }
@@ -56,7 +55,7 @@ const WordInformation = ({ success, results, word, pronunciation }) => {
         <ul className="list-group p-2">
             <li className="list-group-item">
                 <p className="dictionary_heavy word">{word}</p>
-                {pronunciation && <Pronunciation pronunciation={pronunciation}/>}
+                {pronunciation && <div className="dictionary_light"><Pronunciation p={pronunciation}/></div>}
             </li>
             {items.map((item, i) => <InfoResults key={i} {...item} /> )}
         </ul>
@@ -64,10 +63,9 @@ const WordInformation = ({ success, results, word, pronunciation }) => {
 }
 
 const Dictionary = ({ showInfo, showInfoBool, wordInfo }) => {
-
     const [value, setValue] = useState('')
     
-    const debouncedSave = useRef(debounce(nextValue => showInfo(nextValue), 700))
+    const debouncedSave = useRef(debounce(nextValue => showInfo(nextValue), 600))
 		.current
     const handleChange = e => {
         const { value: nextValue } = e.target

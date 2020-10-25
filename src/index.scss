@@ -1,10 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@300;400;700&display=swap&family=Noto+Sans:wght@400;700&display=swap');
+$bg-c-blue: rgb(210, 233, 236);
+$bg-c-yellow: rgb(255, 255, 241);
+$border-c-blue: rgb(122, 156, 179);
 %center {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+}
+%button_theme_green {
+    border-color: rgb(55, 95, 72);
+    background-color: rgb(96, 146, 123);
+    font-family: 'Noto Sans';
+    &:hover {
+        background-color: rgb(79, 122, 98);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        background-color: rgb(79, 122, 98);
+    }
 }
 
 html {
@@ -33,6 +49,7 @@ html {
 }
 .app {
     @extend %center;
+    background-color: $bg-c-yellow;
 }
 
 /* welcome.js */
@@ -51,16 +68,21 @@ html {
             margin-right: auto;
             margin-bottom: 50px;
         }
+        .playgame_button {
+            @extend %button_theme_green;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 6px 30px;
+            
+        }
     }
 
     .welcome-form {
         @extend %center;
         left: 60%;
-        background: rgb(210, 233, 236);
-        border-left: 3px solid rgb(122, 156, 179);
-        h5 {
-            margin-bottom: 0;
-        }
+        background-color: $bg-c-blue;
+        border-left: 3px solid $border-c-blue;
+        
         .github_logo {
             position: fixed;
             top: 10px;
@@ -70,20 +92,10 @@ html {
                 opacity: 70%;
             }
         }
-        .playgame_button {
-            margin-left: 10px;
-            
-            &:focus {
-                outline: none;
-                box-shadow: none;
-            }
-        }
     
         /* dictionary.js */
         .dictionary {
-            border-bottom: solid 2px rgb(56, 103, 134);
-            margin-bottom: 42.5px;
-            padding: 20px 5px;
+            padding: 0 5px;
             width: 95%;
     
             p {
@@ -100,7 +112,6 @@ html {
     
             .checkword_button {
                 height: 43px;
-    
                 &:focus {
                     outline: none;
                     box-shadow: none;
@@ -155,11 +166,11 @@ html {
     position: absolute;
     top:0;
     width: 100%;
-    background: rgb(210, 233, 236);
     font-size: 14pt;
     font-family: 'Noto Sans';
     height: 60px;
-    border-bottom: 2px solid rgb(122, 156, 179);
+    background-color: $bg-c-blue;
+    border-bottom: 2px solid $border-c-blue;
 
     a {
         color: rgb(88, 88, 88);
@@ -269,12 +280,7 @@ html {
         }
     }
     .back_button {
-        background-color: rgb(95, 144, 177) !important;
-        border-color: rgb(133, 190, 228) !important;
-
-        &:hover {
-            background-color: rgb(56, 89, 109) !important;
-        }
+        @extend %button_theme_green;
     }
 }
 

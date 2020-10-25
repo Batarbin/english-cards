@@ -17,6 +17,7 @@ const mdtp = (dispatch) => bindActionCreators({
 
 let timerID
 const clearCards = (prop, timer) => { timerID = setTimeout(prop, timer) }
+
 const BackButton = ({ onBackToCategories, loadData }) => {
     return (
         <Button className="back_button mr-auto p-2" 
@@ -47,19 +48,19 @@ const ResultAlert = ({ result }) => {
         </Zoom>
     </>)
 }
-const CardItem = ({ onItemClick, isAnswered, title, url, transcription, translation }) => {
+const CardItem = ({ onItemClick, isAnswered, title, url, pronunciation, translation }) => {
     return (
         <Card body className={isAnswered ? 'text-center justify-content-center' : 'choose_card text-center justify-content-center pointer'}
             onClick = {() => {!isAnswered && onItemClick(title) } }
         >
             {isAnswered && <p>{title}</p>}
             <CardImg draggable="false" className="card_image" src={url} alt={title} />
-            {isAnswered && <p>Transcription: '{transcription}'</p>}
+            {isAnswered && <p>Pronunciation: '{pronunciation}'</p>}
             {isAnswered && <p>Translation: {translation}</p>}
         </Card>
     )
 }
-const Cards = ({ onItemClick, isAnswered, chosenCategory    , selectedTitle, result, onBackToCategories, loadData }) => {
+const CardTable = ({ onItemClick, isAnswered, chosenCategory, selectedTitle, result, onBackToCategories, loadData }) => {
     return (
         <div className='cards mt-neg'>
             <div className="cards_header d-flex mb-5 align-items-center">
@@ -104,7 +105,7 @@ class CardGame extends Component {
         }
         
         return (
-            <Cards 
+            <CardTable
                 onItemClick={onItemClick}
                 isAnswered={isAnswered}
                 chosenCategory={chosenCategory}

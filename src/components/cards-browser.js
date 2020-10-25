@@ -12,12 +12,12 @@ const mdtp = (dispatch) => bindActionCreators({
     onGameStarted
 }, dispatch)
 
-const CardItem = ({ url, title, transcription, translation }) => {
+const CardItem = ({ url, title, pronunciation, translation }) => {
     return (
         <Card body className='text-center justify-content-center mb-4'>
             <p>{title}</p>
             <CardImg draggable="false" src={url} alt={title} />    
-            <p>Transcription: '{transcription}'</p>
+            <p>Pronunciation: '{pronunciation}'</p>
             <p>Translation: {translation}</p>
         </Card>
     )
@@ -38,7 +38,6 @@ const Cards = ({ cardList }) => {
 
 class CardsBrowser extends Component {
     componentDidMount() {
-        this.props.onGameStarted();
         this.props.loadData();
     }
 

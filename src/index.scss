@@ -52,103 +52,103 @@ html {
             margin-bottom: 50px;
         }
     }
-}
-.welcome-form {
-    @extend %center;
-    left: 60%;
-    background: rgb(210, 233, 236);
-    border-left: 3px solid rgb(122, 156, 179);
-    h5 {
-        margin-bottom: 0;
-    }
-    .github_logo {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        &:hover {
-            cursor: pointer;
-            opacity: 70%;
-        }
-    }
-    .playgame_button {
-        margin-left: 10px;
-        
-        &:focus {
-            outline: none;
-            box-shadow: none;
-        }
-    }
 
-    /* dictionary.js */
-    .dictionary {
-        border-bottom: solid 2px rgb(56, 103, 134);
-        margin-bottom: 42.5px;
-        padding: 20px 5px;
-        width: 95%;
-
-        p {
-            font-size: 14px;
-            margin-bottom: 2px;
-            text-align: left;
-        }
-        h4 {
-            font-weight: 700;
-        }
+    .welcome-form {
+        @extend %center;
+        left: 60%;
+        background: rgb(210, 233, 236);
+        border-left: 3px solid rgb(122, 156, 179);
         h5 {
-            font-weight: 300;
+            margin-bottom: 0;
         }
-
-        .checkword_button {
-            height: 43px;
-
+        .github_logo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            &:hover {
+                cursor: pointer;
+                opacity: 70%;
+            }
+        }
+        .playgame_button {
+            margin-left: 10px;
+            
             &:focus {
                 outline: none;
                 box-shadow: none;
             }
         }
-
-        .dictionary_light {
-            font-weight: 500;
-            color: #70757a;
-        }
-
-        .dictionary_heavy {
-            font-size: 16px;
-            font-weight: 700;
-            &.word {
-                font-size: 24px;
-            }
-        }
-
-        .synonyms {
-            color: rgb(56, 185, 114);
-            span {
-                display: inline-block;
-                color: rgb(0, 0, 0);
-                margin-right: 4px;
-                border: solid 1px rgb(91, 112, 104);
-                border-radius: 10px;
-                padding: 1px 5px 2px 8px;
-                margin-top: 5px;
     
-                &:last-child {
-                    margin-right: 0;
+        /* dictionary.js */
+        .dictionary {
+            border-bottom: solid 2px rgb(56, 103, 134);
+            margin-bottom: 42.5px;
+            padding: 20px 5px;
+            width: 95%;
+    
+            p {
+                font-size: 14px;
+                margin-bottom: 2px;
+                text-align: left;
+            }
+            h4 {
+                font-weight: 700;
+            }
+            h5 {
+                font-weight: 300;
+            }
+    
+            .checkword_button {
+                height: 43px;
+    
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
                 }
             }
-        }
-
-        .dictionary_error {
-            text-align: center;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 10px 0;
-            background: rgb(204, 66, 66);
-            border-radius: 5px;
+    
+            .dictionary_light {
+                font-weight: 500;
+                color: #70757a;
+            }
+    
+            .dictionary_heavy {
+                font-size: 16px;
+                font-weight: 700;
+                &.word {
+                    font-size: 24px;
+                }
+            }
+    
+            .synonyms {
+                color: rgb(56, 185, 114);
+                span {
+                    display: inline-block;
+                    color: rgb(0, 0, 0);
+                    margin-right: 4px;
+                    border: solid 1px rgb(91, 112, 104);
+                    border-radius: 10px;
+                    padding: 1px 5px 2px 8px;
+                    margin-top: 5px;
+        
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+    
+            .dictionary_error {
+                text-align: center;
+                width: 100%;
+                font-size: 16px;
+                font-weight: 700;
+                padding: 10px 0;
+                background: rgb(204, 66, 66);
+                border-radius: 5px;
+            }
         }
     }
 }
-
 
 /* app-header.js */
 .app-header {
@@ -305,5 +305,28 @@ html {
     a {
         text-decoration: none;
         font-size: 30px;
+    }
+}
+
+
+/* media */
+@media (max-height: 883px) {
+    .welcome {
+        .welcome-content {
+            right: 60%;
+        }
+        .welcome-form {
+            left: 40%;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .welcome {
+        .welcome-content {
+            h1 {
+                font-size: 25px;
+            }
+        }
     }
 }

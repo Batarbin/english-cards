@@ -47,29 +47,22 @@ class Categories extends Component {
     }
 
     render() {
-        const { chosen, categories, onCategoryChosen,
-                chosenCategory, selectedTitle, onItemClick, isAnswered, onBackToCategories, loadData, result } = this.props;
-
-        if ( !chosen ) {
-            if (!categories || !categories.length) {
-                return <LoadingSpinner />
-            }
-            return (
-                <CategoryCards 
-                    onCategoryChosen={onCategoryChosen}
-                    categories={categories}
-                />
-            )
+        const { chosen, categories, onCategoryChosen } = this.props;
+        
+        if ( chosen ) {
+            return <CardGame />
         }
-        return <CardGame 
-            chosenCategory={chosenCategory}
-            selectedTitle={selectedTitle}
-            onItemClick={onItemClick}
-            isAnswered={isAnswered}
-            onBackToCategories={onBackToCategories}
-            loadData={loadData}
-            result={result}
-        />
+        
+        if (!categories || !categories.length) {
+            return <LoadingSpinner />
+        }
+        
+        return (
+            <CategoryCards 
+                onCategoryChosen={onCategoryChosen}
+                categories={categories}
+            />
+        )        
     }
 };
 

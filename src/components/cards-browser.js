@@ -14,7 +14,7 @@ const mdtp = (dispatch) => bindActionCreators({
 
 const CardItem = ({ url, title, pronunciation, translation }) => {
     return (
-        <Card body className='text-center justify-content-center mb-4'>
+        <Card body className="text-center justify-content-center mb-4">
             <p>{title}</p>
             <CardImg draggable="false" src={url} alt={title} />    
             <p>Pronunciation: '{pronunciation}'</p>
@@ -24,7 +24,7 @@ const CardItem = ({ url, title, pronunciation, translation }) => {
 }
 const Cards = ({ cardList }) => {
     return (
-        <div className='cards browser'>
+        <div className="cards browser">
             <h3 className="text-center">List of cards:</h3>
             <Row> 
                 {cardList.map(cardItem => <CardItem

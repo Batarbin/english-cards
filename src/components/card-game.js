@@ -42,7 +42,7 @@ const AboutCollapse = () => {
 const ResultAlert = ({ result }) => {
     return (<>
         <Zoom>
-            <Alert color={result ? 'success' : 'danger'} className='mb-3'>
+            <Alert color={result ? 'success' : 'danger'} className="mb-3">
                 {result ? 'Hey, good job!' : 'Try again, you can do it!'}
             </Alert> 
         </Zoom>
@@ -62,7 +62,7 @@ const CardItem = ({ onItemClick, isAnswered, title, url, pronunciation, translat
 }
 const CardTable = ({ onItemClick, isAnswered, chosenCategory, selectedTitle, result, onBackToCategories, loadData }) => {
     return (
-        <div className='cards mt-neg'>
+        <div className="cards mt-neg">
             <div className="cards_header d-flex mb-5 align-items-center">
                 <BackButton onBackToCategories={onBackToCategories} loadData={loadData} />
                 <AboutCollapse />
@@ -71,7 +71,7 @@ const CardTable = ({ onItemClick, isAnswered, chosenCategory, selectedTitle, res
                 <h3 className={isAnswered ? "mb-3" : "mb-5"}>Which of these cards is <span>{selectedTitle}</span>?</h3>
                 {isAnswered && <ResultAlert result={result}/> }
             </div>
-            <Fade direction='up'> 
+            <Fade direction="up"> 
                 <Row> 
                     {chosenCategory.map(cardItem => <CardItem
                         key={cardItem.id}

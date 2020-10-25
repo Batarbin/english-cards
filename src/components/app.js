@@ -13,9 +13,9 @@ class App extends Component {
             <div className="app d-flex flex-column align-items-center justify-content-center">
                 {isStarted && <AppHeader />}
                 <Switch>
-                    <Route path='/' exact component={WelcomePage} />
-                    <Route path='/game' component={CardGamePage} />
-                    <Route path='/cards' component={CardsBrowserPage} />
+                    <Route path="/" exact component={WelcomePage} />
+                    <Route path="/game" component={CardGamePage} />
+                    <Route path="/cards" component={CardsBrowserPage} />
                 </Switch>
             </div>
         )

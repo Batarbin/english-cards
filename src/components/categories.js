@@ -17,7 +17,7 @@ const mdtp = (dispatch) => bindActionCreators({
 const CategoryItem = ({ onCategoryChosen, title, url }) => {
     return (
         <Zoom>
-            <Card body className='text-center justify-content-center pointer'
+            <Card body className="text-center justify-content-center pointer"
                 onClick = {() => onCategoryChosen(title)}
             >
                 <span className="capitalize">{title}</span>
@@ -28,7 +28,7 @@ const CategoryItem = ({ onCategoryChosen, title, url }) => {
 }
 const CategoryCards = ({ categories, onCategoryChosen }) => {
     return (
-        <div className='cat_cards mt-neg'>
+        <div className="cat_cards mt-neg">
             <h3 className="text-center">Please, choose pleasant category</h3>
             <Row>
                 {categories.map((catItem, index) => <CategoryItem

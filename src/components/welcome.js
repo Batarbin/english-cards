@@ -36,7 +36,7 @@ class Welcome extends Component {
                     <PlayGameButton onGameStarted={onGameStarted} />
                 </div>
                 <div className="welcome-form d-flex flex-column text-center align-items-center justify-content-center">
-                    <a rel="noopener noreferrer" target="_blank" href='https://github.com/Batarbin/english_cards'>
+                    <a rel="noopener noreferrer" target="_blank" href='https://github.com/Batarbin/english-cards'>
                         <img className="github_logo" draggable="false" src={process.env.PUBLIC_URL + '/github-logo.png'} alt='GitHub link' />
                     </a>
                     <Dictionary

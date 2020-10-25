@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.scss';
 
 const AppHeader = () => {
-  const gitHubLink = 'https://github.com/Batarbin/english_cards',
+  const gitHubLink = 'https://github.com/Batarbin/english-cards',
         logoLink = process.env.PUBLIC_URL + '/cards.svg';
   return (
     <header className="app-header d-flex justify-content-between align-items-center">

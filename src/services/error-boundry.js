@@ -4,7 +4,7 @@ const Error = () => {
     return (
         <div className="error d-flex flex-column text-center align-items-center justify-content-center">
             <h1>Sorry, you found an error, please let me know and try again</h1>
-            <a rel="noopener noreferrer" target="_blank" href={'https://github.com/Batarbin/english_cards'} >GitHub</a>
+            <a rel="noopener noreferrer" target="_blank" href={'https://github.com/Batarbin/english-cards'} >GitHub</a>
         </div>
     )
 }

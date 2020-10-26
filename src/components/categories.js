@@ -3,14 +3,14 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
 import { Zoom } from "react-awesome-reveal";
-import { loadData, onCategoryChosen } from '../services/actions';
+import { loadCategories, onCategoryChosen } from '../actions';
 import CardGame from './card-game'
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
-    loadData,
+    loadCategories,
     onCategoryChosen
 }, dispatch)
 
@@ -43,13 +43,17 @@ const CategoryCards = ({ categories, onCategoryChosen }) => {
 
 class Categories extends Component {
     componentDidMount() {
-        this.props.loadData();
+        this.props.loadCategories();
     }
 
     render() {
-        const { chosen, categories, onCategoryChosen } = this.props;
+        const { chosen, categories, onCategoryChosen, chosenCategoryCardList } = this.props;
         
         if ( chosen ) {
+            if (!chosenCategoryCardList || !chosenCategoryCardList.length) {
+                return <LoadingSpinner />
+            }
+            
             return <CardGame />
         }
         

@@ -2,7 +2,9 @@ const initialState = {
     wordInfo: [],
     cardList: [],
     categories: [],
-    chosenCategory: [],
+    chosenCategoryCardList: [],
+    cardsTable: [],
+    count: 0,
     category: null,
     selectedTitle: null,
     result: null,
@@ -19,21 +21,6 @@ const getUniqueIdx = (collection, length) => {
     }
     return idx
 }
-const getCards = (act, cardsArr, type) => {
-    let temp = [],
-        dataArr = []
-    for (let i = 0; i < act.length; i++) {
-        if (act[i].type === type) {
-            dataArr.push(act[i])
-        }
-    }
-    for (let i = 0; i < NUMBER_OF_CARDS; i++) {
-        const i = getUniqueIdx(temp, dataArr.length)
-        temp.push(i)
-        cardsArr.push(dataArr[i])
-    }
-    return cardsArr
-}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,46 +30,57 @@ const reducer = (state = initialState, action) => {
                 showInfoBool = false
             }
             return {
+                ...state,
                 wordInfo: action.payload,
                 showInfoBool
             }
         }
         case 'ON_GAME_STARTED': {
             return {
+                ...state,
                 isStarted: true
             }
         }
-        case 'CARDS_LOADED': {
+        case 'CATEGORIES_LOADED': {
             return {
                 ...state,
-                chosenCategory: [],
-                cardList: [...action.payload.cards],
-                categories: [...action.payload.categories],
-                result: null,
-                isAnswered: false,
+                cardsTable: [],
+                categories: [...action.payload],
                 isStarted: true
             }
         }
         case 'ON_CATEGORY_CHOSEN': {
             return {
                 ...state,
-                category: action.payload,
                 chosen: true
             }
         }
+        case 'ON_CATEGORY_CARD_LIST_LOADED': {
+            return {
+                ...state,
+                chosenCategoryCardList: action.payload
+            }
+        }
         case 'CARDS_TABLE_LOADED': {
-            let chosenCategory = [],
+            let temp = [],
+                cardsTable = [],
                 selectedTitle = null
 
-            chosenCategory = getCards(state.cardList, chosenCategory, state.category)
-            selectedTitle = chosenCategory[ getUniqueIdx([], NUMBER_OF_CARDS) ].title
+            for (let i = 0; i < NUMBER_OF_CARDS; i++) {
+                const i = getUniqueIdx(temp, state.chosenCategoryCardList.length)
+                temp.push(i)
+                cardsTable.push(state.chosenCategoryCardList[i])
+            }
+            
+            selectedTitle = cardsTable[ getUniqueIdx([], NUMBER_OF_CARDS) ].title
 
             return {
                 ...state,
-                chosenCategory,
+                cardsTable,
                 selectedTitle,
                 result: null,
-                isAnswered: false
+                isAnswered: false,
+                count: state.count + 1
             }
         }
         case 'ON_ITEM_CLICK': {
@@ -94,8 +92,18 @@ const reducer = (state = initialState, action) => {
         }
         case 'ON_BACK_TO_CATEGORIES': {
             return {
+                ...state,
+                categories: [],
+                chosenCategoryCardList: [],
                 chosen: false,
                 isAnswered: false
+            }
+        }
+        case 'CARD_LIST_LOADED': {
+            return {
+                ...state,
+                cardList: action.payload,
+                isStarted: true
             }
         }
         default:

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Button } from 'reactstrap';
-import { onGameStarted, showInfo } from '../services/actions';
+import { onGameStarted, showInfo } from '../actions';
 import Dictionary from './dictionary'
 import '../index.scss';
 

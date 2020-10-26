@@ -1,7 +1,7 @@
-import data from '../db.json'
+import { getCards, getCategories, getCardList } from './mock'
 
 // dictionary
-export const showInfo = (wordToInfo) => (dispatch) => {
+export const showInfo = (wordToInfo) => dispatch => {
     if (wordToInfo.length) {
         fetch('https://rapidapi.p.rapidapi.com/words/'+wordToInfo, {
             "method": "GET",
@@ -21,23 +21,26 @@ export const showInfo = (wordToInfo) => (dispatch) => {
     }
 }
 
-// db loading
-export const loadData = () => (dispatch) => {
-    setTimeout(() => {
-        dispatch({ type: 'CARDS_LOADED', payload: data })
-    }, 500)
-}
-
 // welcome
 export const onGameStarted = () => ({
     type: 'ON_GAME_STARTED'
 })
 
 // categories
-export const onCategoryChosen = (title) => ({
-    type: 'ON_CATEGORY_CHOSEN',
-    payload: title
-})
+export const loadCategories = () => dispatch => {
+    getCategories()
+    .then(res => { 
+        dispatch({ type: 'CATEGORIES_LOADED', payload: res }) 
+    })
+}
+export const onCategoryChosen = (title) => dispatch => {
+    dispatch({ type: 'ON_CATEGORY_CHOSEN' }) 
+
+    getCards(title)
+    .then(res => { 
+        dispatch({ type: 'ON_CATEGORY_CARD_LIST_LOADED', payload: res }) 
+    })
+}
 
 // card-game
 export const cardsTableLoaded = () => ({
@@ -50,3 +53,11 @@ export const onItemClick = (title) => ({
 export const onBackToCategories = () => ({
     type: 'ON_BACK_TO_CATEGORIES'
 })
+
+// cards-browser
+export const loadCardList = () => dispatch => {
+    getCardList()
+    .then(res => { 
+        dispatch({ type: 'CARD_LIST_LOADED', payload: res }) 
+    })
+}

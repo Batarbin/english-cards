@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
-import { loadData, onGameStarted} from '../services/actions';
+import { loadCardList, onGameStarted } from '../actions';
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
-    loadData,
+    loadCardList,
     onGameStarted
 }, dispatch)
 
@@ -38,7 +38,7 @@ const Cards = ({ cardList }) => {
 
 class CardsBrowser extends Component {
     componentDidMount() {
-        this.props.loadData();
+        this.props.loadCardList();
     }
 
     render() {

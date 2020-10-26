@@ -20,7 +20,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "precommit": "lint-staged",
     "eslint": "node_modules/.bin/eslint src/"
   },
   "eslintConfig": {

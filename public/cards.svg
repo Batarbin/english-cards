@@ -1,18 +1,24 @@
 <svg id="efevnhcctblj1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 940" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+	<defs>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300');
+		</style>
+	</defs>
 	<style>
 		<![CDATA[
-        #efevnhcctblj2_to {
-            animation: efevnhcctblj2_to__to 5000ms linear infinite normal forwards}
-                @keyframes efevnhcctblj2_to__to { 0% {transform: translate(287.652588px,418.772583px)} 13.333333% {transform: translate(287.652588px,418.772583px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: translate(472.819742px,324.707452px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: translate(472.819742px,324.707452px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: translate(287.652588px,418.772583px)} 100% {transform: translate(287.652588px,418.772583px)} }
-        #efevnhcctblj2_tr {
-            animation: efevnhcctblj2_tr__tr 5000ms linear infinite normal forwards}
-                @keyframes efevnhcctblj2_tr__tr { 0% {transform: rotate(0deg)} 13.333333% {transform: rotate(0deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: rotate(20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: rotate(20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: rotate(0deg)} 100% {transform: rotate(0deg)} }
-        #efevnhcctblj5_to {
-            animation: efevnhcctblj5_to__to 5000ms linear infinite normal forwards}
-                @keyframes efevnhcctblj5_to__to { 0% {transform: translate(321.514465px,332.907249px)} 13.333333% {transform: translate(321.514465px,332.907249px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: translate(100px,420.999977px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: translate(100px,420.999977px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: translate(321.514465px,332.907249px)} 100% {transform: translate(321.514465px,332.907249px)} }
-        #efevnhcctblj5_tr {
-            animation: efevnhcctblj5_tr__tr 5000ms linear infinite normal forwards}
-                @keyframes efevnhcctblj5_tr__tr { 0% {transform: rotate(0deg)} 13.333333% {transform: rotate(0deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: rotate(-20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: rotate(-20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: rotate(0deg)} 100% {transform: rotate(0deg)} }]]>
+		#efevnhcctblj2_to {
+		animation: efevnhcctblj2_to__to 5000ms linear infinite normal forwards}
+		@keyframes efevnhcctblj2_to__to { 0% {transform: translate(287.652588px,418.772583px)} 13.333333% {transform: translate(287.652588px,418.772583px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: translate(472.819742px,324.707452px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: translate(472.819742px,324.707452px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: translate(287.652588px,418.772583px)} 100% {transform: translate(287.652588px,418.772583px)} }
+		#efevnhcctblj2_tr {
+		animation: efevnhcctblj2_tr__tr 5000ms linear infinite normal forwards}
+		@keyframes efevnhcctblj2_tr__tr { 0% {transform: rotate(0deg)} 13.333333% {transform: rotate(0deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: rotate(20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: rotate(20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: rotate(0deg)} 100% {transform: rotate(0deg)} }
+		#efevnhcctblj5_to {
+		animation: efevnhcctblj5_to__to 5000ms linear infinite normal forwards}
+		@keyframes efevnhcctblj5_to__to { 0% {transform: translate(321.514465px,332.907249px)} 13.333333% {transform: translate(321.514465px,332.907249px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: translate(100px,420.999977px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: translate(100px,420.999977px);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: translate(321.514465px,332.907249px)} 100% {transform: translate(321.514465px,332.907249px)} }
+		#efevnhcctblj5_tr {
+		animation: efevnhcctblj5_tr__tr 5000ms linear infinite normal forwards}
+		@keyframes efevnhcctblj5_tr__tr { 0% {transform: rotate(0deg)} 13.333333% {transform: rotate(0deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 25% {transform: rotate(-20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 76% {transform: rotate(-20deg);animation-timing-function: cubic-bezier(0.850000,0.605000,0.725000,0.935000)} 86.666667% {transform: rotate(0deg)} 100% {transform: rotate(0deg)} }
+		]]>
 	</style>
 	<g id="efevnhcctblj2_to" transform="translate(287.652588,418.772583)">
 		<g id="efevnhcctblj2_tr" transform="rotate(0)">

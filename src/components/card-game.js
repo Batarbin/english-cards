@@ -3,25 +3,22 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap';
 import { Fade, Zoom } from "react-awesome-reveal";
-import { loadData, onItemClick, onBackToCategories, cardsTableLoaded } from '../services/actions';
+import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions';
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
-    loadData,
     cardsTableLoaded,
     onItemClick,
-    onBackToCategories
+    onBackToCategories,
+    loadCategories
 }, dispatch)
 
-let timerID
-const clearCards = (prop, timer) => { timerID = setTimeout(prop, timer) }
-
-const BackButton = ({ onBackToCategories, loadData }) => {
+const BackButton = ({ onBackToCategories, preventClear, loadCategories }) => {
     return (
         <Button className="back_button mr-auto p-2" 
-            onClick = {() =>  { onBackToCategories(); loadData(); clearTimeout(timerID) } }
+            onClick = {() =>  { onBackToCategories(); loadCategories(); preventClear() } }
         >
             Choose another category
         </Button>
@@ -60,20 +57,20 @@ const CardItem = ({ onItemClick, isAnswered, title, url, pronunciation, translat
         </Card>
     )
 }
-const CardTable = ({ onItemClick, isAnswered, chosenCategory, selectedTitle, result, onBackToCategories, loadData }) => {
+const CardTable = ({ onItemClick, isAnswered, cardsTable, selectedTitle, result, onBackToCategories, loadCategories, count, preventClear }) => {
     return (
         <div className="cards mt-neg">
             <div className="cards_header d-flex mb-5 align-items-center">
-                <BackButton onBackToCategories={onBackToCategories} loadData={loadData} />
+                <BackButton onBackToCategories={onBackToCategories} loadCategories={loadCategories} preventClear={preventClear} />
                 <AboutCollapse />
             </div>
             <div className="d-flex flex-column text-center align-items-center">
                 <h3 className={isAnswered ? "mb-3" : "mb-5"}>Which of these cards is <span>{selectedTitle}</span>?</h3>
                 {isAnswered && <ResultAlert result={result}/> }
             </div>
-            <Fade direction="up"> 
+            <Fade direction="up" key={count}> 
                 <Row> 
-                    {chosenCategory.map(cardItem => <CardItem
+                    {cardsTable.map(cardItem => <CardItem
                         key={cardItem.id}
                         onItemClick={onItemClick}
                         isAnswered={isAnswered}
@@ -87,32 +84,38 @@ const CardTable = ({ onItemClick, isAnswered, chosenCategory, selectedTitle, res
 }
 
 class CardGame extends Component {
+    _timerID
+    clearCards = () => { this.timerID = setTimeout(this.props.cardsTableLoaded, 3000) }
+    preventClear = () => { clearTimeout(this.timerID) }
+
     componentDidMount() {
         this.props.cardsTableLoaded();
     }
     componentDidUpdate = (prevProps) => {
         if (!prevProps.isAnswered && this.props.isAnswered) {
-            clearCards(this.props.cardsTableLoaded, 3000)
+            this.clearCards();
         }
     }
 
     render() {
-        const { chosenCategory, selectedTitle,
-            onItemClick, isAnswered, onBackToCategories, loadData, result } = this.props;
+        const { cardsTable, selectedTitle, loadCategories,
+            onItemClick, isAnswered, onBackToCategories, result, count } = this.props;
 
-        if (!chosenCategory || !chosenCategory.length) {
+        if (!cardsTable || !cardsTable.length) {
             return <div className="text-center"> <LoadingSpinner /> </div>
         }
         
         return (
             <CardTable
+                preventClear={this.preventClear}
+                loadCategories={loadCategories}
                 onItemClick={onItemClick}
                 isAnswered={isAnswered}
-                chosenCategory={chosenCategory}
+                cardsTable={cardsTable}
                 selectedTitle={selectedTitle}
                 onBackToCategories={onBackToCategories}
-                loadData={loadData}
                 result={result}
+                count={count}
             />
         )
     }

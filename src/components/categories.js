@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
 import { Zoom } from "react-awesome-reveal";
-import { loadCategories, onCategoryChosen } from '../actions';
+import { loadCategories, onCategoryChosen } from '../actions/card-game';
 import CardGame from './card-game'
 import LoadingSpinner from './spinner';
 import '../index.scss';
@@ -28,7 +28,7 @@ const CategoryItem = ({ onCategoryChosen, title, url }) => {
 }
 const CategoryCards = ({ categories, onCategoryChosen }) => {
     return (
-        <div className="cat_cards mt-neg">
+        <div className="cat_cards">
             <h3 className="text-center">Please, choose pleasant category</h3>
             <Row>
                 {categories.map((catItem, index) => <CategoryItem

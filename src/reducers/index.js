@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import welcomeReducer from './welcome'
-import cardGameReducer from './card-game'
-import cardsBrowserReducer from './cards-browser'
+import welcomeReducer from './welcomeReducer'
+import cardGameReducer from './cardGameReducer'
+import cardsBrowserReducer from './cardsBrowserReducer'
 
 export default combineReducers({
     welcomeReducer,

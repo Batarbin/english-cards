@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap';
 import { Fade, Zoom } from "react-awesome-reveal";
-import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions';
+import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions/card-game';
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
@@ -59,8 +59,8 @@ const CardItem = ({ onItemClick, isAnswered, title, url, pronunciation, translat
 }
 const CardTable = ({ onItemClick, isAnswered, cardsTable, selectedTitle, result, onBackToCategories, loadCategories, count, preventClear }) => {
     return (
-        <div className="cards mt-neg">
-            <div className="cards_header d-flex mb-5 align-items-center">
+        <div className="cards">
+            <div className="cards_header d-flex align-items-center mt-neg">
                 <BackButton onBackToCategories={onBackToCategories} loadCategories={loadCategories} preventClear={preventClear} />
                 <AboutCollapse />
             </div>

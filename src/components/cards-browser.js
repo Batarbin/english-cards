@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
-import { loadCardList, onGameStarted } from '../actions';
+import { loadCardList } from '../actions/cards-browser';
 import LoadingSpinner from './spinner';
 import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
-    loadCardList,
-    onGameStarted
+    loadCardList
 }, dispatch)
 
 const CardItem = ({ url, title, pronunciation, translation }) => {

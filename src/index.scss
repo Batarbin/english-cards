@@ -56,7 +56,7 @@ html {
 .welcome {
     .welcome-content {
         @extend %center;
-        right: 40%;
+        right: 60%;
         
         h1 {
             margin-bottom: 50px;
@@ -79,7 +79,7 @@ html {
 
     .welcome-form {
         @extend %center;
-        left: 60%;
+        left: 40%;
         background-color: $bg-c-blue;
         border-left: 3px solid $border-c-blue;
         
@@ -163,7 +163,8 @@ html {
 
 /* app-header.js */
 .app-header {
-    position: absolute;
+    position: fixed;
+    z-index: 999;
     top:0;
     width: 100%;
     font-size: 14pt;
@@ -267,6 +268,8 @@ html {
 }
 /* cards header */
 .cards_header {
+    position: relative;
+    width: 100%;
     .toggler {
         p {
         display: inline-block;
@@ -316,14 +319,15 @@ html {
 
 
 /* media */
-@media (max-height: 883px) {
-    .welcome {
-        .welcome-content {
-            right: 60%;
-        }
-        .welcome-form {
-            left: 40%;
-        }
+@media (min-height: 850px) {
+    .cards {
+        margin-top: -4rem !important;
+    }
+    .cat_cards {
+        margin-top: -4rem !important;
+    }
+    .browser {
+        margin-top: 0 !important;
     }
 }
 
@@ -333,6 +337,34 @@ html {
             h1 {
                 font-size: 25px;
             }
+        }
+    }
+    
+    .cards {
+        max-width: 900px;
+        .card_image {
+            width: 250px;
+        }
+    }
+    .card {
+        max-width: 290px;
+    }
+
+    .cat_cards {
+        .card {
+            img {
+                width: 250px;
+            }
+        }
+    }
+
+    .browser {
+        .card {
+            height: 350px;
+        }
+        .card img {
+            width: 250px;
+            height: 200px;
         }
     }
 }

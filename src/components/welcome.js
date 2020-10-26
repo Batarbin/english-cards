@@ -17,7 +17,7 @@ const PlayGameButton = ({ onGameStarted }) => {
     const history = useHistory();
     return (
         <Button color="info" className="playgame_button"
-            onClick = {() => { onGameStarted(); history.push('/game') } }
+            onClick = {() => { history.push('/game') } }
         >
             Let's play!
         </Button>
@@ -26,7 +26,8 @@ const PlayGameButton = ({ onGameStarted }) => {
 
 class Welcome extends Component {
     render() {
-        const { onGameStarted, showInfo, showInfoBool, wordInfo } = this.props
+        const { onGameStarted, showInfo } = this.props
+        const { showInfoBool, wordInfo } = this.props.welcomeReducer
 
         return (
             <div className="welcome">

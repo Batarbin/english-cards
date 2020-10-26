@@ -47,7 +47,8 @@ class Categories extends Component {
     }
 
     render() {
-        const { chosen, categories, onCategoryChosen, chosenCategoryCardList } = this.props;
+        const { onCategoryChosen } = this.props
+        const { chosen, categories, chosenCategoryCardList } = this.props.cardGameReducer
         
         if ( chosen ) {
             if (!chosenCategoryCardList || !chosenCategoryCardList.length) {

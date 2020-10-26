@@ -1,16 +1,13 @@
 const initialState = {
-    wordInfo: [],
-    cardList: [],
     categories: [],
     chosenCategoryCardList: [],
     cardsTable: [],
     count: 0,
-    category: null,
     selectedTitle: null,
     result: null,
+    chosen: false,
     isAnswered: false,
-    isStarted: false,
-    showInfoBool: false
+    isStarted: false
 }
 
 const NUMBER_OF_CARDS = 3
@@ -22,30 +19,13 @@ const getUniqueIdx = (collection, length) => {
     return idx
 }
 
-const reducer = (state = initialState, action) => {
+export default function cardGameReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SHOW_INFO': {
-            let showInfoBool = true
-            if (action.payload === null) {
-                showInfoBool = false
-            }
-            return {
-                ...state,
-                wordInfo: action.payload,
-                showInfoBool
-            }
-        }
-        case 'ON_GAME_STARTED': {
-            return {
-                ...state,
-                isStarted: true
-            }
-        }
         case 'CATEGORIES_LOADED': {
             return {
                 ...state,
-                cardsTable: [],
                 categories: [...action.payload],
+                cardsTable: [],
                 isStarted: true
             }
         }
@@ -99,16 +79,7 @@ const reducer = (state = initialState, action) => {
                 isAnswered: false
             }
         }
-        case 'CARD_LIST_LOADED': {
-            return {
-                ...state,
-                cardList: action.payload,
-                isStarted: true
-            }
-        }
         default:
             return state;
     }
 }
-
-export default reducer;

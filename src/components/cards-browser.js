@@ -38,11 +38,11 @@ const Cards = ({ cardList }) => {
 
 class CardsBrowser extends Component {
     componentDidMount() {
-        this.props.loadCardList();
+        this.props.loadCardList()
     }
 
     render() {
-        const { cardList } = this.props;
+        const { cardList } = this.props.cardsBrowserReducer
 
         if (!cardList || !cardList.length) {
             return <LoadingSpinner />

@@ -92,14 +92,14 @@ class CardGame extends Component {
         this.props.cardsTableLoaded();
     }
     componentDidUpdate = (prevProps) => {
-        if (!prevProps.isAnswered && this.props.isAnswered) {
+        if (!prevProps.cardGameReducer.isAnswered && this.props.cardGameReducer.isAnswered) {
             this.clearCards();
         }
     }
 
     render() {
-        const { cardsTable, selectedTitle, loadCategories,
-            onItemClick, isAnswered, onBackToCategories, result, count } = this.props;
+        const { loadCategories, onItemClick, onBackToCategories } = this.props
+        const { cardsTable, selectedTitle, isAnswered, result, count } = this.props.cardGameReducer
 
         if (!cardsTable || !cardsTable.length) {
             return <div className="text-center"> <LoadingSpinner /> </div>

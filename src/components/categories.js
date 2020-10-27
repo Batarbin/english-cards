@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
-import { Row, Card, CardImg } from 'reactstrap';
-import { Zoom } from "react-awesome-reveal";
-import { loadCategories, onCategoryChosen } from '../actions/cardGameAction';
+import { connect } from 'react-redux'
+import { Row, Card, CardImg } from 'reactstrap'
+import { Zoom } from "react-awesome-reveal"
+import { loadCategories, onCategoryChosen } from '../actions/cardGameAction'
 import CardGame from './cardTable'
-import LoadingSpinner from './spinner';
+import LoadingSpinner from './spinner'
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
@@ -42,7 +42,7 @@ const CategoryCards = ({ categories, onCategoryChosen }) => {
 
 class Categories extends Component {
     componentDidMount() {
-        this.props.loadCategories();
+        this.props.loadCategories()
     }
 
     render() {
@@ -68,6 +68,6 @@ class Categories extends Component {
             />
         )        
     }
-};
+}
 
-export default connect(mstp, mdtp)(Categories);
+export default connect(mstp, mdtp)(Categories)

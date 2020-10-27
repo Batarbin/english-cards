@@ -17,6 +17,6 @@ export default function welcomeReducer(state = initialState, action) {
             }
         }
         default:
-            return state;
+            return state
     }
 }

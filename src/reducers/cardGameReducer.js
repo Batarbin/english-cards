@@ -78,6 +78,6 @@ export default function cardGameReducer(state = initialState, action) {
             }
         }
         default:
-            return state;
+            return state
     }
 }

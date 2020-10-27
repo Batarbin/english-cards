@@ -1,4 +1,4 @@
-import data from './db.json'
+import { cards, categories } from './db.json'
 
 const allowedCategories = [
     'food',
@@ -7,23 +7,23 @@ const allowedCategories = [
 
 export const getCardList = () => new Promise((res, rej) => {
     setTimeout(() => {
-        if (!data.cards) {
+        if (!cards) {
             rej("Cards don't exist")
             return
         }
     
-        res(data.cards)
+        res(cards)
     }, 1000)
 })
 
 export const getCategories = () => new Promise((res, rej) => {
     setTimeout(() => {
-        if (!data.categories) {
+        if (!categories) {
             rej("Categories don't exist")
             return
         }
     
-        res(data.categories)
+        res(categories)
     }, 500)
 })
 
@@ -34,6 +34,6 @@ export const getCards = (category) => new Promise((res, rej) => {
             return
         }
     
-        res(data.cards.filter(x => x.type === category))
+        res(cards.filter(x => x.type === category))
     }, 1000)
 })

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
-import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap';
-import { Fade, Zoom } from "react-awesome-reveal";
-import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions/cardGameAction';
-import LoadingSpinner from './spinner';
+import { connect } from 'react-redux'
+import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap'
+import { Fade, Zoom } from "react-awesome-reveal"
+import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions/cardGameAction'
+import LoadingSpinner from './spinner'
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
@@ -118,6 +118,6 @@ class CardGame extends Component {
             />
         )
     }
-};
+}
 
-export default connect(mstp, mdtp)(CardGame);
+export default connect(mstp, mdtp)(CardGame)

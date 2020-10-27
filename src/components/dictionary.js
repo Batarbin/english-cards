@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import debounce from 'lodash.debounce';
-import { Form, FormGroup, Input } from 'reactstrap';
+import React, { useState, useRef } from 'react'
+import debounce from 'lodash.debounce'
+import { Form, FormGroup, Input } from 'reactstrap'
 
 const getResultArray = (arr, number) => { // if need to limit the number of elements
     const items = []
@@ -70,7 +70,7 @@ const Dictionary = ({ showInfo, showInfoBool, wordInfo }) => {
         const { value: nextValue } = e.target
         setValue(nextValue)
         debouncedSave(nextValue)
-    };
+    }
 
     return (
         <div className="dictionary d-flex flex-column text-center align-items-center justify-content-center">
@@ -86,4 +86,4 @@ const Dictionary = ({ showInfo, showInfoBool, wordInfo }) => {
     )
 }
 
-export default Dictionary;
+export default Dictionary

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 const mstp = (store) => store
 
@@ -22,4 +22,4 @@ class AppHeader extends Component {
     }
 }
 
-export default connect(mstp)(AppHeader);
+export default connect(mstp)(AppHeader)

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
-import { createBrowserHistory } from "history";
-import AppHeader from '../components/appHeader';
-import Welcome from '../components/welcome';
-import Categories from '../components/categories';
-import CardsBrowser from '../components/cardsBrowser';
+import React from 'react'
+import { Route, Router, Switch } from 'react-router-dom'
+import { createBrowserHistory } from "history"
+import AppHeader from '../components/appHeader'
+import Welcome from '../components/welcome'
+import Categories from '../components/categories'
+import CardsBrowser from '../components/cardsBrowser'
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
 
 export const AppRouter = () => {
     return (

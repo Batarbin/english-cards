@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
-import { Row, Card, CardImg } from 'reactstrap';
-import { loadCardList } from '../actions/cardsBrowserAction';
-import LoadingSpinner from './spinner';
+import { connect } from 'react-redux'
+import { Row, Card, CardImg } from 'reactstrap'
+import { loadCardList } from '../actions/cardsBrowserAction'
+import LoadingSpinner from './spinner'
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({
@@ -50,6 +50,6 @@ class CardsBrowser extends Component {
             <Cards cardList={cardList} />
         )
     }
-};
+}
 
-export default connect(mstp, mdtp)(CardsBrowser);
+export default connect(mstp, mdtp)(CardsBrowser)

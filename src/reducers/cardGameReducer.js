@@ -6,8 +6,7 @@ const initialState = {
     selectedTitle: null,
     result: null,
     chosen: false,
-    isAnswered: false,
-    isStarted: false
+    isAnswered: false
 }
 
 const NUMBER_OF_CARDS = 3
@@ -25,8 +24,7 @@ export default function cardGameReducer(state = initialState, action) {
             return {
                 ...state,
                 categories: [...action.payload],
-                cardsTable: [],
-                isStarted: true
+                cardsTable: []
             }
         }
         case 'ON_CATEGORY_CHOSEN': {

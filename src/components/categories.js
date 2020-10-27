@@ -3,10 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
 import { Zoom } from "react-awesome-reveal";
-import { loadCategories, onCategoryChosen } from '../actions/card-game';
-import CardGame from './card-game'
+import { loadCategories, onCategoryChosen } from '../actions/cardGameAction';
+import CardGame from './cardTable'
 import LoadingSpinner from './spinner';
-import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({

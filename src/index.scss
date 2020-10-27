@@ -161,8 +161,8 @@ html {
     }
 }
 
-/* app-header.js */
-.app-header {
+/* appHeader.js */
+.app_header {
     position: fixed;
     z-index: 999;
     top:0;
@@ -232,7 +232,7 @@ html {
 }
 
 
-/* card-game.js */
+/* cardTable.js */
 .cards {
     margin: 0 auto;
     max-width: 1200px;
@@ -288,7 +288,7 @@ html {
 }
 
 
-/* cards-browser.js */
+/* cardsBrowser.js */
 .browser {
     position: absolute;
     top: 100px;
@@ -308,7 +308,7 @@ html {
 }
 
 
-/* error-boundry.js */
+/* errorBoundry.js */
 .error {
     @extend %center;
     a {

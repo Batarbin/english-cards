@@ -1,6 +1,5 @@
 const initialState = {
     wordInfo: [],
-    isStarted: false,
     showInfoBool: false
 }
 
@@ -15,12 +14,6 @@ export default function welcomeReducer(state = initialState, action) {
                 ...state,
                 wordInfo: action.payload,
                 showInfoBool
-            }
-        }
-        case 'ON_GAME_STARTED': {
-            return {
-                ...state,
-                isStarted: true
             }
         }
         default:

@@ -1,20 +1,7 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import App from './utilites/routes';
-import ErrorBoundry from './utilites/error-boundary';
-import store from './store';
+import { App } from './utilites/appWrapper'
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.scss';
 
 
-ReactDOM.render(
-    <Provider store={store} >
-        <ErrorBoundry>
-            <Router>
-                <App />
-            </Router>
-        </ErrorBoundry>
-    </Provider>
-    , document.getElementById('root')
-);
+ReactDOM.render( <App />, document.getElementById('root') );

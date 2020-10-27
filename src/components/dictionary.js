@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { Form, FormGroup, Input } from 'reactstrap';
-import '../index.scss';
 
 const getResultArray = (arr, number) => { // if need to limit the number of elements
     const items = []

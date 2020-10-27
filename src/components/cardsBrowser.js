@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Row, Card, CardImg } from 'reactstrap';
-import { loadCardList } from '../actions/cards-browser';
+import { loadCardList } from '../actions/cardsBrowserAction';
 import LoadingSpinner from './spinner';
-import '../index.scss';
 
 const mstp = (store) => store
 const mdtp = (dispatch) => bindActionCreators({

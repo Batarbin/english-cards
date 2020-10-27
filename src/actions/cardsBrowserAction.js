@@ -1,6 +1,5 @@
-import { getCardList } from '../utilites/mockAPI'
+import { getCardList } from '../api/mockAPI'
 
-// cards-browser
 export const loadCardList = () => dispatch => {
     getCardList()
     .then(res => { 

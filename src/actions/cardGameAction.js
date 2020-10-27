@@ -1,4 +1,4 @@
-import { getCards, getCategories } from '../utilites/mockAPI'
+import { getCards, getCategories } from '../api/mockAPI'
 
 // categories
 export const loadCategories = () => dispatch => {
@@ -22,7 +22,7 @@ export const onCategoryChosen = (title) => dispatch => {
     })
 }
 
-// card-game
+// cardTable
 export const cardsTableLoaded = () => ({
     type: 'CARDS_TABLE_LOADED'
 })

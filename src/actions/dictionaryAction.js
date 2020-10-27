@@ -1,4 +1,3 @@
-// dictionary
 export const showInfo = (wordToInfo) => dispatch => {
     if (wordToInfo.length) {
         fetch('https://rapidapi.p.rapidapi.com/words/'+wordToInfo, {
@@ -18,8 +17,3 @@ export const showInfo = (wordToInfo) => dispatch => {
         dispatch({ type: 'SHOW_INFO', payload: null })
     }
 }
-
-// welcome
-export const onGameStarted = () => ({
-    type: 'ON_GAME_STARTED'
-})

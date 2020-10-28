@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Row, Button, Card, CardImg, Alert, UncontrolledCollapse } from 'reactstrap'
-import { Fade, Zoom } from "react-awesome-reveal"
+import { Fade, Zoom } from 'react-awesome-reveal'
 import { onItemClick, onBackToCategories, cardsTableLoaded, loadCategories } from '../actions/cardGameAction'
 import LoadingSpinner from './spinner'
 

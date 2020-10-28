@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import { showInfo } from '../actions/dictionaryAction'
 import Dictionary from './dictionary'

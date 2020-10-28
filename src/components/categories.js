@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Row, Card, CardImg } from 'reactstrap'
-import { Zoom } from "react-awesome-reveal"
+import { Zoom } from 'react-awesome-reveal'
 import { loadCategories, onCategoryChosen } from '../actions/cardGameAction'
 import CardGame from './cardTable'
 import LoadingSpinner from './spinner'

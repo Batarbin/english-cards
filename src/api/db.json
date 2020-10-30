@@ -82,7 +82,7 @@
 		},
 		{
 			"title": "sausage",
-			"url": "https://natashaskitchen.com/wp-content/uploads/2017/04/Homemade-Sausage-2-500x375.jpg",
+			"url": "https://www.foxandbriar.com/wp-content/uploads/2020/02/Sheet-Pan-Sausage-and-Peppers-6-of-7-500x500.jpg",
 			"pronunciation": "/ˈsɑː.sɪdʒ/",
             "translation": "колбаса, сосиска",
 			"id": 11,
@@ -196,11 +196,13 @@
 	"categories": [
 		{ 
 			"title": "food",
-			"url": "https://www.foodwriters.org.nz/wp-content/uploads/2019/05/605f8bcd-eb00-4971-929c-5338850cb002_shutterstock_440843308_266cd66a_490x330.jpg"
+			"url": "https://www.foodwriters.org.nz/wp-content/uploads/2019/05/605f8bcd-eb00-4971-929c-5338850cb002_shutterstock_440843308_266cd66a_490x330.jpg",
+			"id": 1
 		},
 		{
 			"title": "plants and herbs",
-			"url": "https://home.bt.com/images/5-healing-herbs-you-need-to-eat-more-of-136403301409603901-160111131911.jpg"
+			"url": "https://home.bt.com/images/5-healing-herbs-you-need-to-eat-more-of-136403301409603901-160111131911.jpg",
+			"id": 2
 		} 
 	]
 }

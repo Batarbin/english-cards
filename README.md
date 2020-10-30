@@ -1,4 +1,4 @@
-[![English Cards](https://i.ibb.co/nQfDnz3/Untitled-1.png)](https://github.com/Batarbin/english_cards)
+[![English Cards](https://i.ibb.co/qx3rb25/english-cards-readme.png)](https://github.com/Batarbin/english_cards)
 
 
 ## About the Project

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Provider } from 'react-redux'
-import { AppRouter } from './router'
+import { AppRouter } from '../router/appRouter'
 import ErrorBoundry from './errorBoundary'
-import { store } from './store'
+import { Store } from './store'
 
 
-export const App = () => {
+export const App: FC = () => {
     return (
-        <Provider store={store} >
+        <Provider store={Store} >
             <ErrorBoundry>
                 <AppRouter />
             </ErrorBoundry>

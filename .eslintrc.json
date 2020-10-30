@@ -1,15 +1,39 @@
 {
-    "extends": [
-      "react-app",
-      "prettier"
+  "env": {
+    "browser": true,
+    "es6": true,
+    "es2017": true
+  },
+  "extends": [
+    "react-app",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier/@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": ["off", {
+      "allowExpressions": true,
+      "allowTypedFunctionExpressions": true
+    }],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-unsafe-return": ["off"],
+    "@typescript-eslint/no-unsafe-call": ["off"],
+    "@typescript-eslint/no-unsafe-assignment": ["off"],
+    "jsx-quotes": [
+      1,
+      "prefer-double"
     ],
-    "rules": {
-      "jsx-quotes": [
-        1,
-        "prefer-double"
-      ]
-    },
-    "plugins": [
-      "prettier"
-    ]
-  }
+    "semi": "off"
+  },
+  "plugins": [
+    "prettier",
+    "@typescript-eslint"
+  ]
+}

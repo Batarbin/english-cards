@@ -41,7 +41,7 @@ const AboutDictionaryPopover: FC = () => {
             <UncontrolledPopover placement="top" target="AboutDictionaryPopover">
                 <PopoverBody> 
                     Information is displayed using 
-                    <a rel="noopener noreferrer" target="_blank" href="https://rapidapi.com/dpventures/api/wordsapi"> <strong>WordAPI</strong> </a>
+                    <a rel="noopener noreferrer" target="_blank" href="https://www.wordsapi.com"> <strong>WordsAPI</strong> </a>
                 </PopoverBody>
             </UncontrolledPopover>
 

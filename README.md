@@ -1,17 +1,18 @@
 <p align="center">
-  <a href="https://github.com/Batarbin/english_cards">
+  <a href="https://github.com/Batarbin/english-cards">
     <img src="https://i.ibb.co/qx3rb25/english-cards-readme.png" alt="English Cards logo">
   </a>
   <h3 align="center">Welcome to Engish Cards!</h3>
   <p align="center">
-    This is an App for learning English
+    This is an app for learning English
   </p>
 </p>
 
 
 ## About The Project
 
-The purpose of this app is to help you learn English by repeating words
+The purpose of this app is to help you learn English by repeating words.
+
 You can also see information about any English word, as in a real dictionary!
 
 ### Built With
@@ -21,7 +22,7 @@ You can also see information about any English word, as in a real dictionary!
 * [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 * [Logger for Redux](https://github.com/LogRocket/redux-logger)
 * [TypeScript](https://www.typescriptlang.org)
-* [WordAPI](https://rapidapi.com/dpventures/api/wordsapi)
+* [WordsAPI](https://www.wordsapi.com)
 * [node-sass](https://www.npmjs.com/package/node-sass)
 * [Bootstrap](https://getbootstrap.com)
 * [reactstrap](https://reactstrap.github.io)

@@ -340,6 +340,9 @@ html, body {
 /* errorBoundry.js */
 .error {
     @extend %center;
+    h1 {
+        font-weight: 700;
+    }
     a {
         text-decoration: none;
         font-size: 30px;

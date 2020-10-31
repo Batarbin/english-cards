@@ -1,16 +1,19 @@
 import {
-    CategoriesListType, CategoriesCardsType, CATEGORIES_LIST_SUCCESS, CATEGORIES_LIST_FAIL, ON_CATEGORY_CHOSEN, CATEGORIES_CARDS_SUCCESS, CATEGORIES_CARD_FAIL,
+    CategoriesListType, CategoriesCardsType, CATEGORIES_LIST_LOADING, CATEGORIES_LIST_SUCCESS, CATEGORIES_LIST_FAIL, 
+    ON_CATEGORY_CHOSEN, CATEGORIES_CARDS_SUCCESS, CATEGORIES_CARD_FAIL,
     CardTableType, CARD_TABLE_LOADED, ON_CARD_CHOSEN, ON_BACK_TO_CATEGORIES,
     CardGameDispatchTypes
 } from "../types/cardGameTypes";
   
 interface DefaultStateI {
     // categories
+    categoriesListLoading: boolean
     categoriesListLoaded: boolean
     chosen: boolean
+    categoriesCardListLoading: boolean
     categoriesCardListLoaded: boolean
     categoriesList: CategoriesListType
-    categoriesCardsList: CategoriesCardsType
+    categoriesCardList: CategoriesCardsType
     // cardTable
     result: boolean
     isAnswered: boolean
@@ -20,11 +23,13 @@ interface DefaultStateI {
 }
 const defaultState: DefaultStateI = {
     // categories
+    categoriesListLoading: false,
     chosen: false,
+    categoriesCardListLoading: false,
     categoriesListLoaded: false,
     categoriesList: [],
     categoriesCardListLoaded: false,
-    categoriesCardsList: [],
+    categoriesCardList: [],
     // cardTable
     result: false,
     isAnswered: false,
@@ -44,31 +49,44 @@ const getUniqueIdx = (collection: number[] = [], length: number): number => {
 const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDispatchTypes) : DefaultStateI => {
     switch (action.type) {
         // categories
+        case CATEGORIES_LIST_LOADING: {
+            return {
+                ...state,
+                categoriesListLoading: true,
+                categoriesListLoaded: true
+            }
+        }
         case CATEGORIES_LIST_SUCCESS:
             return {
                 ...state,
+                categoriesListLoading: false,
                 categoriesListLoaded: true,
                 categoriesList: action.payload
             }
         case CATEGORIES_LIST_FAIL:
             return {
                 ...state,
+                categoriesListLoading: false,
                 categoriesListLoaded: false
             }
         case ON_CATEGORY_CHOSEN:
             return {
                 ...state,
+                categoriesCardListLoading: true,
+                categoriesCardListLoaded: true,
                 chosen: true
             }
         case CATEGORIES_CARDS_SUCCESS:
             return {
                 ...state,
+                categoriesCardListLoading: false,
                 categoriesCardListLoaded: true,
-                categoriesCardsList: action.payload
+                categoriesCardList: action.payload
             }
         case CATEGORIES_CARD_FAIL:
             return {
                 ...state,
+                categoriesCardListLoading: false,
                 categoriesCardListLoaded: false,
             }
         // cardTable
@@ -77,9 +95,9 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                   temp: number[] = []
 
             for (let i = 0; i < 3; i++) {
-                const i: number = getUniqueIdx(temp, state.categoriesCardsList.length)
+                const i: number = getUniqueIdx(temp, state.categoriesCardList.length)
                 temp.push(i)
-                cardsTable.push(state.categoriesCardsList[i])
+                cardsTable.push(state.categoriesCardList[i])
             }
             const selectedTitle = cardsTable[getUniqueIdx([], 3)].title
 
@@ -99,7 +117,7 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
         case ON_BACK_TO_CATEGORIES:
             return {
                 ...state,
-                categoriesCardsList: [],
+                categoriesCardList: [],
                 chosen: false,
                 isAnswered: false
             }

@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux'
-import { WordDispatchTypes, WORD_SUCCESS, WORD_FAIL, WORD_NULL } from '../types/dictionaryTypes'
+import { WordDispatchTypes, WORD_LOADING, WORD_SUCCESS, WORD_FAIL, WORD_NULL } from '../types/dictionaryTypes'
 
 export const GetWordInfo = (wordToInfo: string) => async (dispatch: Dispatch<WordDispatchTypes>) => {
     if (wordToInfo.length) {
+        dispatch({ type: WORD_LOADING })
         try {
             await fetch(`https://rapidapi.p.rapidapi.com/words/${wordToInfo}`, {
                 "method": "GET",

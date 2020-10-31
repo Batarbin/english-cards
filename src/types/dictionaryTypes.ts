@@ -1,3 +1,4 @@
+export const WORD_LOADING = "WORD_LOADING"
 export const WORD_SUCCESS = "WORD_SUCCESS"
 export const WORD_FAIL = "WORD_FAIL"
 export const WORD_NULL = "WORD_NULL"
@@ -22,6 +23,9 @@ export type PronunciationType = {
 }
 
 // actions
+export interface WordLoading {
+    type: typeof WORD_LOADING,
+}
 export interface WordSuccess {
     type: typeof WORD_SUCCESS,
     payload: WordType
@@ -33,4 +37,4 @@ export interface WordNull {
     type: typeof WORD_NULL
 }
 
-export type WordDispatchTypes = WordSuccess | WordFail | WordNull
+export type WordDispatchTypes = WordLoading | WordSuccess | WordFail | WordNull

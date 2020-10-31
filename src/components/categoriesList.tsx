@@ -6,6 +6,7 @@ import { GetCategoriesList, GetCategoryCards } from '../actions/cardGameActions'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
 import CardTable from './cardTable'
+import ServerError from '../app/serverError'
 
 interface CardItemI {
     title: string
@@ -29,24 +30,33 @@ const CategoryItem: FC<CardItemI> = ({ title, url }) => {
 function CategoriesList() {
     const dispatch = useDispatch()
     const cardGameState = useSelector((state: RootStore) => state.cardGameState)
-    const { categoriesCardsList, categoriesList, chosen } = cardGameState
+    const { categoriesListLoading, categoriesListLoaded, categoriesCardListLoading, categoriesCardListLoaded, categoriesCardList, categoriesList, chosen } = cardGameState
 
     useEffect(() => {
         dispatch(GetCategoriesList())
     }, [dispatch])
 
     if (chosen) {
-        if(!categoriesCardsList || !categoriesCardsList.length) {
+        if (!categoriesCardListLoaded) {
+            return <ServerError />
+        }
+
+        if(!categoriesCardList || !categoriesCardList.length || categoriesCardListLoading) {
             return <LoadingSpinner />
         }
         return <CardTable />
     }
+
+    if (!categoriesListLoaded) {
+        return <ServerError />
+    }
     
-    if (!categoriesList || !categoriesList.length) {
+    if (!categoriesList || !categoriesList.length || categoriesListLoading) {
         return (
             <LoadingSpinner />
         )
     }
+    
     return (
         <div className="cat_cards"> 
             <h3 className="text-center">Please, choose pleasant category</h3>

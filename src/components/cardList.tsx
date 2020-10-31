@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Card, CardImg } from 'reactstrap'
 import { GetCardList } from '../actions/cardListActions'
+import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
 
@@ -26,13 +27,17 @@ const CardItem: FC<CardItemI> = ({ title, url, pronunciation, translation }) => 
 function CardList() {
     const dispatch = useDispatch()
     const cardListState = useSelector((state: RootStore) => state.cardListState)
-    const { cardList } = cardListState
+    const { cardList, cardListLoaded, cardListLoading } = cardListState
 
     useEffect(() => {
         dispatch(GetCardList())
     }, [dispatch])
 
-    if (!cardList || !cardList.length) {
+    if (!cardListLoaded) {
+        return <ServerError />
+    }
+    
+    if (!cardList || !cardList.length || cardListLoading) {
         return (
             <LoadingSpinner />
         )

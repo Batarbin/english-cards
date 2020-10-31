@@ -1,3 +1,4 @@
+export const CARD_LIST_LOADING = "CARD_LIST_LOADING"
 export const CARD_LIST_SUCCESS = "CARD_LIST_SUCCESS"
 export const CARD_LIST_FAIL = "CARD_LIST_FAIL"
 
@@ -12,6 +13,9 @@ export type CardListType = {
 }[]
 
 // actions
+export interface CardListLoading {
+    type: typeof CARD_LIST_LOADING
+}
 export interface CardListSuccess {
     type: typeof CARD_LIST_SUCCESS,
     payload: CardListType
@@ -20,4 +24,4 @@ export interface CardListFail {
     type: typeof CARD_LIST_FAIL
 }
 
-export type CardListDispatchTypes = CardListSuccess | CardListFail
+export type CardListDispatchTypes = CardListLoading | CardListSuccess | CardListFail

@@ -1,4 +1,5 @@
 // categories
+export const CATEGORIES_LIST_LOADING = "CATEGORIES_LIST_LOADING"
 export const CATEGORIES_LIST_SUCCESS = "CATEGORIES_LIST_SUCCESS"
 export const CATEGORIES_LIST_FAIL = "CATEGORIES_LIST_FAIL"
 export const ON_CATEGORY_CHOSEN = "ON_CATEGORY_CHOSEN"
@@ -34,6 +35,9 @@ export type CardTableType = {
 }[]
 
 // categoriesActions
+export interface CategoriesListLoading {
+    type: typeof CATEGORIES_LIST_LOADING
+}
 export interface CategoriesListSuccess {
     type: typeof CATEGORIES_LIST_SUCCESS,
     payload: CategoriesListType
@@ -64,7 +68,7 @@ export interface OnBackToCategories {
 }
 
 // categoriesDispatchTypes
-export type CategoriesListDispatchTypes = CategoriesListSuccess | CategoriesListFail
+export type CategoriesListDispatchTypes = CategoriesListLoading | CategoriesListSuccess | CategoriesListFail
 export type CategoriesCardsDispatchTypes = OnCategoryChosen | CategoriesCardsSuccess | CategoriesCardsFail
 export type CategoriesDispatchTypes = CategoriesListDispatchTypes | CategoriesCardsDispatchTypes
 // cardTableDispatchTypes

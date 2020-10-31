@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
 import { RootStore } from '../app/store'
+import LoadingSpinner from './spinner'
 
 interface WordInformationI {
     results: ResultsType[]
@@ -97,7 +98,7 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
 function Dictionary() {
     const dispatch = useDispatch()
     const dictionaryState = useSelector((state: RootStore) => state.wordInfoState)
-    const { isNull, dictionaryLoaded, wordInfo } = dictionaryState
+    const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo } = dictionaryState
 
     const [value, setValue] = useState("")
     const debouncedSave = useRef(debounce(nextValue => dispatch(GetWordInfo(nextValue)), 600))
@@ -128,10 +129,17 @@ function Dictionary() {
                 />
             </Form>
             {!isNull && <>
-                {!dictionaryLoaded && <p className="dictionary_error">Sorry, try another word</p>}
-                <div className="d-flex flex-column w-100"> 
-                    {wordInfo && <WordInformation {...wordInfo}/>} 
-                </div>
+                {dictionaryLoading ? 
+                    <div className="mt-5">
+                        <LoadingSpinner />
+                    </div> :
+                    <>
+                        {!dictionaryLoaded && <p className="dictionary_error">Sorry, try another word</p>}
+                        <div className="d-flex flex-column w-100"> 
+                            {wordInfo && <WordInformation {...wordInfo}/>} 
+                        </div>
+                    </>
+                }
             </>}
         </div>
     )

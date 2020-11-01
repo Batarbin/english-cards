@@ -16,8 +16,9 @@ interface DefaultStateI {
     categoriesCardList: CategoriesCardsType
     // cardTable
     result: boolean
+    resultCount: number
     isAnswered: boolean
-    count: number
+    animationKey: number
     cardsTable: CardTableType
     selectedTitle: string
 }
@@ -32,8 +33,9 @@ const defaultState: DefaultStateI = {
     categoriesCardList: [],
     // cardTable
     result: false,
+    resultCount: 0,
     isAnswered: false,
-    count: 0,
+    animationKey: 0,
     cardsTable: [],
     selectedTitle: ''
 }
@@ -106,18 +108,27 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 cardsTable,
                 selectedTitle,
                 isAnswered: false,
-                count: state.count + 1
+                animationKey: state.animationKey + 1
             }
         case ON_CARD_CHOSEN:
+            const result = action.payload === state.selectedTitle
+            let resultCount = 0
+            if (result) {
+                resultCount = state.resultCount + 1
+            } else {
+                resultCount = 0
+            }
             return {
                 ...state,
-                result: action.payload === state.selectedTitle,
+                result,
+                resultCount,
                 isAnswered: true
             }
         case ON_BACK_TO_CATEGORIES:
             return {
                 ...state,
                 categoriesCardList: [],
+                resultCount: 0,
                 chosen: false,
                 isAnswered: false
             }

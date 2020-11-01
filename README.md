@@ -23,6 +23,7 @@ You can also see information about any English word, as in a real dictionary!
 * [Logger for Redux](https://github.com/LogRocket/redux-logger)
 * [TypeScript](https://www.typescriptlang.org)
 * [WordsAPI](https://www.wordsapi.com)
+* [lodash.debounce](https://www.npmjs.com/package/lodash.debounce)
 * [node-sass](https://www.npmjs.com/package/node-sass)
 * [Bootstrap](https://getbootstrap.com)
 * [reactstrap](https://reactstrap.github.io)

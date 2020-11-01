@@ -8,6 +8,7 @@ import LoadingSpinner from './spinner'
 
 interface ResultAlertI {
     result: boolean
+    resultCount: number
 }
 interface CardTableItemI {
     isAnswered: boolean
@@ -40,11 +41,13 @@ const AboutCardTablePopover: FC = () => {
         </div>
     )
 }
-const ResultAlert: FC<ResultAlertI> = ({ result }) => {
+const ResultAlert: FC<ResultAlertI> = ({ result, resultCount }) => {
     return (<>
         <Zoom>
             <Alert color={result ? 'success' : 'danger'} className="mb-3">
-                {result ? 'Hey, good job!' : 'Try again, you can do it!'}
+                {result ? 
+                    resultCount === 0 ? 'Hey, good job!' : `Hey, good job! ${resultCount} in a row!` : 
+                    'Try again, you can do it!'}
             </Alert> 
         </Zoom>
     </>)
@@ -66,7 +69,7 @@ const CardTableItem: FC<CardTableItemI> = ({ isAnswered, title, url, pronunciati
 function CardTable() {
     const dispatch = useDispatch()
     const cardGameState = useSelector((state: RootStore) => state.cardGameState)
-    const { cardsTable, isAnswered, result, selectedTitle, count } = cardGameState
+    const { cardsTable, isAnswered, result, selectedTitle, animationKey, resultCount } = cardGameState
 
     // componentDidMount
     useEffect(() => {
@@ -99,9 +102,9 @@ function CardTable() {
             </div>
             <div className="d-flex flex-column text-center align-items-center">
                 <h3 className={isAnswered ? "mb-3" : "mb-5"}>Which of these cards is <span>{selectedTitle}</span>?</h3>
-                {isAnswered && <ResultAlert result={result}/> }
+                {isAnswered && <ResultAlert result={result} resultCount={resultCount} /> }
             </div>
-            <Fade direction="up" key={count}>
+            <Fade direction="up" key={animationKey}>
                 <Row> 
                     {cardsTable.map(item => <CardTableItem
                         key={item.id}

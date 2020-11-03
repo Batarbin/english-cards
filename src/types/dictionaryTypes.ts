@@ -5,20 +5,20 @@ export const WORD_NULL = "WORD_NULL"
 
 // reducers
 export type WordType = {
-    success: boolean,
-    word: string,
+    success: boolean
+    word: string
     pronunciation?: PronunciationType,
     results: ResultsType[]
 }
 export type ResultsType = {
-    partOfSpeech: string,
-    definition: string,
-    examples?: string[],
+    partOfSpeech: string
+    definition: string
+    examples?: string[]
     synonyms?: string[]
 }
 export type PronunciationType = {
-    all: string,
-    noun?: string,
+    all: string
+    noun?: string
     verb?: string
 }
 

@@ -5,7 +5,7 @@ const allowedCategories: string[] = [
     'plants and herbs'
 ]
 
-type getCardListI = {
+type getCollectionListI = {
     title: string
     url: string
     pronunciation: string
@@ -27,7 +27,7 @@ type getCategoryCardsI = {
     type: string
 }[]
 
-export function getCardList(): Promise<getCardListI> {
+export function getCollectionList(): Promise<getCollectionListI> {
     return new Promise((res, rej) => {
         setTimeout(() => {
             if (!cards) {

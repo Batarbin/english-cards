@@ -36,6 +36,9 @@ html, body {
 .pointer {
     cursor: pointer;
 }
+.rotate {
+    transform: rotate(180deg);
+}
 .mt-neg {
     margin-top: -4rem !important;
 }
@@ -308,24 +311,47 @@ html, body {
     background-color: $bg-c-yellow;
     position: absolute;
     padding: 0 50px;
+    min-width: 100%;
 
-    h3 {
+    h2 {
         margin-bottom: 30px;
     }
-    .card {
-        height: 350px;
-        max-width: 290px;
-        p {
-            font-weight: 700;
+    .card_list_item {
+        margin-bottom: 20px;
+        width: 100%;
+
+        .category_title {
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: rgb(238, 238, 206);
+            border: 1px solid rgb(141, 141, 120);
+            border-radius: 15px;
+            cursor: pointer;
+            p {
+                font-weight: 700;
+                font-size: 20px;
+                margin-bottom: 0;
+            }
+            img {
+                width: 25px;
+            }
         }
-        img {
-            width: 250px;
-            height: 200px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-        &:nth-child(5n+5) {
-            margin-right: 0;
+        .card {
+            height: 350px;
+            max-width: 290px;
+            p {
+                font-weight: 700;
+            }
+            img {
+                width: 250px;
+                height: 200px;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+            &:nth-child(5n+5) {
+                margin-right: 0;
+            }
         }
     }
 }
@@ -333,7 +359,7 @@ html, body {
 .scrollTop {
     position: fixed; 
     right: 50px;
-    bottom: 50px;
+    bottom: 100px;
     height: 50px;
     width: 50px;
     justify-content: center;

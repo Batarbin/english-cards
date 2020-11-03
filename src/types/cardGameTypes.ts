@@ -12,25 +12,25 @@ export const ON_BACK_TO_CATEGORIES = "ON_BACK_TO_CATEGORIES"
 
 // categoriesReducer
 export type CategoriesListType = {
-    title: string,
-    url: string,
+    title: string
+    url: string
     id: number
 }[]
 export type CategoriesCardsType = {
-    title: string,
-    url: string,
-    pronunciation: string,
-    translation: string,
-    id: number,
+    title: string
+    url: string
+    pronunciation: string
+    translation: string
+    id: number
     type: string
 }[]
 // cardTableReducer
 export type CardTableType = {
-    title: string,
-    url: string,
-    pronunciation: string,
-    translation: string,
-    id: number,
+    title: string
+    url: string
+    pronunciation: string
+    translation: string
+    id: number
     type: string
 }[]
 

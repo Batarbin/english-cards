@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import AppHeader from '../components/appHeader'
 import Welcome from '../components/welcome'
 import CategoriesList from '../components/categoriesList'
-import CardList from '../components/cardList'
+import CardCollection from '../components/cardCollection'
 
 function Title(title: string) {
     useEffect(() => {
@@ -34,6 +34,6 @@ export const CardListPage: FC = () => {
     Title('Card List')
     return (<>
         <AppHeader />
-        <CardList />
+        <CardCollection />
     </>)
 }

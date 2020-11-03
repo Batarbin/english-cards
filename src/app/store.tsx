@@ -5,12 +5,12 @@ import logger from 'redux-logger'
 import {combineReducers} from 'redux'
 import dictionaryReducer from '../reducers/dictionaryReducers'
 import cardGameReducer from '../reducers/cardGameReducers'
-import cardListReducer from '../reducers/cardListReducers'
+import cardCollectionReducer from '../reducers/cardCollectionReducers'
 
 const RootReducer = combineReducers({
     wordInfoState: dictionaryReducer,
     cardGameState: cardGameReducer,
-    cardListState: cardListReducer
+    cardCollectionState: cardCollectionReducer
 });
 
 export type RootStore = ReturnType<typeof RootReducer>

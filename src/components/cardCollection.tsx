@@ -71,7 +71,7 @@ function CardCollection() {
     const typeArr = Array.from(new Set (cardCollection.map(item => item.type))) // get unique types (categories) from cards
     
     return (
-        <div className="card_list d-flex flex-column align-items-center justify-content-center">
+        <div className="card_list">
             <img draggable="false" src="/images/go-to-top-arrow.png" alt="Scroll to top"
                 className="scrollTop" 
                 onClick={scrollTop} 
@@ -80,7 +80,7 @@ function CardCollection() {
             <h2 className="text-center">Cards collection</h2>
             {typeArr.map((item, i) => {
                 return (<div className="card_list_item" key={i}>
-                    <div className="category_title d-flex flex-row align-items-center justify-content-between"
+                    <div className="category_title"
                         onClick={() => toggle(i)}
                     >
                         <p className="capitalize">{item}</p>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "json-server": "^0.16.2",
     "lodash.debounce": "^4.0.8",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
@@ -21,6 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "json": "json-server --watch src/db.json --delay 800 --port 3001",
+    "dev": "concurrently \"npm start\" \"npm run json\"",
     "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src"
   },
   "eslintConfig": {

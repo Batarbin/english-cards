@@ -7,7 +7,7 @@ export const WORD_NULL = "WORD_NULL"
 export type WordType = {
     success: boolean
     word: string
-    pronunciation?: PronunciationType,
+    pronunciation?: PronunciationType
     results: ResultsType[]
 }
 export type ResultsType = {
@@ -24,10 +24,10 @@ export type PronunciationType = {
 
 // actions
 export interface WordLoading {
-    type: typeof WORD_LOADING,
+    type: typeof WORD_LOADING
 }
 export interface WordSuccess {
-    type: typeof WORD_SUCCESS,
+    type: typeof WORD_SUCCESS
     payload: WordType
 }
 export interface WordFail {

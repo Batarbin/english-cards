@@ -39,7 +39,7 @@ export interface CategoriesListLoading {
     type: typeof CATEGORIES_LIST_LOADING
 }
 export interface CategoriesListSuccess {
-    type: typeof CATEGORIES_LIST_SUCCESS,
+    type: typeof CATEGORIES_LIST_SUCCESS
     payload: CategoriesListType
 }
 export interface CategoriesListFail {
@@ -47,9 +47,10 @@ export interface CategoriesListFail {
 }
 export interface OnCategoryChosen {
     type: typeof ON_CATEGORY_CHOSEN
+    payload: string
 }
 export interface CategoriesCardsSuccess {
-    type: typeof CATEGORIES_CARDS_SUCCESS,
+    type: typeof CATEGORIES_CARDS_SUCCESS
     payload: CategoriesCardsType
 }
 export interface CategoriesCardsFail {
@@ -57,14 +58,14 @@ export interface CategoriesCardsFail {
 }
 // cardTableActions
 export interface CardTableLoaded {
-    type: typeof CARD_TABLE_LOADED,
+    type: typeof CARD_TABLE_LOADED
 }
 export interface OnCardChosen {
-    type: typeof ON_CARD_CHOSEN,
+    type: typeof ON_CARD_CHOSEN
     payload: string
 }
 export interface OnBackToCategories {
-    type: typeof ON_BACK_TO_CATEGORIES,
+    type: typeof ON_BACK_TO_CATEGORIES
 }
 
 // categoriesDispatchTypes

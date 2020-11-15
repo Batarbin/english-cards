@@ -13,7 +13,7 @@ interface DefaultStateI {
 }
 const defaultState: DefaultStateI = {
     cardCollectionLoading: false,
-    cardCollectionLoaded: false,
+    cardCollectionLoaded: true,
     cardCollection: []
 }
   
@@ -22,8 +22,8 @@ const cardCollectionReducer = (state: DefaultStateI = defaultState, action: Card
         case CARD_COLLECTION_LOADING: {
             return {
                 ...state,
-                cardCollectionLoading: true,
-                cardCollectionLoaded: true
+                cardCollectionLoaded: true,
+                cardCollectionLoading: true
             }
         }
         case CARD_COLLECTION_SUCCESS:

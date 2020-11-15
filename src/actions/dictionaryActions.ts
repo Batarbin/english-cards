@@ -16,7 +16,7 @@ export const GetWordInfo = (wordToInfo: string) => async (dispatch: Dispatch<Wor
                 dispatch({ type: WORD_SUCCESS, payload: data })
             })
         } catch(e) {
-        dispatch({ type: WORD_FAIL})
+            dispatch({ type: WORD_FAIL})
         }
     } else (
         dispatch({ type: WORD_NULL})

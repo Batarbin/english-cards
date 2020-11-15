@@ -2,7 +2,7 @@ import * as React from 'react'
 
 function AppHeader() {
     return (
-        <nav className="app_header d-flex justify-content-between align-items-center">
+        <nav className="app_header">
             <a className="mr-auto p-2" href="/" >
                 <img draggable="false" src="/images/cards.svg" alt="english cards" />
             </a>

@@ -22,6 +22,24 @@ $border-c-blue: rgb(122, 156, 179);
         background-color: rgb(79, 122, 98);
     }
 }
+%df_dc_aic_jcc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+%df_dr_aic_jcc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+%df_dr_aic_jcsb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
 
 html, body {
     font-size: 15px;
@@ -47,6 +65,7 @@ html, body {
 }
 .app {
     @extend %center;
+    @extend %df_dc_aic_jcc;
     // overflow-y: auto;
     height: 100%;
     background-color: $bg-c-yellow;
@@ -56,6 +75,7 @@ html, body {
 .welcome {
     .welcome-content {
         @extend %center;
+        @extend %df_dc_aic_jcc;
         right: 60%;
         
         h1 {
@@ -79,6 +99,7 @@ html, body {
 
     .welcome-form {
         @extend %center;
+        @extend %df_dc_aic_jcc;
         left: 40%;
         background-color: $bg-c-blue;
         border-left: 3px solid $border-c-blue;
@@ -95,6 +116,7 @@ html, body {
     
         /* dictionary.js */
         .dictionary {
+            @extend %df_dc_aic_jcc;
             padding: 0 5px;
             width: 95%;
     
@@ -173,6 +195,7 @@ html, body {
 
 /* appHeader.js */
 .app_header {
+    @extend %df_dr_aic_jcsb;
     position: fixed;
     z-index: 999;
     top: 0;
@@ -307,6 +330,7 @@ html, body {
 }
 
 .card_list {
+    @extend %df_dc_aic_jcc;
     top: 100px;
     background-color: $bg-c-yellow;
     position: absolute;
@@ -321,6 +345,7 @@ html, body {
         width: 100%;
 
         .category_title {
+            @extend %df_dr_aic_jcsb;
             padding: 10px 20px;
             margin-top: 20px;
             margin-bottom: 20px;

@@ -5,7 +5,7 @@ import { WelcomePage, CardGamePage, CardListPage, NoMatchPage } from './pages'
 export const AppRouter: FC = () => {
     return (
         <Router>
-            <main className="app d-flex flex-column align-items-center justify-content-center">
+            <main className="app">
                 <Switch>
                     <Route path="/" exact component={WelcomePage} />
                     <Route path="/game" exact component={CardGamePage} />

@@ -6,7 +6,7 @@ import CardCollection from '../components/cardCollection'
 
 function Title(title: string) {
     useEffect(() => {
-        document.title = `English Cards | ${title}`
+        document.title = `${title} | English Cards`
     }, [title])
 }
 
@@ -18,7 +18,6 @@ export const NoMatchPage: FC = () => {
     </>)
 }
 export const WelcomePage: FC = () => {
-    Title('Welcome | Dictionary')
     return (
         <Welcome />
     )

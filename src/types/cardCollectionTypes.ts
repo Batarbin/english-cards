@@ -17,7 +17,7 @@ export interface CardCollectionLoading {
     type: typeof CARD_COLLECTION_LOADING
 }
 export interface CardCollectionSuccess {
-    type: typeof CARD_COLLECTION_SUCCESS,
+    type: typeof CARD_COLLECTION_SUCCESS
     payload: CardCollectionType
 }
 export interface CardCollectionFail {

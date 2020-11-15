@@ -12,6 +12,7 @@ interface DefaultStateI {
     chosen: boolean
     categoriesCardListLoading: boolean
     categoriesCardListLoaded: boolean
+    chosenCategory: string
     categoriesList: CategoriesListType
     categoriesCardList: CategoriesCardsType
     // cardTable
@@ -27,9 +28,10 @@ const defaultState: DefaultStateI = {
     categoriesListLoading: false,
     chosen: false,
     categoriesCardListLoading: false,
-    categoriesListLoaded: false,
+    categoriesListLoaded: true,
+    chosenCategory: '',
     categoriesList: [],
-    categoriesCardListLoaded: false,
+    categoriesCardListLoaded: true,
     categoriesCardList: [],
     // cardTable
     result: false,
@@ -74,16 +76,18 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
         case ON_CATEGORY_CHOSEN:
             return {
                 ...state,
+                chosenCategory: action.payload,
                 categoriesCardListLoading: true,
                 categoriesCardListLoaded: true,
                 chosen: true
             }
         case CATEGORIES_CARDS_SUCCESS:
+            const categoriesCardList = action.payload.filter(x => x.type === state.chosenCategory)
             return {
                 ...state,
                 categoriesCardListLoading: false,
                 categoriesCardListLoaded: true,
-                categoriesCardList: action.payload
+                categoriesCardList
             }
         case CATEGORIES_CARD_FAIL:
             return {
@@ -128,6 +132,7 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
             return {
                 ...state,
                 categoriesCardList: [],
+                chosenCategory: '',
                 resultCount: 0,
                 chosen: false,
                 isAnswered: false

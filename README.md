@@ -24,6 +24,7 @@ You can also see information about any English word, as in a real dictionary!
 * [TypeScript](https://www.typescriptlang.org)
 * [WordsAPI](https://www.wordsapi.com)
 * [lodash.debounce](https://www.npmjs.com/package/lodash.debounce)
+* [JSON Server](https://github.com/typicode/json-server)
 * [node-sass](https://www.npmjs.com/package/node-sass)
 * [Bootstrap](https://getbootstrap.com)
 * [reactstrap](https://reactstrap.github.io)
@@ -41,4 +42,31 @@ git clone https://github.com/Batarbin/english-cards.git
 2. Install NPM packages
 ```sh
 npm install
+```
+3. Install JSON Server
+```sh
+npm install -g json-server
+```
+
+## Scripts
+
+### Start
+```sh
+npm start
+```
+
+### JSON Server
+```sh
+npm run json
+```
+
+### Start and JSON Server concurrently
+Or use this script to run them concurrently
+```sh
+npm run dev
+```
+
+### eslint
+```sh
+npm run eslint
 ```

@@ -105,13 +105,13 @@ function Dictionary() {
             .current
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let { value: nextValue } = e.target
-        nextValue = nextValue.replace(/[^[a-zA-Z0-9\s]+$/g, "");
+        nextValue = nextValue.replace(/[^[a-zA-Z0-9\s]+$/g, "")
         setValue(nextValue)
         debouncedSave(nextValue)
     }
 
     return (
-        <div className="dictionary d-flex flex-column text-center align-items-center justify-content-center">
+        <div className="dictionary text-center">
             <div> 
                 <AboutDictionaryPopover />
                 <h2 className="mb-2">You can get information about any english word</h2>

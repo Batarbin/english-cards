@@ -1,9 +1,4 @@
 <svg id="efevnhcctblj1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 940" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
-	<defs>
-		<style>
-			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300');
-		</style>
-	</defs>
 	<style>
 		<![CDATA[
 		#efevnhcctblj2_to {
@@ -39,16 +34,16 @@
 	<g id="efevnhcctblj8">
 		<rect id="efevnhcctblj9" width="500" height="800" rx="50" ry="50" transform="matrix(1 0 0 1 306 84)" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" stroke-width="1" />
 		<path id="efevnhcctblj10" d="M545,493L545,483L976,483L976,493L545,493Z" transform="matrix(1 0 0 1 -204 -3)" fill="rgb(255,182,193)" fill-rule="evenodd" stroke="none" stroke-width="1" />
-		<text id="efevnhcctblj11" dx="0" dy="0" font-family="Montserrat" font-size="300" transform="matrix(1 0 0 1 334.29687500000000 292.90625000000000)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
+		<text id="efevnhcctblj11" dx="0" dy="0" font-family="Helvetica" font-size="300" transform="matrix(1 0 0 1 334.29687500000000 292.90625000000000)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
 			<![CDATA[e]]>
 		</text>
-		<text id="efevnhcctblj12" dx="0" dy="0" font-family="Montserrat" font-size="300" transform="matrix(-1 0 -0 -1 777.70312500000000 677.09699999999998)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
+		<text id="efevnhcctblj12" dx="0" dy="0" font-family="Helvetica" font-size="300" transform="matrix(-1 0 -0 -1 777.70312500000000 677.09699999999998)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
 			<![CDATA[e]]>
 		</text>
-		<text id="efevnhcctblj13" dx="0" dy="0" font-family="Montserrat" font-size="100" transform="matrix(1 0 0 1 428.18750000000000 457)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
+		<text id="efevnhcctblj13" dx="0" dy="0" font-family="Helvetica" font-size="100" transform="matrix(1 0 0 1 428.18750000000000 457)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
 			<![CDATA[cards]]>
 		</text>
-		<text id="efevnhcctblj14" dx="0" dy="0" font-family="Montserrat" font-size="100" transform="matrix(-1 0 -0 -1 684.81250000000000 513)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
+		<text id="efevnhcctblj14" dx="0" dy="0" font-family="Helvetica" font-size="100" transform="matrix(-1 0 -0 -1 684.81250000000000 513)" fill="rgb(255,182,193)" stroke="none" stroke-width="1">
 			<![CDATA[cards]]>
 		</text>
 	</g>

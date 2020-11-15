@@ -9,9 +9,7 @@ export const GetCategoriesList = () => async (dispatch: Dispatch<CategoriesListD
     try {
         await fetch(`http://localhost:3001/categories`)
         .then(res => res.json()).then(data => {
-            // setTimeout(() => {
-                dispatch({ type: CATEGORIES_LIST_SUCCESS, payload: data })
-            // }, 1000)
+            dispatch({ type: CATEGORIES_LIST_SUCCESS, payload: data })
         })
     } catch(e) {
         dispatch({ type: CATEGORIES_LIST_FAIL})
@@ -23,9 +21,7 @@ export const GetCategoryCards = (title: string) => async (dispatch: Dispatch<Cat
     try {
         await fetch(`http://localhost:3001/cards`)
         .then(res => res.json()).then(data => {
-            // setTimeout(() => {
-                dispatch({ type: CATEGORIES_CARDS_SUCCESS, payload: data })
-            // }, 1000)
+            dispatch({ type: CATEGORIES_CARDS_SUCCESS, payload: data })
         })
     } catch(e) {
         dispatch({ type: CATEGORIES_CARD_FAIL})

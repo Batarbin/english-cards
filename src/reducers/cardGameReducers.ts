@@ -17,6 +17,7 @@ interface DefaultStateI {
     categoriesCardList: CategoriesCardsType
     // cardTable
     result: boolean
+    globalCount: number
     resultCount: number
     isAnswered: boolean
     animationKey: number
@@ -35,6 +36,7 @@ const defaultState: DefaultStateI = {
     categoriesCardList: [],
     // cardTable
     result: false,
+    globalCount: 0,
     resultCount: 0,
     isAnswered: false,
     animationKey: 0,
@@ -99,6 +101,8 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
         case CARD_TABLE_LOADED:
             const cardsTable: CardTableType = [],
                   temp: number[] = []
+            let gCount: number = state.globalCount,
+                rCount: number = state.resultCount
 
             for (let i = 0; i < 3; i++) {
                 const i: number = getUniqueIdx(temp, state.categoriesCardList.length)
@@ -106,13 +110,19 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 cardsTable.push(state.categoriesCardList[i])
             }
             const selectedTitle = cardsTable[getUniqueIdx([], 3)].title
+            if (state.globalCount === 5) {
+                gCount = 0
+                rCount = 0
+            }
 
             return {
                 ...state,
                 cardsTable,
                 selectedTitle,
                 isAnswered: false,
-                animationKey: state.animationKey + 1
+                animationKey: state.animationKey + 1,
+                globalCount: gCount,
+                resultCount: rCount
             }
         case ON_CARD_CHOSEN:
             const result = action.payload === state.selectedTitle
@@ -125,14 +135,17 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
             return {
                 ...state,
                 result,
+                globalCount: state.globalCount + 1,
                 resultCount,
                 isAnswered: true
             }
         case ON_BACK_TO_CATEGORIES:
             return {
                 ...state,
+                categoriesList: [],
                 categoriesCardList: [],
                 chosenCategory: '',
+                globalCount: 0,
                 resultCount: 0,
                 chosen: false,
                 isAnswered: false

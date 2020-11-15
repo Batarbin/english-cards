@@ -6,9 +6,7 @@ export const GetCollectionList = () => async (dispatch: Dispatch<CardCollectionD
     try {
         await fetch(`http://localhost:3001/cards`)
         .then(res => res.json()).then(data => {
-            // setTimeout(() => {
-                dispatch({ type: CARD_COLLECTION_SUCCESS, payload: data })
-            // }, 1000)
+            dispatch({ type: CARD_COLLECTION_SUCCESS, payload: data })
         })
     } catch(e) {
         dispatch({ type: CARD_COLLECTION_FAIL})

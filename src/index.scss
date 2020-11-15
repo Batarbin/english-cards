@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@300;400;700&display=swap&family=Noto+Sans:wght@400;700&display=swap');
 $bg-c-blue: rgb(210, 233, 236);
 $bg-c-yellow: rgb(255, 255, 241);
+$bg-c-dark-yellow: rgb(238, 238, 206);
 $border-c-blue: rgb(122, 156, 179);
+$border-c-dark-yellow: rgb(141, 141, 120);
 %center {
     position: absolute;
     top: 0;
@@ -193,6 +195,7 @@ html, body {
     }
 }
 
+
 /* appHeader.js */
 .app_header {
     @extend %df_dr_aic_jcsb;
@@ -308,28 +311,40 @@ html, body {
         margin-bottom: 0 !important;
     }
 }
+
+
 /* cards header */
 .cards_header {
     position: relative;
     width: 100%;
-    .toggler {
+
+    .progress_counter {
+        background-color: $bg-c-dark-yellow;
+        border: 1px solid $border-c-dark-yellow;
         p {
-        display: inline-block;
-        border-bottom: 1px dotted  rgb(69, 150, 170);
-        font-weight: 700;
+            font-weight: 700;
+            margin-bottom: 0;
         }
-        .card {
-        width: 300px;
-        height: 70px;
-        padding: 10px;
-        }
-    }
-    .back_button {
-        @extend %button_theme_green;
     }
 }
 
-.card_list {
+
+/* result screen */
+.result_screen {
+    @extend %df_dc_aic_jcc;
+    h2 {
+        margin-bottom: 20px;
+    }
+    .result_screen_buttons {
+        .back_button {
+            margin-right: 20px !important;
+        }
+    }
+}
+
+
+/* cardCollection.js */
+.card_collection {
     @extend %df_dc_aic_jcc;
     top: 100px;
     background-color: $bg-c-yellow;
@@ -340,7 +355,7 @@ html, body {
     h2 {
         margin-bottom: 30px;
     }
-    .card_list_item {
+    .card_collection_item {
         margin-bottom: 20px;
         width: 100%;
 
@@ -349,8 +364,8 @@ html, body {
             padding: 10px 20px;
             margin-top: 20px;
             margin-bottom: 20px;
-            background-color: rgb(238, 238, 206);
-            border: 1px solid rgb(141, 141, 120);
+            background-color: $bg-c-dark-yellow;
+            border: 1px solid $border-c-dark-yellow;
             border-radius: 15px;
             cursor: pointer;
             p {
@@ -381,7 +396,19 @@ html, body {
     }
 }
 
-.scrollTop {
+
+/* scrollToTopButton */
+/* global buttons */
+.back_button {
+    @extend %button_theme_green;
+}
+
+.continue_button {
+    @extend %button_theme_green;
+    padding: 7.5px 7.5px;
+}
+
+.scroll_top_button {
     position: fixed; 
     right: 50px;
     bottom: 100px;

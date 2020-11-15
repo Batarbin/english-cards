@@ -43,10 +43,6 @@ git clone https://github.com/Batarbin/english-cards.git
 ```sh
 npm install
 ```
-3. Install JSON Server
-```sh
-npm install -g json-server
-```
 
 ## Scripts
 

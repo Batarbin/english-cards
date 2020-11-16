@@ -111,7 +111,8 @@ function Dictionary() {
             .current
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let { value: nextValue } = e.target
-        nextValue = nextValue.replace(/[^[a-zA-Z0-9\s]+$/g, "")
+        nextValue = nextValue.replace(/^\s|[^a-zA-Z\d\s+$]/g, "")
+        nextValue = nextValue.replace(/\s{2}/g, " ")
         setValue(nextValue)
         debouncedSave(nextValue)
     }

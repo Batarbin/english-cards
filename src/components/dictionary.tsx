@@ -34,6 +34,12 @@ const getResultArray = (arr: ResultsType[], number: number): ResultsType[] => {
     }
     return getResultArray(arr, number-1)
 }
+
+export const InputError: React.FC = () => {
+    return (
+        <p className="input_error">Sorry, try another word</p>
+    )
+}
 const AboutDictionaryPopover: FC = () => {
     return (
         <div className="popover_dictionary d-flex flex-row-reverse">
@@ -77,7 +83,7 @@ const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, syn
 const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation }) => {
     if ( !results || !results.length) {
         return (
-            <p className="dictionary_error">Sorry, try another word</p>
+            <InputError />
         )
     }
     const resultsArray = getResultArray(results, 3)

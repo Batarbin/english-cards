@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Card, CardImg, Button, Alert } from 'reactstrap'
 import { Zoom, Fade } from 'react-awesome-reveal'
@@ -99,7 +99,6 @@ function CardTable() {
     const dispatch = useDispatch()
     const cardGameState = useSelector((state: RootStore) => state.cardGameState)
     const { cardsTable, isAnswered, result, selectedTitle, animationKey, resultCount, globalCount } = cardGameState
-    const [localCount, setLocalCount] = useState(0)
     
     // componentDidMount
     useEffect(() => {
@@ -107,7 +106,7 @@ function CardTable() {
     }, [dispatch])
     // componentDidUpdate
     let timerID: number
-    const clearTable = () => {timerID = window.setTimeout(() => { dispatch(CardTableLoaded()); setLocalCount(localCount + 1) }, 3000)}
+    const clearTable = () => {timerID = window.setTimeout(() => { dispatch(CardTableLoaded()) }, 3000)}
     const mounted = useRef(true)
     useEffect(() => {
         if (mounted.current) {
@@ -125,13 +124,13 @@ function CardTable() {
         return <LoadingSpinner />
     }
     return (<>
-        {localCount === 5 ? 
+        {globalCount === 6 ? 
             <div className="result_screen">
                 <h2>Okay, you are done</h2>
                 <div className="result_screen_buttons">
                     <BackButton />
                     <Button className="continue_button" 
-                        onClick = {() =>  { dispatch(CardTableLoaded()); setLocalCount(0) } }
+                        onClick = {() =>  dispatch(CardTableLoaded()) }
                     >
                         Continue with this category
                     </Button>

@@ -181,16 +181,6 @@ html, body {
                     }
                 }
             }
-    
-            .dictionary_error {
-                text-align: center;
-                width: 100%;
-                font-size: 16px;
-                font-weight: 700;
-                padding: 10px 0;
-                background: rgb(204, 66, 66);
-                border-radius: 5px;
-            }
         }
     }
 }
@@ -311,8 +301,6 @@ html, body {
         margin-bottom: 0 !important;
     }
 }
-
-
 /* cards header */
 .cards_header {
     position: relative;
@@ -327,8 +315,6 @@ html, body {
         }
     }
 }
-
-
 /* result screen */
 .result_screen {
     @extend %df_dc_aic_jcc;
@@ -354,6 +340,9 @@ html, body {
 
     h2 {
         margin-bottom: 30px;
+    }
+    .card_collection_error {
+        width: 15%;
     }
     .card_collection_item {
         margin-bottom: 20px;
@@ -397,17 +386,14 @@ html, body {
 }
 
 
-/* scrollToTopButton */
 /* global buttons */
 .back_button {
     @extend %button_theme_green;
 }
-
 .continue_button {
     @extend %button_theme_green;
     padding: 7.5px 7.5px;
 }
-
 .scroll_top_button {
     position: fixed; 
     right: 50px;
@@ -435,7 +421,7 @@ html, body {
 }
 
 
-/* errorBoundry.js */
+/* errors */
 .error {
     @extend %center;
     h1 {
@@ -445,6 +431,19 @@ html, body {
         text-decoration: none;
         font-size: 30px;
     }
+    p {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+}
+.input_error {
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 0;
+    background: rgb(204, 66, 66);
+    border-radius: 5px;
 }
 
 
@@ -467,6 +466,13 @@ html, body {
             &:nth-child(4n+4) {
                 margin-right: 0;
             }
+        }
+    }
+}
+@media (max-width: 1500px) {
+    .card_collection {
+        .card_collection_error {
+            width: 20%;
         }
     }
 }
@@ -509,6 +515,13 @@ html, body {
         }
     }
 }
+@media (max-width: 1150px) {
+    .card_collection {
+        .card_collection_error {
+            width: 30%;
+        }
+    }
+}
 @media (max-width: 993px) {
     .card_list {
         .card {
@@ -518,6 +531,13 @@ html, body {
             &:nth-child(2n+2) {
                 margin-right: 0;
             }
+        }
+    }
+}
+@media (max-width: 820px) {
+    .card_collection {
+        .card_collection_error {
+            width: 40%;
         }
     }
 }

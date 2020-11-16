@@ -110,8 +110,9 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 cardsTable.push(state.categoriesCardList[i])
             }
             const selectedTitle = cardsTable[getUniqueIdx([], 3)].title
-            if (state.globalCount === 5) {
-                gCount = 0
+            gCount += 1
+            if (state.globalCount === 6) {
+                gCount = 1
                 rCount = 0
             }
 
@@ -135,7 +136,6 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
             return {
                 ...state,
                 result,
-                globalCount: state.globalCount + 1,
                 resultCount,
                 isAnswered: true
             }

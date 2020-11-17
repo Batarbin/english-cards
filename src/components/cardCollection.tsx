@@ -1,12 +1,12 @@
-import debounce from 'lodash.debounce'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Card, CardImg, Collapse, Form, Input } from 'reactstrap'
+import { Row, Card, CardImg, Collapse } from 'reactstrap'
 import { GetCollectionList, GetCollectionSearchResults, CardCollectionSearchLoading } from '../actions/cardCollectionActions'
 import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
 import { CardTableType } from '../types/cardGameTypes'
 import { InputError } from './dictionary'
+import { SearchInput } from './misc/inputs'
 import LoadingSpinner from './spinner'
 
 interface SearchResultsI {
@@ -98,7 +98,6 @@ function CardCollection() {
     const cardListState = useSelector((state: RootStore) => state.cardCollectionState)
     const { cardCollection, cardCollectionLoaded, cardCollectionLoading, cardCollectionSearchLoading, searchResultArr, isNull } = cardListState
     const [showScroll, setShowScroll] = useState(false)
-    const [value, setValue] = useState("")
 
     useEffect(() => {
         dispatch(GetCollectionList())
@@ -116,15 +115,6 @@ function CardCollection() {
             window.removeEventListener('scroll', checkScrollTop)
         }
     })
-    const debouncedSave = useRef(debounce(nextValue => dispatch(GetCollectionSearchResults(nextValue)), 600))
-            .current
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let { value: nextValue } = e.target
-        nextValue = nextValue.replace(/[^a-z+$]/g, "")
-        setValue(nextValue)
-        dispatch(CardCollectionSearchLoading())
-        debouncedSave(nextValue)
-    }
 
     function scrollTop() {
         window.scrollTo({top: 0, behavior: 'smooth'})
@@ -147,17 +137,7 @@ function CardCollection() {
                 style={{display: showScroll ? 'flex' : 'none'}}
             />
             <h2 className="text-center">Cards collection</h2>
-            <Form inline className="mb-4" onSubmit={e => { e.preventDefault(); }}>
-                <Input
-                    type="text"
-                    autoComplete="off"
-                    name="word"
-                    placeholder="Search in cards"
-                    bsSize="lg"
-                    value={value}
-                    onChange={handleChange}
-                />
-            </Form>
+            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading}/>
             {cardCollectionSearchLoading ? <div className="mt-4"><LoadingSpinner /></div> :
                 !isNull ? <SearchResults searchResultArr={searchResultArr}/> : <CardCollectionFC cardCollection={cardCollection}/>
             }

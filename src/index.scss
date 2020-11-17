@@ -72,6 +72,19 @@ html, body {
     height: 100%;
     background-color: $bg-c-yellow;
 }
+.seacrh_form {
+    position: relative;
+    #search_clear_button {
+        position: absolute;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        line-height: 45px;
+        font-size: 30px;
+        cursor: pointer;
+        color: rgb(156, 156, 156);
+    }
+}
 
 /* welcome.js */
 .welcome {

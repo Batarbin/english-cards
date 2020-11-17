@@ -1,11 +1,11 @@
-import React, { FC, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Form, Input, PopoverBody, UncontrolledPopover } from 'reactstrap'
-import debounce from 'lodash.debounce'
+import React, { FC } from 'react'
+import { useSelector } from 'react-redux'
+import { PopoverBody, UncontrolledPopover } from 'reactstrap'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
+import { SearchInput } from './misc/inputs'
 
 interface WordInformationI {
     results: ResultsType[]
@@ -35,7 +35,7 @@ const getResultArray = (arr: ResultsType[], number: number): ResultsType[] => {
     return getResultArray(arr, number-1)
 }
 
-export const InputError: React.FC = () => {
+export const InputError: FC = () => {
     return (
         <p className="input_error">Sorry, try another word</p>
     )
@@ -102,20 +102,8 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
 }
 
 function Dictionary() {
-    const dispatch = useDispatch()
     const dictionaryState = useSelector((state: RootStore) => state.wordInfoState)
     const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo } = dictionaryState
-
-    const [value, setValue] = useState("")
-    const debouncedSave = useRef(debounce(nextValue => dispatch(GetWordInfo(nextValue)), 600))
-            .current
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let { value: nextValue } = e.target
-        nextValue = nextValue.replace(/^\s|[^a-zA-Z\d\s+$]/g, "")
-        nextValue = nextValue.replace(/\s{2}/g, " ")
-        setValue(nextValue)
-        debouncedSave(nextValue)
-    }
 
     return (
         <div className="dictionary text-center">
@@ -124,24 +112,14 @@ function Dictionary() {
                 <h2 className="mb-2">You can get information about any english word</h2>
                 <h5 className="mb-4">Just type a word</h5>
             </div>
-            <Form inline className="mb-4" onSubmit={e => { e.preventDefault(); }}>
-                <Input
-                    type="text"
-                    autoComplete="off"
-                    name="word"
-                    placeholder="Type a word"
-                    bsSize="lg"
-                    value={value}
-                    onChange={handleChange}
-                />
-            </Form>
+            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo}/>
             {!isNull && <>
                 {dictionaryLoading ? 
                     <div className="mt-5">
                         <LoadingSpinner />
                     </div> :
                     <>
-                        {!dictionaryLoaded && <p className="dictionary_error">Sorry, try another word</p>}
+                        {!dictionaryLoaded && <InputError />}
                         <div className="d-flex flex-column w-100"> 
                             {wordInfo && <WordInformation {...wordInfo}/>} 
                         </div>

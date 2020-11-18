@@ -5,7 +5,7 @@ import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
-import { SearchInput } from './misc/inputs'
+import { SearchInput } from './misc/searchInput'
 
 interface WordInformationI {
     results: ResultsType[]
@@ -104,6 +104,7 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
 function Dictionary() {
     const dictionaryState = useSelector((state: RootStore) => state.wordInfoState)
     const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo } = dictionaryState
+    const regex = 'any case latin letters and numbers'
 
     return (
         <div className="dictionary text-center">
@@ -112,7 +113,7 @@ function Dictionary() {
                 <h2 className="mb-2">You can get information about any english word</h2>
                 <h5 className="mb-4">Just type a word</h5>
             </div>
-            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo}/>
+            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} overlayText={regex}/>
             {!isNull && <>
                 {dictionaryLoading ? 
                     <div className="mt-5">

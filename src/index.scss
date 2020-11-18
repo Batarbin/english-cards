@@ -4,6 +4,7 @@ $bg-c-yellow: rgb(255, 255, 241);
 $bg-c-dark-yellow: rgb(238, 238, 206);
 $border-c-blue: rgb(122, 156, 179);
 $border-c-dark-yellow: rgb(141, 141, 120);
+$input-border-c-blue: rgb(139, 180, 204);
 %center {
     position: absolute;
     top: 0;
@@ -72,19 +73,7 @@ html, body {
     height: 100%;
     background-color: $bg-c-yellow;
 }
-.seacrh_form {
-    position: relative;
-    #search_clear_button {
-        position: absolute;
-        right: 15px;
-        top: 0;
-        bottom: 0;
-        line-height: 45px;
-        font-size: 30px;
-        cursor: pointer;
-        color: rgb(156, 156, 156);
-    }
-}
+
 
 /* welcome.js */
 .welcome {
@@ -399,7 +388,54 @@ html, body {
 }
 
 
-/* global buttons */
+/* inputs*/
+.seacrh_form {
+    position: relative;
+}
+.seacrh_input {
+    font-family: 'Open Sans';
+    padding: 10px 15px;
+    width: 250px;
+    font-size: 16px;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 3px;
+    &:hover {
+        border: 1px solid rgb(117, 126, 143);
+    }
+    &:focus {
+        outline: none;
+        border-color: $input-border-c-blue;
+        box-shadow: inset 0 0 0 1px $input-border-c-blue, 0px 0px 0 1px $input-border-c-blue;
+    }
+}
+.input_clear_button {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    line-height: 45px;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(156, 156, 156);
+}
+.regex_overlay {
+    @extend %df_dc_aic_jcc;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    p {
+        text-align: center !important;
+        border: 1px solid rgb(138, 138, 138);
+        border-radius: 4px;
+        background-color: white;
+        padding: 5px 10px;
+        width: 80%;
+        margin-bottom: 0 !important;
+    }
+}
+
+
+/* buttons */
 .back_button {
     @extend %button_theme_green;
 }

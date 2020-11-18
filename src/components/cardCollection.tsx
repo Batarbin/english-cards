@@ -6,7 +6,7 @@ import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
 import { CardTableType } from '../types/cardGameTypes'
 import { InputError } from './dictionary'
-import { SearchInput } from './misc/inputs'
+import { SearchInput } from './misc/searchInput'
 import LoadingSpinner from './spinner'
 
 interface SearchResultsI {
@@ -98,6 +98,7 @@ function CardCollection() {
     const cardListState = useSelector((state: RootStore) => state.cardCollectionState)
     const { cardCollection, cardCollectionLoaded, cardCollectionLoading, cardCollectionSearchLoading, searchResultArr, isNull } = cardListState
     const [showScroll, setShowScroll] = useState(false)
+    const regex = 'lovercase latin letters'
 
     useEffect(() => {
         dispatch(GetCollectionList())
@@ -137,7 +138,7 @@ function CardCollection() {
                 style={{display: showScroll ? 'flex' : 'none'}}
             />
             <h2 className="text-center">Cards collection</h2>
-            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading}/>
+            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading} overlayText={regex}/>
             {cardCollectionSearchLoading ? <div className="mt-4"><LoadingSpinner /></div> :
                 !isNull ? <SearchResults searchResultArr={searchResultArr}/> : <CardCollectionFC cardCollection={cardCollection}/>
             }

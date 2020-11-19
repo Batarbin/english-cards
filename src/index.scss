@@ -131,15 +131,12 @@ html, body {
                     margin-bottom: 0;
                 }
             }
-    
-            .popover_dictionary {
-                width: 102%;
-                position: relative;
-                img {
-                    cursor: pointer;
-                    padding: none;
-                    width: 15px;
-                }
+            .dictionary_overlay_img {
+                cursor: pointer;
+                padding: none;
+                width: 15px;
+                position: absolute;
+                right: 1%;
             }
     
             .dictionary_light {
@@ -400,21 +397,15 @@ html, body {
         box-shadow: inset 0 0 0 1px $input-border-c-blue, 0px 0px 0 1px $input-border-c-blue;
     }
 }
-.regex_overlay {
-    @extend %df_dc_aic_jcc;
-    position: absolute;
-    top: 60px;
+.search_input_error {
+    text-align: center !important;
     width: 100%;
-    z-index: 999;
-    p {
-        text-align: center !important;
-        border: 1px solid rgb(138, 138, 138);
-        border-radius: 4px;
-        background-color: white;
-        padding: 5px 10px;
-        width: 80%;
-        margin-bottom: 0 !important;
-    }
+    font-size: 16px !important;
+    font-weight: 700;
+    padding: 10px 0;
+    background: rgb(204, 66, 66);
+    border-radius: 5px;
+    margin-bottom: 0 !important;
 }
 
 
@@ -468,9 +459,56 @@ html, body {
 }
 
 
-/* errors */
+/* overlays */
+.regex_overlay {
+    @extend %df_dc_aic_jcc;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    z-index: 999;
+    p {
+        text-align: center !important;
+        border: 1px solid rgb(138, 138, 138);
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 5px 10px;
+        width: 80%;
+        margin-bottom: 0 !important;
+        span {
+            font-weight: 700;
+        }
+    }
+    &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 20%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+    &:after {
+        top: -19px;
+        border-color: transparent transparent #fff transparent;
+        border-width: 10px;
+    }
+    &:before {
+        top: -23px;
+        left: 48px;
+        border-color: transparent transparent rgb(138, 138, 138) transparent;
+        border-width: 12px;
+    }
+}
+.popover_dictionary {
+    position: absolute;
+    right: 1%;
+}
+
+
+/* global errors */
 .error {
     @extend %center;
+    @extend %df_dc_aic_jcc;
     h1 {
         font-weight: 700;
     }
@@ -482,16 +520,6 @@ html, body {
         font-size: 30px;
         margin-bottom: 0;
     }
-}
-.input_error {
-    text-align: center !important;
-    width: 100%;
-    font-size: 16px !important;
-    font-weight: 700;
-    padding: 10px 0;
-    background: rgb(204, 66, 66);
-    border-radius: 5px;
-    margin-bottom: 0 !important;
 }
 
 

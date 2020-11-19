@@ -1,8 +1,8 @@
-import debounce from "lodash.debounce"
-import React, { FC, useEffect, useRef, useState } from "react"
-import { useDispatch } from "react-redux"
-import { InputCancelButton } from "./buttons"
-import { Overlay } from "./overlays"
+import debounce from 'lodash.debounce'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { InputCancelButton } from './buttons'
+import { Overlay } from './overlays'
 
 interface SearchInputI {
     regex: string
@@ -10,6 +10,12 @@ interface SearchInputI {
     loadingFunction?: () => void
     overlayText: string
     autoFocus: boolean
+}
+
+export const SearchInputError: FC = () => {
+    return (
+        <p className="search_input_error">Sorry, try another word</p>
+    )
 }
 
 export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, overlayText, autoFocus }) => {

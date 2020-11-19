@@ -5,8 +5,7 @@ import { GetCollectionList, GetCollectionSearchResults, CardCollectionSearchLoad
 import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
 import { CardTableType } from '../types/cardGameTypes'
-import { InputError } from './dictionary'
-import { SearchInput } from './misc/searchInput'
+import { SearchInput, SearchInputError } from './misc/searchInput'
 import LoadingSpinner from './spinner'
 
 interface SearchResultsI {
@@ -26,7 +25,7 @@ const SearchResults: FC<SearchResultsI> = ({ searchResultArr }) => {
     if (!searchResultArr || !searchResultArr.length) {
         return (
             <div className="card_collection_error">
-                <InputError />
+                <SearchInputError />
             </div>
         )
     }

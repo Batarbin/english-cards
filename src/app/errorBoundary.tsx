@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { FC, Component } from 'react'
 
 interface Props {
     children: React.ReactNode
@@ -7,16 +7,16 @@ interface State {
     hasError: boolean
 }
 
-const Error: React.FC = () => {
+const Error: FC = () => {
     return (
-        <div className="error d-flex flex-column text-center align-items-center justify-content-center">
+        <div className="error">
             <h1>Sorry, you found an error, please let me know and try again</h1>
             <a rel="noopener noreferrer" target="_blank" href="https://github.com/Batarbin/english-cards/issues" >GitHub</a>
         </div>
     )
 }
 
-export default class ErrorBoundry extends React.Component<Props, State> {
+export default class ErrorBoundry extends Component<Props, State> {
     state: State = {
         hasError: false
     }

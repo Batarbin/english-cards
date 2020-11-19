@@ -408,21 +408,12 @@ html, body {
         box-shadow: inset 0 0 0 1px $input-border-c-blue, 0px 0px 0 1px $input-border-c-blue;
     }
 }
-.input_clear_button {
-    position: absolute;
-    right: 15px;
-    top: 0;
-    bottom: 0;
-    line-height: 45px;
-    font-size: 30px;
-    cursor: pointer;
-    color: rgb(156, 156, 156);
-}
 .regex_overlay {
     @extend %df_dc_aic_jcc;
     position: absolute;
     top: 60px;
     width: 100%;
+    z-index: 999;
     p {
         text-align: center !important;
         border: 1px solid rgb(138, 138, 138);
@@ -467,6 +458,16 @@ html, body {
             opacity: 0.5;
         }
     }
+}
+.input_clear_button {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    line-height: 45px;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(156, 156, 156);
 }
 
 

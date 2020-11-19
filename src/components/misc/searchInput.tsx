@@ -1,49 +1,45 @@
 import debounce from "lodash.debounce"
 import React, { FC, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
+import { InputCancelButton } from "./buttons"
 import { Overlay } from "./overlays"
 
-interface InputCancelButtonI {
-    clearFunction: () => void
-}
 interface SearchInputI {
     regex: string
     functionToDispatch: (query: string) => void
     loadingFunction?: () => void
     overlayText: string
+    autoFocus: boolean
 }
 
-const InputCancelButton: FC<InputCancelButtonI> = ({ clearFunction }) => {
-    return (
-        <span className="input_clear_button" onClick={clearFunction}>&times;</span>
-    )
-}
-export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, overlayText }) => {
+export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, overlayText, autoFocus }) => {
     const dispatch = useDispatch()
     const rgx = new RegExp(regex)
-    const searchInput = useRef(null)
+    const searchInput = useRef() as React.MutableRefObject<HTMLInputElement>
     const [inputValue, setInputValue] = useState("")
     const [overlay, setOverlay] = useState(false)
+    const [isShow, setIsShow] = useState(true)
 
     // overlay
     useEffect(() => { // need to listen every focus and blur on input and show or hide overlay
         if ( searchInput.current === document.activeElement ) {
             if (inputValue) {
                 handleOverlay(false)
-            } else if (!inputValue) {
+            } else if (!inputValue && isShow) {
                 handleOverlay(true)
             }
         }
     })
     function handleOverlay(isShow: boolean) {
         if (isShow) {
-            if (!inputValue) {
-                setOverlay(true)
-            } else if (inputValue) {
+            if (inputValue) {
                 setOverlay(false)
+            } else if (!inputValue && isShow) {
+                setOverlay(true)
             }
         } else if (!isShow) {
             setOverlay(false)
+            setIsShow(false)
         }
     }
 
@@ -60,14 +56,16 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
         }
         debouncedSave(nextValue)
     }
-    function clearInput() {
+    const clearInput = () => {
         setInputValue('')
         debouncedSave('')
+        searchInput.current.focus()
     }
     
     return (
         <div className="seacrh_form mb-4" onSubmit={e => { e.preventDefault(); }}>
             <input
+                autoFocus={autoFocus}
                 ref={searchInput}
                 className="seacrh_input"
                 type="text"

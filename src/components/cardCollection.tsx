@@ -138,7 +138,7 @@ function CardCollection() {
                 style={{display: showScroll ? 'flex' : 'none'}}
             />
             <h2 className="text-center">Cards collection</h2>
-            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading} overlayText={regex}/>
+            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading} overlayText={regex} autoFocus={false}/>
             {cardCollectionSearchLoading ? <div className="mt-4"><LoadingSpinner /></div> :
                 !isNull ? <SearchResults searchResultArr={searchResultArr}/> : <CardCollectionFC cardCollection={cardCollection}/>
             }

@@ -113,7 +113,7 @@ function Dictionary() {
                 <h2 className="mb-2">You can get information about any english word</h2>
                 <h5 className="mb-4">Just type a word</h5>
             </div>
-            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} overlayText={regex}/>
+            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} overlayText={regex} autoFocus={true}/>
             {!isNull && <>
                 {dictionaryLoading ? 
                     <div className="mt-5">

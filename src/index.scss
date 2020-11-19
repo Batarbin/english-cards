@@ -13,9 +13,12 @@ $input-border-c-blue: rgb(139, 180, 204);
     left: 0;
 }
 %button_theme_green {
-    border-color: rgb(55, 95, 72);
+    color: white;
+    border: 1px solid rgb(55, 95, 72);
+    border-radius: 5px;
     background-color: rgb(96, 146, 123);
     font-family: 'Noto Sans';
+    padding: 7.5px 7.5px;
     &:hover {
         background-color: rgb(79, 122, 98);
     }
@@ -49,19 +52,12 @@ html, body {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
 }
-
 *, *:before, *:after {
     box-sizing: border-box;
 }
 
-.pointer {
-    cursor: pointer;
-}
 .rotate {
     transform: rotate(180deg);
-}
-.mt-neg {
-    margin-top: -4rem !important;
 }
 .capitalize:first-letter {
     text-transform:capitalize;
@@ -69,7 +65,6 @@ html, body {
 .app {
     @extend %center;
     @extend %df_dc_aic_jcc;
-    // overflow-y: auto;
     height: 100%;
     background-color: $bg-c-yellow;
 }
@@ -91,13 +86,6 @@ html, body {
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 50px;
-        }
-        .playgame_button {
-            @extend %button_theme_green;
-            border-radius: 10px;
-            font-size: 18px;
-            padding: 6px 30px;
-            
         }
     }
 
@@ -297,6 +285,7 @@ html, body {
     }
 }
 .choose_card {
+    cursor: pointer;
     height: 300px;
     img {
         height: 260px !important;
@@ -305,12 +294,15 @@ html, body {
 }
 /* cards header */
 .cards_header {
+    @extend %df_dr_aic_jcsb;
     position: relative;
     width: 100%;
+    margin-top: -4rem;
 
     .progress_counter {
         background-color: $bg-c-dark-yellow;
         border: 1px solid $border-c-dark-yellow;
+        padding: 5px 7px;
         p {
             font-weight: 700;
             margin-bottom: 0;
@@ -432,7 +424,12 @@ html, body {
 }
 .continue_button {
     @extend %button_theme_green;
-    padding: 7.5px 7.5px;
+}
+.playgame_button {
+    @extend %button_theme_green;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 6px 30px;
 }
 .scroll_top_button {
     position: fixed; 

@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
 import { SearchInput, SearchInputError } from './misc/searchInput'
+import { AboutDictionaryAPIOverlay } from './misc/overlays'
 
 interface WordInformationI {
     results: ResultsType[]
@@ -34,14 +35,6 @@ const getResultArray = (arr: ResultsType[], number: number): ResultsType[] => {
     return getResultArray(arr, number-1)
 }
 
-const AboutDictionaryPopover: FC = () => {
-    return (
-        <div className="popover_dictionary d-flex flex-row-reverse">
-            Information is displayed using 
-            <a rel="noopener noreferrer" target="_blank" href="https://www.wordsapi.com"> <strong>WordsAPI</strong> </a>
-        </div>
-    )
-}
 const Pronunciation: FC<PronunciationI> = ({ all, noun, verb }) => {
     if (noun && verb) {
         return (<>
@@ -69,22 +62,7 @@ const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, syn
     )
 }
 const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation }) => {
-    const [overlay, setOverlay] = useState(false)
-    const overlayImg = useRef() as React.MutableRefObject<HTMLImageElement>
-    useEffect(() => {
-        function handleClickOutside(e: Event) {
-            if (overlayImg.current && !overlayImg.current.contains(e.target as Node)) {
-                console.log("You clicked outside of me!")
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside)
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        };
-    }, [overlayImg]);
-    function handleOverlay() {
-        setOverlay(!overlay)
-    }
+    
 
     if ( !results || !results.length) {
         return (
@@ -96,9 +74,7 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
     return (
         <ul className="list-group p-2">
             <li className="list-group-item">
-                {overlay && <AboutDictionaryPopover/> }
-                <img className="dictionary_overlay_img" draggable="false" ref={overlayImg}
-                    src="/images/question-mark.png" alt="?" onClick={handleOverlay}/>
+                <AboutDictionaryAPIOverlay />
                 <p className="dictionary_heavy word">{word}</p>
                 {pronunciation && <div className="dictionary_light"><Pronunciation {...pronunciation}/></div>}
             </li>
@@ -112,7 +88,7 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
 function Dictionary() {
     const dictionaryState = useSelector((state: RootStore) => state.wordInfoState)
     const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo } = dictionaryState
-    const regex = 'any case latin letters and numbers'
+    const regexInfo = 'any case latin letters and numbers'
 
     return (
         <div className="dictionary text-center">
@@ -120,7 +96,7 @@ function Dictionary() {
                 <h2 className="mb-2">You can get information about any english word</h2>
                 <h5 className="mb-4">Just type a word</h5>
             </div>
-            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} overlayText={regex} autoFocus={true}/>
+            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} regexInfo={regexInfo} autoFocus={true}/>
             {!isNull && <>
                 {dictionaryLoading ? 
                     <div className="mt-5">

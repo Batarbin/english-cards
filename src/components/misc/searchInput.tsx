@@ -2,13 +2,13 @@ import debounce from 'lodash.debounce'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { InputCancelButton } from './buttons'
-import { Overlay } from './overlays'
+import { InputRegExOverlay } from './overlays'
 
 interface SearchInputI {
     regex: string
     functionToDispatch: (query: string) => void
     loadingFunction?: () => void
-    overlayText: string
+    regexInfo: string
     autoFocus: boolean
 }
 
@@ -18,7 +18,7 @@ export const SearchInputError: FC = () => {
     )
 }
 
-export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, overlayText, autoFocus }) => {
+export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, regexInfo, autoFocus }) => {
     const dispatch = useDispatch()
     const rgx = new RegExp(regex)
     const searchInput = useRef() as React.MutableRefObject<HTMLInputElement>
@@ -84,7 +84,7 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
                 onBlur={() => handleOverlay(false)}
             />
             {inputValue && <InputCancelButton clearFunction={clearInput}/>}
-            {overlay && <Overlay type={'regex'} overlayText={overlayText}/>}
+            {overlay && <InputRegExOverlay regexInfo={regexInfo}/>}
         </div>
     )
 }

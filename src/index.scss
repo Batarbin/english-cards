@@ -131,13 +131,6 @@ html, body {
                     margin-bottom: 0;
                 }
             }
-            .dictionary_overlay_img {
-                cursor: pointer;
-                padding: none;
-                width: 15px;
-                position: absolute;
-                right: 1%;
-            }
     
             .dictionary_light {
                 font-weight: 500;
@@ -488,20 +481,57 @@ html, body {
         border-style: solid;
     }
     &:after {
-        top: -19px;
+        bottom: 99%;
         border-color: transparent transparent #fff transparent;
         border-width: 10px;
     }
     &:before {
-        top: -23px;
-        left: 48px;
+        bottom: 99%;
+        left: 19.7%;
         border-color: transparent transparent rgb(138, 138, 138) transparent;
-        border-width: 12px;
+        border-width: 11px;
     }
 }
-.popover_dictionary {
-    position: absolute;
-    right: 1%;
+.dictionary_overlay {
+    z-index: 999;
+    img {
+        position: absolute;
+        right: 1%;
+        cursor: pointer;
+        padding: none;
+        width: 18px;
+    }
+    p {
+        position: absolute;
+        right: -5px;
+        top: -35px;
+        text-align: center !important;
+        border: 1px solid rgb(138, 138, 138);
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 5px 10px;
+        margin-bottom: 0 !important;
+        &:before, &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 4.3%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        &:after {
+            top: 99%;
+            border-color:#fff transparent transparent transparent;
+            border-width: 10px;
+        }
+        &:before {
+            top: 99%;
+            right: 4%;
+            border-color:rgb(138, 138, 138) transparent transparent transparent;
+            border-width: 11px;
+        }
+    }
 }
 
 

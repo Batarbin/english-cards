@@ -97,7 +97,7 @@ function CardCollection() {
     const cardListState = useSelector((state: RootStore) => state.cardCollectionState)
     const { cardCollection, cardCollectionLoaded, cardCollectionLoading, cardCollectionSearchLoading, searchResultArr, isNull } = cardListState
     const [showScroll, setShowScroll] = useState(false)
-    const regex = 'lovercase latin letters'
+    const regexInfo = 'lovercase latin letters'
 
     useEffect(() => {
         dispatch(GetCollectionList())
@@ -137,7 +137,7 @@ function CardCollection() {
                 style={{display: showScroll ? 'flex' : 'none'}}
             />
             <h2 className="text-center">Cards collection</h2>
-            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading} overlayText={regex} autoFocus={false}/>
+            <SearchInput regex={`[^a-z+$]`} functionToDispatch={GetCollectionSearchResults} loadingFunction={CardCollectionSearchLoading} regexInfo={regexInfo} autoFocus={false}/>
             {cardCollectionSearchLoading ? <div className="mt-4"><LoadingSpinner /></div> :
                 !isNull ? <SearchResults searchResultArr={searchResultArr}/> : <CardCollectionFC cardCollection={cardCollection}/>
             }

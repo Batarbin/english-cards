@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
@@ -22,17 +22,6 @@ interface PronunciationI {
     all: string
     noun?: string
     verb?: string
-}
-
-const getResultArray = (arr: ResultsType[], number: number): ResultsType[] => {
-    const resArr: ResultsType[] = []
-    if (arr.length >= number) {
-        for (let i = 0; i < number; i++) {
-            resArr.push(arr[i])
-        }
-        return resArr
-    }
-    return getResultArray(arr, number-1)
 }
 
 const Pronunciation: FC<PronunciationI> = ({ all, noun, verb }) => {
@@ -63,25 +52,60 @@ const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, syn
     )
 }
 const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation }) => {
+    const [currentPage, setCurrentPage] = useState(1)
     if ( !results || !results.length) {
         return (
             <SearchInputError />
         )
     }
-    const resultsArray = getResultArray(results, 3)
+    
+    const indexOfLastResult = currentPage * 3
+    const indexOfFirstResult = indexOfLastResult - 3
+    const currentResults = results.slice(indexOfFirstResult, indexOfLastResult)
+    const pageNumbers = []
+    for (let i = 1; i <= Math.ceil(results.length / 3); i++) {
+        pageNumbers.push(i)
+    }
+    function handleClick(number: number) {
+        if (number !== currentPage && number > 0 && number < (pageNumbers.length + 1)) {
+            setCurrentPage(number)
+        }
+    }
+    function pageClassName(number: number) {
+        if (currentPage === number) {
+            return 'current'
+        } else {
+            return ''
+        }
+    }
+    const RenderPageNumbers = pageNumbers.map(number => {
+        return (
+          <span className={pageClassName(number)}
+            key={number}
+            onClick={() => handleClick(number)}
+          >
+            {number}
+          </span>
+        )
+    })
 
-    return (
+    return (<>
         <ul className="list-group p-2">
-            <li className="list-group-item">
+            <li className="list-group-item mb-2">
                 <AboutDictionaryAPIOverlay />
                 <p className="dictionary_heavy word">{word}</p>
                 {pronunciation && <div className="dictionary_light"><Pronunciation {...pronunciation}/></div>}
             </li>
-            {resultsArray.map((res, i) => {
+            {currentResults.map((res, i) => {
                 return <InfoResults key={i} {...res}/>
             })}
         </ul>
-    )
+        <div className="dictionary_pages">
+            <span onClick={() => handleClick(currentPage - 1)}>&lt;</span>
+            {RenderPageNumbers}
+            <span onClick={() => handleClick(currentPage + 1)}>&gt;</span>
+        </div>
+    </>)
 }
 
 function Dictionary() {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@300;400;700&display=swap&family=Noto+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@300;400;700;900&display=swap&family=Noto+Sans:wght@400;700&display=swap');
 $bg-c-blue: rgb(210, 233, 236);
 $bg-c-yellow: rgb(255, 255, 241);
 $bg-c-dark-yellow: rgb(238, 238, 206);
@@ -144,7 +144,6 @@ html, body {
                 font-weight: 500;
                 color: #70757a;
             }
-    
             .dictionary_heavy {
                 font-size: 16px;
                 font-weight: 700;
@@ -152,7 +151,6 @@ html, body {
                     font-size: 24px;
                 }
             }
-    
             .synonyms {
                 color: rgb(56, 185, 114);
                 span {
@@ -173,6 +171,25 @@ html, body {
                     &:last-child {
                         margin-right: 0;
                     }
+                }
+            }
+            .dictionary_pages {
+                span {
+                    cursor: pointer;
+                    margin-right: 5px;
+                    padding: 0 3px;
+                    color: rgb(107, 107, 107);
+                    &:hover {
+                        font-weight: 700;
+                    }
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+                .current {
+                    cursor: auto;
+                    color: rgb(65, 63, 64);
+                    font-weight: 900;
                 }
             }
         }

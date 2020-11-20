@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
 import { RootStore } from '../app/store'
@@ -50,20 +50,19 @@ const Pronunciation: FC<PronunciationI> = ({ all, noun, verb }) => {
     return null
 }
 const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, synonyms }) => {
+    const dispatch = useDispatch()
     return (
         <li className="list-group-item">
             <p className="dictionary_light">{partOfSpeech}</p>
             <p className="dictionary_heavy">{definition}</p>
             {examples &&  <p className="dictionary_light">"{examples[0]}"</p>}
             {synonyms &&  <p className="synonyms">Synonyms: {
-                synonyms.map((item, i) => <span key={i}>{item}&#160;</span>)
+                synonyms.map((item, i) => <span key={i} onClick={() => dispatch(GetWordInfo(item))}>{item}</span>)
             }</p>}
         </li>
     )
 }
 const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation }) => {
-    
-
     if ( !results || !results.length) {
         return (
             <SearchInputError />

@@ -69,7 +69,7 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
     }
     
     return (
-        <div className="seacrh_form mb-4" onSubmit={e => { e.preventDefault(); }}>
+        <div className="seacrh_form mb-4" onSubmit={e => { e.preventDefault() }}>
             <input
                 autoFocus={autoFocus}
                 ref={searchInput}

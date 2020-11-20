@@ -46,6 +46,14 @@ $input-border-c-blue: rgb(139, 180, 204);
     align-items: center;
     justify-content: space-between;
 }
+%overlay_triangle {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
 
 html, body {
     font-size: 15px;
@@ -72,7 +80,7 @@ html, body {
 
 /* welcome.js */
 .welcome {
-    .welcome-content {
+    .welcome_content {
         @extend %center;
         @extend %df_dc_aic_jcc;
         right: 60%;
@@ -80,7 +88,7 @@ html, body {
         h1 {
             margin-bottom: 50px;
         }
-        .svg_animation {
+        img {
             width: 40%;
             display: block;
             margin-left: auto;
@@ -89,7 +97,7 @@ html, body {
         }
     }
 
-    .welcome-form {
+    .welcome_API {
         @extend %center;
         @extend %df_dc_aic_jcc;
         left: 40%;
@@ -153,9 +161,15 @@ html, body {
                     margin-right: 4px;
                     border: solid 1px rgb(91, 112, 104);
                     border-radius: 10px;
-                    padding: 1px 5px 2px 8px;
+                    padding: 1px 8px 2px 8px;
                     margin-top: 5px;
-        
+                    text-decoration: underline;
+                    text-decoration-color: rgb(93, 98, 107);
+                    cursor: pointer;
+                    &:hover {
+                        color: rgb(93, 98, 107);
+                        text-decoration: none;
+                    }        
                     &:last-child {
                         margin-right: 0;
                     }
@@ -472,13 +486,8 @@ html, body {
         }
     }
     &:before, &:after {
-        content: '';
-        display: block;
-        position: absolute;
+        @extend %overlay_triangle;
         left: 20%;
-        width: 0;
-        height: 0;
-        border-style: solid;
     }
     &:after {
         bottom: 99%;
@@ -512,13 +521,8 @@ html, body {
         padding: 5px 10px;
         margin-bottom: 0 !important;
         &:before, &:after {
-            content: '';
-            display: block;
-            position: absolute;
+            @extend %overlay_triangle;
             right: 4.3%;
-            width: 0;
-            height: 0;
-            border-style: solid;
         }
         &:after {
             top: 99%;

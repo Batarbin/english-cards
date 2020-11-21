@@ -30,7 +30,7 @@ export const CardGamePage: FC = () => {
     </>)
 }
 export const CardCollectionPage: FC = () => {
-    Title('Card List')
+    Title('Card Collection')
     return (<>
         <AppHeader />
         <CardCollection />

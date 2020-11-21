@@ -46,6 +46,14 @@ $input-border-c-blue: rgb(139, 180, 204);
     align-items: center;
     justify-content: space-between;
 }
+%df_aic_jcc_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
 %overlay_triangle {
     content: '';
     display: block;
@@ -360,6 +368,7 @@ html, body {
         width: 15%;
     }
     .card_collection_item {
+        @extend %df_dc_aic_jcc;
         margin-bottom: 20px;
         width: 100%;
 
@@ -372,6 +381,7 @@ html, body {
             border: 1px solid $border-c-dark-yellow;
             border-radius: 15px;
             cursor: pointer;
+            width: 100%;
             p {
                 font-weight: 700;
                 font-size: 20px;
@@ -381,6 +391,11 @@ html, body {
                 width: 25px;
             }
         }
+    }
+    .card_collection_item_content {
+        @extend %df_aic_jcc_row;
+        overflow: hidden;
+        transition: max-height 0.6s ease;
         .card {
             height: 350px;
             max-width: 290px;

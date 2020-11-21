@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Card, CardImg, Collapse } from 'reactstrap'
+import { Card, CardImg } from 'reactstrap'
 import { GetCollectionList, GetCollectionSearchResults, CardCollectionSearchLoading } from '../actions/cardCollectionActions'
 import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
 import { CardTableType } from '../types/cardGameTypes'
+import { CardCollectionAccordion } from './misc/accordions'
 import { SearchInput, SearchInputError } from './misc/searchInput'
 import LoadingSpinner from './spinner'
 
@@ -31,17 +32,15 @@ const SearchResults: FC<SearchResultsI> = ({ searchResultArr }) => {
     }
 
     return (
-        <div className="card_collection_item mt-4">
-            <Row className="d-flex align-items-center justify-content-center" >
-                {searchResultArr.map(x => <CardItem
-                    key={x.id}
-                    {...x}
-                />)}
-            </Row>
+        <div className="card_collection_item_content mt-4">
+            {searchResultArr.map(x => <CardItem
+                key={x.id}
+                {...x}
+            />)}
         </div>
     )
 }
-const CardItem: FC<CardItemI> = ({ title, url, pronunciation, translation }) => {
+export const CardItem: FC<CardItemI> = ({ title, url, pronunciation, translation }) => {
     return (
         <Card body className="text-center justify-content-center mb-4">
             <p>{title}</p>
@@ -52,42 +51,13 @@ const CardItem: FC<CardItemI> = ({ title, url, pronunciation, translation }) => 
     )
 }
 const CardCollectionFC: FC<CardCollectionFCI> = ({ cardCollection }) => {
-    const [togglerId, setTogglerId] = useState('')
-    function toggle(i: number) {
-        const id = String(i)
-        if (!togglerId || id !== togglerId) {
-            setTogglerId(id)
-            window.scrollTo({top: 0, behavior: 'smooth'})
-        } else if (togglerId === id) {
-            setTogglerId('')
-        }
-    }
-
     const typeArr = Array.from(new Set (cardCollection.map(item => item.type))) // get unique types (categories) from cards
 
     return (<>
         {typeArr.map((item, i) => {
             return (
-                <div className="card_collection_item" key={i}>
-                    <div className="category_title"
-                        onClick={() => toggle(i)}
-                    >
-                        <p className="capitalize">{item}</p>
-                        <img draggable="false" src="/images/items-down-arrow.png" className={togglerId === String(i) ? 'rotate' : ''} 
-                            alt="Cards toggler" />
-                    </div>
-                    <Collapse isOpen={togglerId === String(i)}>
-                        <Row className="d-flex align-items-center justify-content-center" id={`showCardsItem${i}`}>
-                            {cardCollection.filter(x => x.type === item)
-                                .map(x => <CardItem
-                                    key={x.id}
-                                    {...x}
-                                />)
-                            }
-                        </Row>
-                    </Collapse>
-                </div>
-            )
+                  <CardCollectionAccordion title={item} contentArr={cardCollection} key={i} />
+              )
         })}
     </>)
 }

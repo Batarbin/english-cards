@@ -2,6 +2,7 @@ export const WORD_LOADING = "WORD_LOADING"
 export const WORD_SUCCESS = "WORD_SUCCESS"
 export const WORD_FAIL = "WORD_FAIL"
 export const WORD_NULL = "WORD_NULL"
+export const DICTIONARY_PAGINATION_GET_CURRENT_PAGE = "DICTIONARY_PAGINATION_GET_CURRENT_PAGE"
 
 // reducers
 export type WordType = {
@@ -36,5 +37,10 @@ export interface WordFail {
 export interface WordNull {
     type: typeof WORD_NULL
 }
+export interface DictionaryPaginationGetCurrentPage {
+    type: typeof DICTIONARY_PAGINATION_GET_CURRENT_PAGE
+    array: ResultsType[]
+    page: number
+}
 
-export type WordDispatchTypes = WordLoading | WordSuccess | WordFail | WordNull
+export type WordDispatchTypes = WordLoading | WordSuccess | WordFail | WordNull | DictionaryPaginationGetCurrentPage

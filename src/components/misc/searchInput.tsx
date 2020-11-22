@@ -1,6 +1,8 @@
 import debounce from 'lodash.debounce'
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetSearchInputValue } from '../../actions/searchInputActions'
+import { RootStore } from '../../app/store'
 import { InputCancelButton } from './buttons'
 import { InputRegExOverlay } from './overlays'
 
@@ -20,9 +22,10 @@ export const SearchInputError: FC = () => {
 
 export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, regexInfo, autoFocus }) => {
     const dispatch = useDispatch()
+    const dictionaryState = useSelector((state: RootStore) => state.searchInputState)
+    const { inputValue } = dictionaryState
     const rgx = new RegExp(regex)
     const searchInput = useRef() as React.MutableRefObject<HTMLInputElement>
-    const [inputValue, setInputValue] = useState("")
     const [overlay, setOverlay] = useState(false)
     const [isShow, setIsShow] = useState(true)
 
@@ -56,14 +59,14 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
         let { value: nextValue } = e.target
         nextValue = nextValue.replace(rgx, "")
         nextValue = nextValue.replace(/\s{2}/g, " ")
-        setInputValue(nextValue)
+        dispatch(GetSearchInputValue(nextValue))
         if (loadingFunction) { // to set up spinner if action is without fetch or not not async
             dispatch(loadingFunction())
         }
         debouncedSave(nextValue)
     }
     const clearInput = () => {
-        setInputValue('')
+        dispatch(GetSearchInputValue(''))
         debouncedSave('')
         searchInput.current.focus()
     }

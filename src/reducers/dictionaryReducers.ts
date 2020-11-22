@@ -1,22 +1,33 @@
 import {
     WordType,
+    ResultsType,
     WordDispatchTypes,
     WORD_LOADING,
     WORD_SUCCESS,
     WORD_FAIL,
-    WORD_NULL
+    WORD_NULL,
+    DICTIONARY_PAGINATION_GET_CURRENT_PAGE
 } from "../types/dictionaryTypes";
   
 interface DefaultStateI {
+    // dictionary
     dictionaryLoading: boolean
     dictionaryLoaded: boolean
     isNull: boolean
     wordInfo?: WordType
+    // pagination
+    currentPage: number
+    currentResults?: ResultsType[]
+    pageNumbers: number[]
 }
 const defaultState: DefaultStateI = {
+    // dictionary
     dictionaryLoading: false,
     dictionaryLoaded: true,
-    isNull: false
+    isNull: false,
+    // pagination
+    currentPage: 1,
+    pageNumbers: []
 }
   
 const dictionaryReducer = (state: DefaultStateI = defaultState, action: WordDispatchTypes) : DefaultStateI => {
@@ -28,12 +39,21 @@ const dictionaryReducer = (state: DefaultStateI = defaultState, action: WordDisp
                 isNull: false
             }
         case WORD_SUCCESS:
+            const currentResultsArr = action.payload.results.slice(0, 3)
+            const pageNumbers = []
+            for (let i = 1; i <= Math.ceil(action.payload.results.length / 3); i++) {
+                pageNumbers.push(i)
+            }
             return {
                 ...state,
                 dictionaryLoading: false,
                 dictionaryLoaded: true,
+                isNull: false,
                 wordInfo: action.payload,
-                isNull: false
+                // pagination
+                currentPage: 1,
+                currentResults: currentResultsArr,
+                pageNumbers
             }
         case WORD_FAIL:
             return {
@@ -46,6 +66,12 @@ const dictionaryReducer = (state: DefaultStateI = defaultState, action: WordDisp
             return {
                 ...state,
                 isNull: true
+            }
+        case DICTIONARY_PAGINATION_GET_CURRENT_PAGE: 
+            return {
+                ...state,
+                currentResults: action.array,
+                currentPage: action.page
             }
         default:
             return state

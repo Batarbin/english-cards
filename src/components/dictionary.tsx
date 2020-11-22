@@ -1,16 +1,21 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
+import { GetSearchInputValue } from '../actions/searchInputActions'
 import { RootStore } from '../app/store'
 import LoadingSpinner from './spinner'
 import { SearchInput, SearchInputError } from './misc/searchInput'
 import { AboutDictionaryAPIOverlay } from './misc/overlays'
+import { DictionaryPagination } from './misc/paginations'
 
 interface WordInformationI {
     results: ResultsType[]
+    currentResults: ResultsType[]
     word: string
     pronunciation?: PronunciationType
+    currentPage: number,
+    pageNumbers: number[]
 }
 interface InfoResultsI {
     partOfSpeech: string
@@ -46,48 +51,17 @@ const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, syn
             <p className="dictionary_heavy">{definition}</p>
             {examples &&  <p className="dictionary_light">"{examples[0]}"</p>}
             {synonyms &&  <p className="synonyms">Synonyms: {
-                synonyms.map((item, i) => <span key={i} onClick={() => dispatch(GetWordInfo(item))}>{item}</span>)
+                synonyms.map((item, i) => <span key={i} onClick={() => {dispatch(GetWordInfo(item)); dispatch(GetSearchInputValue(item)) }}>{item}</span>)
             }</p>}
         </li>
     )
 }
-const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation }) => {
-    const [currentPage, setCurrentPage] = useState(1)
+const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation, currentResults, currentPage, pageNumbers }) => {
     if ( !results || !results.length) {
         return (
             <SearchInputError />
         )
     }
-    
-    const indexOfLastResult = currentPage * 3
-    const indexOfFirstResult = indexOfLastResult - 3
-    const currentResults = results.slice(indexOfFirstResult, indexOfLastResult)
-    const pageNumbers = []
-    for (let i = 1; i <= Math.ceil(results.length / 3); i++) {
-        pageNumbers.push(i)
-    }
-    function handleClick(number: number) {
-        if (number !== currentPage && number > 0 && number < (pageNumbers.length + 1)) {
-            setCurrentPage(number)
-        }
-    }
-    function pageClassName(number: number) {
-        if (currentPage === number) {
-            return 'current'
-        } else {
-            return ''
-        }
-    }
-    const RenderPageNumbers = pageNumbers.map(number => {
-        return (
-          <span className={pageClassName(number)}
-            key={number}
-            onClick={() => handleClick(number)}
-          >
-            {number}
-          </span>
-        )
-    })
 
     return (<>
         <ul className="list-group p-2">
@@ -99,18 +73,15 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation })
             {currentResults.map((res, i) => {
                 return <InfoResults key={i} {...res}/>
             })}
+            <DictionaryPagination currentPage={currentPage} results={results} pageNumbers={pageNumbers} />
         </ul>
-        <div className="dictionary_pages">
-            <span onClick={() => handleClick(currentPage - 1)}>&lt;</span>
-            {RenderPageNumbers}
-            <span onClick={() => handleClick(currentPage + 1)}>&gt;</span>
-        </div>
     </>)
 }
 
 function Dictionary() {
-    const dictionaryState = useSelector((state: RootStore) => state.wordInfoState)
-    const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo } = dictionaryState
+    const dictionaryState = useSelector((state: RootStore) => state.dictionaryState)
+    const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo, currentResults,
+            currentPage, pageNumbers } = dictionaryState
     const regexInfo = 'any case latin letters and numbers'
 
     return (
@@ -127,9 +98,12 @@ function Dictionary() {
                     </div> :
                     <>
                         {!dictionaryLoaded && <SearchInputError />}
-                        <div className="d-flex flex-column w-100"> 
-                            {wordInfo && <WordInformation {...wordInfo}/>} 
-                        </div>
+                        {wordInfo ? currentResults &&
+                            <div className="d-flex flex-column w-100"> 
+                                <WordInformation {...wordInfo} currentResults={currentResults}
+                                currentPage={currentPage} pageNumbers={pageNumbers} /> 
+                            </div>
+                        : null}
                     </>
                 }
             </>}

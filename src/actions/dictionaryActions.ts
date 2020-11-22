@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux'
-import { WordDispatchTypes, WORD_LOADING, WORD_SUCCESS, WORD_FAIL, WORD_NULL } from '../types/dictionaryTypes'
+import { WordDispatchTypes, WORD_LOADING, WORD_SUCCESS, WORD_FAIL, WORD_NULL, 
+         DICTIONARY_PAGINATION_GET_CURRENT_PAGE, ResultsType } from '../types/dictionaryTypes'
 
 export const GetWordInfo = (wordToInfo: string) => async (dispatch: Dispatch<WordDispatchTypes>) => {
     if (wordToInfo.length) {
@@ -22,3 +23,7 @@ export const GetWordInfo = (wordToInfo: string) => async (dispatch: Dispatch<Wor
         dispatch({ type: WORD_NULL})
     )
 }
+export const DictionaryPaginationGetCurrentPage = (currentResults: ResultsType[], page: number) => ({
+    type: DICTIONARY_PAGINATION_GET_CURRENT_PAGE,
+    array: currentResults, page: page
+})

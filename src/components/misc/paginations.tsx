@@ -1,21 +1,22 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { DictionaryPaginationGetCurrentPage } from '../../actions/dictionaryActions'
-import { ResultsType } from '../../types/dictionaryTypes'
+import { RootStore } from '../../app/store'
 
-interface DictionaryPaginationI {
-    results: ResultsType[]
-    currentPage: number
-    pageNumbers: number[]
-}
-
-export const DictionaryPagination: FC<DictionaryPaginationI> = ({ results, currentPage, pageNumbers }) => {
+export const DictionaryPagination: FC = () => {
+    const dictionaryState = useSelector((state: RootStore) => state.dictionaryState)
+    const { wordInfo, currentPage, pageNumbers, dictionaryLoaded } = dictionaryState
     const dispatch = useDispatch()
+
+    if (!dictionaryLoaded) {
+        return null
+    }
+
     function handleClick(number: number) {
-        if (number !== currentPage && number > 0 && number < (pageNumbers.length + 1) && results) {
+        if (number !== currentPage && number > 0 && number < (pageNumbers.length + 1) && wordInfo?.results) {
             const indexOfLastResult = number * 3
             const indexOfFirstResult = indexOfLastResult - 3
-            const currentResultsArr = results.slice(indexOfFirstResult, indexOfLastResult)
+            const currentResultsArr = wordInfo?.results.slice(indexOfFirstResult, indexOfLastResult)
             dispatch(DictionaryPaginationGetCurrentPage(currentResultsArr, number))
         }
     }

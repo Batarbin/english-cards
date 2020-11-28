@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PronunciationType, ResultsType } from '../types/dictionaryTypes'
 import { GetWordInfo } from '../actions/dictionaryActions'
@@ -14,14 +14,14 @@ interface WordInformationI {
     currentResults: ResultsType[]
     word: string
     pronunciation?: PronunciationType
-    currentPage: number,
-    pageNumbers: number[]
+    setInputValue: (word: string) => void
 }
 interface InfoResultsI {
     partOfSpeech: string
     definition: string
     examples?: string[]
     synonyms?: string[]
+    setInputValue: (word: string) => void
 }
 interface PronunciationI {
     all: string
@@ -43,20 +43,19 @@ const Pronunciation: FC<PronunciationI> = ({ all, noun, verb }) => {
     }
     return null
 }
-const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, synonyms }) => {
-    const dispatch = useDispatch()
+const InfoResults: FC<InfoResultsI> = ({ partOfSpeech, definition, examples, synonyms, setInputValue }) => {
     return (
         <li className="list-group-item">
             <p className="dictionary_light">{partOfSpeech}</p>
             <p className="dictionary_heavy">{definition}</p>
             {examples &&  <p className="dictionary_light">"{examples[0]}"</p>}
             {synonyms &&  <p className="synonyms">Synonyms: {
-                synonyms.map((item, i) => <span key={i} onClick={() => {dispatch(GetWordInfo(item)); dispatch(GetSearchInputValue(item)) }}>{item}</span>)
+                synonyms.map((item, i) => <span key={i} onClick={() => setInputValue(item)}>{item}</span>)
             }</p>}
         </li>
     )
 }
-const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation, currentResults, currentPage, pageNumbers }) => {
+const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation, currentResults, setInputValue }) => {
     if ( !results || !results.length) {
         return (
             <SearchInputError />
@@ -71,18 +70,40 @@ const WordInformation: FC<WordInformationI> = ({ results, word, pronunciation, c
                 {pronunciation && <div className="dictionary_light"><Pronunciation {...pronunciation}/></div>}
             </li>
             {currentResults.map((res, i) => {
-                return <InfoResults key={i} {...res}/>
+                return <InfoResults key={i} {...res} setInputValue={setInputValue} />
             })}
-            <DictionaryPagination currentPage={currentPage} results={results} pageNumbers={pageNumbers} />
+            <DictionaryPagination />
         </ul>
     </>)
 }
 
 function Dictionary() {
+    const dispatch = useDispatch()
     const dictionaryState = useSelector((state: RootStore) => state.dictionaryState)
-    const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo, currentResults,
-            currentPage, pageNumbers } = dictionaryState
+    const { isNull, dictionaryLoading, dictionaryLoaded, wordInfo, currentResults } = dictionaryState
     const regexInfo = 'any case latin letters and numbers'
+
+    const setInputValue = (word: string) => {
+        dispatch(GetWordInfo(word))
+        dispatch(GetSearchInputValue(word))
+    }
+    const prevSearchResultRef = useRef('')
+    useEffect(() => {
+        if (wordInfo) {
+            prevSearchResultRef.current = wordInfo.word
+        }
+    })
+    const PrevSearchResult = () => {
+        const prevSearchResultWord = prevSearchResultRef.current
+        if (prevSearchResultWord && wordInfo?.word === prevSearchResultWord || isNull || prevSearchResultWord === '') {
+            return null
+        }
+        return (
+            <p className="prev_search_res"
+                onClick={() => {setInputValue(prevSearchResultWord)}}
+            >Back to <span>{prevSearchResultWord}</span></p>
+        )
+    }
 
     return (
         <div className="dictionary text-center">
@@ -90,7 +111,10 @@ function Dictionary() {
                 <h2 className="mb-2">You can get information about any english word</h2>
                 <h5 className="mb-4">Just type a word</h5>
             </div>
-            <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} regexInfo={regexInfo} autoFocus={true}/>
+            <div className="dictionary_form">
+                {!isNull && <PrevSearchResult />}
+                <SearchInput regex={`^\\s|[^a-zA-Z\\d\\s+$]`} functionToDispatch={GetWordInfo} regexInfo={regexInfo} autoFocus={true}/>
+            </div>
             {!isNull && <>
                 {dictionaryLoading ? 
                     <div className="mt-5">
@@ -100,8 +124,7 @@ function Dictionary() {
                         {!dictionaryLoaded && <SearchInputError />}
                         {wordInfo ? currentResults &&
                             <div className="d-flex flex-column w-100"> 
-                                <WordInformation {...wordInfo} currentResults={currentResults}
-                                currentPage={currentPage} pageNumbers={pageNumbers} /> 
+                                <WordInformation {...wordInfo} currentResults={currentResults} setInputValue={setInputValue} /> 
                             </div>
                         : null}
                     </>

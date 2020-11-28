@@ -24,7 +24,7 @@ const defaultState: DefaultStateI = {
     // dictionary
     dictionaryLoading: false,
     dictionaryLoaded: true,
-    isNull: false,
+    isNull: true,
     // pagination
     currentPage: 1,
     pageNumbers: []
@@ -60,14 +60,15 @@ const dictionaryReducer = (state: DefaultStateI = defaultState, action: WordDisp
                 ...state,
                 dictionaryLoading: false,
                 dictionaryLoaded: false,
-                isNull: false
+                isNull: false,
+                wordInfo: defaultState.wordInfo
             }
         case WORD_NULL:
             return {
                 ...state,
                 isNull: true
             }
-        case DICTIONARY_PAGINATION_GET_CURRENT_PAGE: 
+        case DICTIONARY_PAGINATION_GET_CURRENT_PAGE:
             return {
                 ...state,
                 currentResults: action.array,

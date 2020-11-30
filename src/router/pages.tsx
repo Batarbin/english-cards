@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import AppHeader from '../components/appHeader'
 import Welcome from '../components/welcome'
-import CategoriesList from '../components/categoriesList'
+import CategoriesList from '../components/cardGame/categoriesList'
 import CardCollection from '../components/cardCollection'
 
 function Title(title: string) {

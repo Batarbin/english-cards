@@ -1,12 +1,11 @@
 import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Card, CardImg } from 'reactstrap'
 import { Zoom } from 'react-awesome-reveal'
-import { GetCategoriesList, GetCategoryCards } from '../actions/cardGameActions'
-import { RootStore } from '../app/store'
-import LoadingSpinner from './spinner'
-import CardTable from './cardTable'
-import ServerError from '../app/serverError'
+import { GetCategoriesList, GetCategoryName } from '../../actions/cardGameActions'
+import { RootStore } from '../../app/store'
+import LoadingSpinner from '../spinner'
+import ServerError from '../../app/serverError'
+import GameLobby from './gameLobby'
 
 interface CardItemI {
     title: string
@@ -17,12 +16,12 @@ const CategoryItem: FC<CardItemI> = ({ title, url }) => {
     const dispatch = useDispatch()
     return (
         <Zoom>
-            <Card body className="text-center justify-content-center pointer"
-                onClick = {() => dispatch(GetCategoryCards(title))}
+            <div className="card"
+                onClick = {() => dispatch(GetCategoryName(title))}
             >
                 <span className="capitalize">{title}</span>
-                <CardImg draggable="false" src={url} alt={title} />
-            </Card>
+                <img draggable="false" src={url} alt={title} />
+            </div>
         </Zoom>
     )
 }
@@ -30,21 +29,14 @@ const CategoryItem: FC<CardItemI> = ({ title, url }) => {
 function CategoriesList() {
     const dispatch = useDispatch()
     const cardGameState = useSelector((state: RootStore) => state.cardGameState)
-    const { categoriesListLoading, categoriesListLoaded, categoriesCardListLoading, categoriesCardListLoaded, categoriesCardList, categoriesList, chosen } = cardGameState
+    const { categoriesListLoading, categoriesListLoaded, categoriesList, chosen } = cardGameState
 
     useEffect(() => {
         dispatch(GetCategoriesList())
     }, [dispatch])
 
     if (chosen) {
-        if (!categoriesCardListLoaded) {
-            return <ServerError />
-        }
-
-        if(!categoriesCardList || !categoriesCardList.length || categoriesCardListLoading) {
-            return <LoadingSpinner />
-        }
-        return <CardTable />
+        return <GameLobby />
     }
 
     if (!categoriesListLoaded) {
@@ -58,14 +50,14 @@ function CategoriesList() {
     }
     
     return (
-        <div className="cat_cards"> 
-            <h3 className="text-center">Please, choose pleasant category</h3>
-            <Row> 
+        <div className="card_table_wrapper card_selection"> 
+            <h3>Please, choose pleasant category</h3>
+            <div className="card_table_row"> 
                 {categoriesList.map(item => <CategoryItem
                     key={item.id}
                     {...item}
                 />)}
-            </Row>
+            </div>
         </div>
     )
 }

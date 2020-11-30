@@ -12,22 +12,6 @@ $input-border-c-blue: rgb(139, 180, 204);
     bottom: 0;
     left: 0;
 }
-%button_theme_green {
-    color: white;
-    border: 1px solid rgb(55, 95, 72);
-    border-radius: 5px;
-    background-color: rgb(96, 146, 123);
-    font-family: 'Noto Sans';
-    padding: 7.5px 7.5px;
-    &:hover {
-        background-color: rgb(79, 122, 98);
-    }
-    &:focus {
-        outline: none;
-        box-shadow: none;
-        background-color: rgb(79, 122, 98);
-    }
-}
 %df_dc_aic_jcc {
     display: flex;
     flex-direction: column;
@@ -53,6 +37,44 @@ $input-border-c-blue: rgb(139, 180, 204);
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+}
+%row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+%button_theme_green {
+    color: white;
+    border: 1px solid rgb(55, 95, 72);
+    border-radius: 5px;
+    background-color: rgb(96, 146, 123);
+    font-family: 'Noto Sans';
+    padding: 7.5px 7.5px;
+    &:hover {
+        background-color: rgb(79, 122, 98);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        background-color: rgb(79, 122, 98);
+    }
+}
+%input {
+    font-family: 'Open Sans';
+    padding: 10px 15px;
+    width: 250px;
+    font-size: 16px;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 3px;
+    &:hover {
+        border: 1px solid rgb(117, 126, 143);
+    }
+    &:focus {
+        outline: none;
+        border-color: $input-border-c-blue;
+        box-shadow: inset 0 0 0 1px $input-border-c-blue, 0px 0px 0 1px $input-border-c-blue;
+    }
 }
 %overlay_triangle {
     content: '';
@@ -86,7 +108,7 @@ html, body {
 }
 
 
-/* welcome.js */
+/* welcome.tsx */
 .welcome {
     .welcome_content {
         @extend %center;
@@ -122,7 +144,7 @@ html, body {
             }
         }
     
-        /* dictionary.js */
+        /* dictionary.tsx */
         .dictionary {
             @extend %df_dc_aic_jcc;
             padding: 0 5px;
@@ -226,7 +248,7 @@ html, body {
 }
 
 
-/* appHeader.js */
+/* appHeader.tsx */
 .app_header {
     @extend %df_dr_aic_jcsb;
     position: fixed;
@@ -268,12 +290,44 @@ html, body {
 }
 
 
-/* categories.js */
-.cat_cards {
+/* card_table_global_styles */
+.card_table_wrapper {
+    margin-top: -50px !important;
     h3 {
+        text-align: center;
         margin-bottom: 50px;
     }
+    .back_button {
+        margin-bottom: 20px;
+    }
+}
+.card_table_row {
+    @extend %row;
+}
+.card {
+    @extend %df_dc_aic_jcc;
+    flex: 1 1 auto;
+    position: relative;
+    padding: 1.25rem;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    height: 420px;
+    max-width: 390px;
+    margin-right: 20px;
 
+    span {
+        font-weight: 700;
+    }
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
+.card_selection {
     .card { 
         height: 350px;
         cursor: pointer;
@@ -289,53 +343,29 @@ html, body {
         }
     }
 
-    .row .css-cvvw2d:first-of-type {
+    .css-cvvw2d:first-of-type {
         margin-right: 20px;
         
     }
-    .row .css-cvvw2d .card {
+    .css-cvvw2d .card {
         margin-right: 0 !important;
     }
 }
 
 
-/* cardTable.js */
-.cards {
+/* card_game_global_styles */
+.card_game {
     margin: 0 auto;
-    max-width: 1200px;
     position: relative;
     top: 50px;
-
-    .card_image {
+    img {
         width: 350px;
         height: 280px;
         object-fit: cover;
         margin-bottom: 10px;
     }
-    h3 {
-        margin-bottom: 15px;
-        span {
-            font-weight: 800;
-        }
-    }
-    p {
-        font-weight: 700;
-    }
 }
-.card {
-    height: 420px;
-    max-width: 390px;
-    margin-right: 20px;
-
-    p:last-of-type {
-        margin-bottom: 0;
-    }
-
-    &:last-of-type {
-        margin-right: 0;
-    }
-}
-.choose_card {
+.small_cards {
     cursor: pointer;
     height: 300px;
     img {
@@ -343,38 +373,93 @@ html, body {
         margin-bottom: 0 !important;
     }
 }
-/* cards header */
-.cards_header {
-    @extend %df_dr_aic_jcsb;
-    position: relative;
-    width: 100%;
-    margin-top: -4rem;
 
-    .progress_counter {
-        background-color: $bg-c-dark-yellow;
-        border: 1px solid $border-c-dark-yellow;
-        padding: 5px 7px;
+
+/* writeIt.tsx */
+.write_it {
+    @extend %df_dc_aic_jcc;
+    .card {
+        cursor: auto;
+    }
+    .small_cards {
+        cursor: auto;
+    }
+    .input_form {
+        margin-top: 40px;
+    }
+    .write_it_button {
+        @extend %button_theme_green;
+        margin-left: 20px;
+        padding: 10px 14px;
+    }
+    .input_clear_button {
+        right: 110px;
+    }
+}
+
+
+/* gameHeader.tsx */
+.game_header {
+    position: relative;
+    width: 60%;
+    .game_header_jb {
+        @extend %df_dr_aic_jcsb;
+        width: 100%;
+        position: absolute;
+        top: -20px;
+        margin-top: -4rem;
+        .game_header_jb_buttons {
+            button {
+                margin-right: 20px !important;
+            }
+            &:last-child {
+                margin-right: 0 !important;
+            }
+        }
+        .progress_counter {
+            background-color: $bg-c-dark-yellow;
+            border: 1px solid $border-c-dark-yellow;
+            padding: 5px 7px;
+            p {
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+        }
+    }
+    .game_header_title_res {
+        @extend %df_dc_aic_jcc;
+        width: 100%;
+        h3 {
+            margin-bottom: 15px;
+            span {
+                font-weight: 800;
+            }
+        }
         p {
             font-weight: 700;
-            margin-bottom: 0;
         }
     }
 }
-/* result screen */
+
+
+/* resultScreen.tsx */
 .result_screen {
     @extend %df_dc_aic_jcc;
     h2 {
         margin-bottom: 20px;
     }
     .result_screen_buttons {
-        .back_button {
+        button {
             margin-right: 20px !important;
+        }
+        &:last-child {
+            margin-right: 0 !important;
         }
     }
 }
 
 
-/* cardCollection.js */
+/* cardCollection.tsx */
 .card_collection {
     @extend %df_dc_aic_jcc;
     top: 100px;
@@ -419,6 +504,7 @@ html, body {
         overflow: hidden;
         transition: max-height 0.6s ease;
         .card {
+            margin-bottom: 40px;
             height: 350px;
             max-width: 290px;
             p {
@@ -438,25 +524,12 @@ html, body {
 }
 
 
-/* inputs*/
-.seacrh_form {
+/* inputs */
+.input_form {
     position: relative;
 }
 .seacrh_input {
-    font-family: 'Open Sans';
-    padding: 10px 15px;
-    width: 250px;
-    font-size: 16px;
-    border: 1px solid rgb(187, 187, 187);
-    border-radius: 3px;
-    &:hover {
-        border: 1px solid rgb(117, 126, 143);
-    }
-    &:focus {
-        outline: none;
-        border-color: $input-border-c-blue;
-        box-shadow: inset 0 0 0 1px $input-border-c-blue, 0px 0px 0 1px $input-border-c-blue;
-    }
+    @extend %input;
 }
 .search_input_error {
     text-align: center !important;
@@ -544,7 +617,7 @@ html, body {
         left: 20%;
     }
     &:after {
-        bottom: 99%;
+        bottom: 98%;
         border-color: transparent transparent #fff transparent;
         border-width: 10px;
     }
@@ -612,43 +685,10 @@ html, body {
 
 
 /* media */
-@media (min-height: 850px) {
-    .cards {
-        margin-top: -4rem !important;
-    }
-    .cat_cards {
-        margin-top: -4rem !important;
-    }
-}
-
-@media (max-width: 1612px) {
-    .card_list {
-        .card {
-            &:nth-child(5n+5) {
-                margin-right: 20px;
-            }
-            &:nth-child(4n+4) {
-                margin-right: 0;
-            }
-        }
-    }
-}
 @media (max-width: 1500px) {
     .card_collection {
         .card_collection_error {
             width: 20%;
-        }
-    }
-}
-@media (max-width: 1303px) {
-    .card_list {
-        .card {
-            &:nth-child(4n+4) {
-                margin-right: 20px;
-            }
-            &:nth-child(3n+3) {
-                margin-right: 0;
-            }
         }
     }
 }
@@ -660,17 +700,15 @@ html, body {
             }
         }
     }
-    
-    .cards {
+    .card_game {
         max-width: 900px;
-        .card_image {
+        img {
             width: 250px;
         }
     }
     .card {
         max-width: 290px;
     }
-
     .cat_cards {
         .card {
             img {
@@ -686,15 +724,11 @@ html, body {
         }
     }
 }
-@media (max-width: 993px) {
-    .card_list {
-        .card {
-            &:nth-child(3n+3) {
-                margin-right: 20px;
-            }
-            &:nth-child(2n+2) {
-                margin-right: 0;
-            }
+@media (max-width: 980px) {
+    .card_game {
+        max-width: 900px;
+        img {
+            width: 190px;
         }
     }
 }
@@ -702,18 +736,6 @@ html, body {
     .card_collection {
         .card_collection_error {
             width: 40%;
-        }
-    }
-}
-@media (max-width: 684px) {
-    .card_list {
-        .card {
-            &:nth-child(2n+2) {
-                margin-right: 20px;
-            }
-            &:nth-child(1n+1) {
-                margin-right: 20;
-            }
         }
     }
 }

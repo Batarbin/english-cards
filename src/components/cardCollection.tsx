@@ -1,16 +1,15 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, CardImg } from 'reactstrap'
 import { GetCollectionList, GetCollectionSearchResults, CardCollectionSearchLoading } from '../actions/cardCollectionActions'
 import ServerError from '../app/serverError'
 import { RootStore } from '../app/store'
-import { CardTableType } from '../types/cardGameTypes'
+import { CardType } from '../types/cardGameTypes'
 import { CardCollectionAccordion } from './misc/accordions'
 import { SearchInput, SearchInputError } from './misc/searchInput'
 import LoadingSpinner from './spinner'
 
 interface SearchResultsI {
-    searchResultArr: CardTableType
+    searchResultArr: CardType
 }
 interface CardItemI {
     title: string
@@ -19,7 +18,7 @@ interface CardItemI {
     translation: string
 }
 interface CardCollectionFCI {
-    cardCollection: CardTableType
+    cardCollection: CardType
 }
 
 const SearchResults: FC<SearchResultsI> = ({ searchResultArr }) => {
@@ -42,12 +41,12 @@ const SearchResults: FC<SearchResultsI> = ({ searchResultArr }) => {
 }
 export const CardItem: FC<CardItemI> = ({ title, url, pronunciation, translation }) => {
     return (
-        <Card body className="text-center justify-content-center mb-4">
+        <div className="card">
             <p>{title}</p>
-            <CardImg draggable="false" src={url} alt={title} />    
+            <img draggable="false" src={url} alt={title} />    
             <p>Pronunciation: '{pronunciation}'</p>
             <p>Translation: {translation}</p>
-        </Card>
+        </div>
     )
 }
 const CardCollectionFC: FC<CardCollectionFCI> = ({ cardCollection }) => {

@@ -1,10 +1,10 @@
 import React, { FC, useRef, useState } from 'react'
-import { CardTableType } from '../../types/cardGameTypes'
+import { CardType } from '../../types/cardGameTypes'
 import { CardItem } from '../cardCollection'
 
 interface CardCollectionAccordionI {
     title: string
-    contentArr: CardTableType
+    contentArr: CardType
 }
 
 export const CardCollectionAccordion: FC<CardCollectionAccordionI> = ({ title, contentArr }) => {

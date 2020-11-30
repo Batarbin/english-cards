@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { ContinueWithThisCategory, GetCategoriesList, OnBackToCategories } from '../../actions/cardGameActions'
 
 interface InputCancelButtonI {
     clearFunction: () => void
@@ -15,6 +16,17 @@ interface DispatchButtonI {
     firstFunction: () => void
     secondFunction?: () => void
     text: string
+}
+
+export const BackToCategoriesButton = () => {
+    return (
+        <DispatchButton className={'back_button'} firstFunction={OnBackToCategories} secondFunction={GetCategoriesList} text={'Choose another category'}/>
+    )
+}
+export const BackToGameModesButton = () => {
+    return (
+        <DispatchButton className={'continue_button'} firstFunction={ContinueWithThisCategory} text={'Choose another game mode'}/>
+    )
 }
 
 export const InputCancelButton: FC<InputCancelButtonI> = ({ clearFunction }) => {

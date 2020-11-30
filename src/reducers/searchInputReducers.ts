@@ -4,10 +4,10 @@ import {
 } from "../types/searchInputTypes";
   
 interface DefaultStateI {
-    inputValue: string
+    searchInputValue: string
 }
 const defaultState: DefaultStateI = {
-    inputValue: ''
+    searchInputValue: ''
 }
   
 const searchInputReducer = (state: DefaultStateI = defaultState, action: SeacrhInputDispatchTypes) : DefaultStateI => {
@@ -15,7 +15,7 @@ const searchInputReducer = (state: DefaultStateI = defaultState, action: SeacrhI
         case GET_SEARCH_INPUT_VALUE:
             return {
                 ...state,
-                inputValue: action.payload
+                searchInputValue: action.payload
             }
         default:
             return state

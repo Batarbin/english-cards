@@ -23,7 +23,7 @@ export const SearchInputError: FC = () => {
 export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadingFunction, regexInfo, autoFocus }) => {
     const dispatch = useDispatch()
     const dictionaryState = useSelector((state: RootStore) => state.searchInputState)
-    const { inputValue } = dictionaryState
+    const { searchInputValue } = dictionaryState
     const rgx = new RegExp(regex)
     const searchInput = useRef() as React.MutableRefObject<HTMLInputElement>
     const [overlay, setOverlay] = useState(false)
@@ -32,18 +32,18 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
     // overlay
     useEffect(() => { // need to listen every focus and blur on input and show or hide overlay
         if ( searchInput.current === document.activeElement ) {
-            if (inputValue) {
+            if (searchInputValue) {
                 handleOverlay(false)
-            } else if (!inputValue && isShow) {
+            } else if (!searchInputValue && isShow) {
                 handleOverlay(true)
             }
         }
     })
     function handleOverlay(isShow: boolean) {
         if (isShow) {
-            if (inputValue) {
+            if (searchInputValue) {
                 setOverlay(false)
-            } else if (!inputValue && isShow) {
+            } else if (!searchInputValue && isShow) {
                 setOverlay(true)
             }
         } else if (!isShow) {
@@ -72,7 +72,7 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
     }
     
     return (
-        <div className="seacrh_form mb-4" onSubmit={e => { e.preventDefault() }}>
+        <form className="input_form mb-4" onSubmit={e => { e.preventDefault() }}>
             <input
                 autoFocus={autoFocus}
                 ref={searchInput}
@@ -81,13 +81,13 @@ export const SearchInput: FC<SearchInputI> = ({ regex, functionToDispatch, loadi
                 autoComplete="off"
                 name="word"
                 placeholder="Type a word"
-                value={inputValue}
+                value={searchInputValue}
                 onChange={handleChange}
                 onFocus={() => handleOverlay(true)}
                 onBlur={() => handleOverlay(false)}
             />
-            {inputValue && <InputCancelButton clearFunction={clearInput}/>}
+            {searchInputValue && <InputCancelButton clearFunction={clearInput}/>}
             {overlay && <InputRegExOverlay regexInfo={regexInfo}/>}
-        </div>
+        </form>
     )
 }

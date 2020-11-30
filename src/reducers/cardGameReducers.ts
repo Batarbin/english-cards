@@ -1,8 +1,8 @@
 import {
-    CategoriesListType, CategoriesCardsType, CATEGORIES_LIST_LOADING, CATEGORIES_LIST_SUCCESS, CATEGORIES_LIST_FAIL, 
-    ON_CATEGORY_CHOSEN, CATEGORIES_CARDS_SUCCESS, CATEGORIES_CARD_FAIL,
-    CardTableType, CARD_TABLE_LOADED, ON_CARD_CHOSEN, ON_BACK_TO_CATEGORIES,
-    CardGameDispatchTypes
+    CategoriesListType, CategoriesCardsType, GameListType, CATEGORIES_LIST_LOADING, CATEGORIES_LIST_SUCCESS, CATEGORIES_LIST_FAIL, 
+    ON_CATEGORY_CHOSEN, CATEGORIES_CARDS_SUCCESS, CATEGORIES_CARD_FAIL, GAME_LIST_SUCCESS, GAME_LIST_FAIL, ON_GAME_CHOSEN,
+    CardType, CHOOSE_ONE_TABLE_LOADED, WRITE_IT_LOADED, ON_CARD_CHOSEN, ON_BACK_TO_CATEGORIES, CONTINUE_WITH_THIS_CATEGORY, CONTINUE_WITH_THIS_GAME_MODE,
+    CardTableDispatchTypes
 } from "../types/cardGameTypes";
   
 interface DefaultStateI {
@@ -10,37 +10,55 @@ interface DefaultStateI {
     categoriesListLoading: boolean
     categoriesListLoaded: boolean
     chosen: boolean
-    categoriesCardListLoading: boolean
-    categoriesCardListLoaded: boolean
     chosenCategory: string
     categoriesList: CategoriesListType
+    // gameLobby
+    categoriesCardListLoading: boolean
+    categoriesCardListLoaded: boolean
     categoriesCardList: CategoriesCardsType
-    // cardTable
+    gameListLoading: boolean
+    gameListLoaded: boolean
+    gameList: GameListType
+    isGameChosen: boolean
+    gameId: number
+    // chooseOne
+    chooseOneTable: CardType
+    // writeIt
+    writeItTable: CardType
+    // cardGameGlobal
     result: boolean
     globalCount: number
     resultCount: number
     isAnswered: boolean
     animationKey: number
-    cardsTable: CardTableType
     selectedTitle: string
 }
 const defaultState: DefaultStateI = {
     // categories
     categoriesListLoading: false,
     chosen: false,
-    categoriesCardListLoading: false,
     categoriesListLoaded: true,
     chosenCategory: '',
     categoriesList: [],
+    // gameLobby
     categoriesCardListLoaded: true,
+    categoriesCardListLoading: false,
     categoriesCardList: [],
-    // cardTable
+    gameListLoaded: true,
+    gameListLoading: false,
+    gameList: [],
+    isGameChosen: false,
+    gameId: 0,
+    // chooseOne
+    chooseOneTable: [],
+    // writeIt
+    writeItTable: [],
+    // cardGameGlobal
     result: false,
     globalCount: 0,
     resultCount: 0,
     isAnswered: false,
     animationKey: 0,
-    cardsTable: [],
     selectedTitle: ''
 }
 
@@ -52,7 +70,7 @@ const getUniqueIdx = (collection: number[] = [], length: number): number => {
     return idx
 }
   
-const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDispatchTypes) : DefaultStateI => {
+const cardGameReducer = (state: DefaultStateI = defaultState, action: CardTableDispatchTypes) : DefaultStateI => {
     switch (action.type) {
         // categories
         case CATEGORIES_LIST_LOADING: {
@@ -65,6 +83,8 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
         case CATEGORIES_LIST_SUCCESS:
             return {
                 ...state,
+                globalCount: 0,
+                resultCount: 0,
                 categoriesListLoading: false,
                 categoriesListLoaded: true,
                 categoriesList: action.payload
@@ -83,13 +103,16 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 categoriesCardListLoaded: true,
                 chosen: true
             }
+        // gameLobby
         case CATEGORIES_CARDS_SUCCESS:
             const categoriesCardList = action.payload.filter(x => x.type === state.chosenCategory)
             return {
                 ...state,
                 categoriesCardListLoading: false,
                 categoriesCardListLoaded: true,
-                categoriesCardList
+                categoriesCardList,
+                isGameChosen: false,
+                gameId: 0,
             }
         case CATEGORIES_CARD_FAIL:
             return {
@@ -97,42 +120,70 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 categoriesCardListLoading: false,
                 categoriesCardListLoaded: false,
             }
-        // cardTable
-        case CARD_TABLE_LOADED:
-            const cardsTable: CardTableType = [],
-                  temp: number[] = []
-            let gCount: number = state.globalCount,
-                rCount: number = state.resultCount
+        case GAME_LIST_SUCCESS:
+            return {
+                ...state,
+                gameListLoading: false,
+                gameListLoaded: true,
+                gameList: action.payload
+            }
+        case GAME_LIST_FAIL:
+            return {
+                ...state,
+                gameListLoading: false,
+                gameListLoaded: false,
+            }
+        case ON_GAME_CHOSEN:
+            return {
+                ...state,
+                isGameChosen: true,
+                gameId: action.payload
+            }
+        // chooseOne
+        case CHOOSE_ONE_TABLE_LOADED:
+            const chooseOneTable: CardType = [],
+                  chooseOneTemp: number[] = []
 
             for (let i = 0; i < 3; i++) {
-                const i: number = getUniqueIdx(temp, state.categoriesCardList.length)
-                temp.push(i)
-                cardsTable.push(state.categoriesCardList[i])
+                const i: number = getUniqueIdx(chooseOneTemp, state.categoriesCardList.length)
+                chooseOneTemp.push(i)
+                chooseOneTable.push(state.categoriesCardList[i])
             }
-            const selectedTitle = cardsTable[getUniqueIdx([], 3)].title
-            gCount += 1
-            if (state.globalCount === 6) {
-                gCount = 1
-                rCount = 0
-            }
+            const chooseOneSelectedTitle = chooseOneTable[getUniqueIdx([], 3)].title
 
             return {
                 ...state,
-                cardsTable,
-                selectedTitle,
+                chooseOneTable,
+                selectedTitle: chooseOneSelectedTitle,
                 isAnswered: false,
                 animationKey: state.animationKey + 1,
-                globalCount: gCount,
-                resultCount: rCount
+                globalCount: state.globalCount + 1
             }
+        // writeIt
+        case WRITE_IT_LOADED:
+            const writeItTable: CardType = []
+            writeItTable.push(state.categoriesCardList[Math.round(Math.random() * (state.categoriesCardList.length-1))])
+
+            const writeItSelectedTitle = writeItTable[Math.round(Math.random() * (writeItTable.length-1))].title
+
+            return {
+                ...state,
+                writeItTable,
+                selectedTitle: writeItSelectedTitle,
+                isAnswered: false,
+                animationKey: state.animationKey + 1,
+                globalCount: state.globalCount + 1
+            }
+        // cardGameGlobal
         case ON_CARD_CHOSEN:
-            const result = action.payload === state.selectedTitle
+            const result = action.payload.toLowerCase() === state.selectedTitle
             let resultCount = 0
             if (result) {
                 resultCount = state.resultCount + 1
             } else {
                 resultCount = 0
             }
+
             return {
                 ...state,
                 result,
@@ -148,7 +199,23 @@ const cardGameReducer = (state: DefaultStateI = defaultState, action: CardGameDi
                 globalCount: 0,
                 resultCount: 0,
                 chosen: false,
-                isAnswered: false
+                isAnswered: false,
+                isGameChosen: false,
+                gameId: 0,
+            }
+        case CONTINUE_WITH_THIS_CATEGORY:
+            return {
+                ...state,
+                globalCount: 0,
+                resultCount: 0,
+                isGameChosen: false,
+                gameId: 0
+            }
+        case CONTINUE_WITH_THIS_GAME_MODE:
+            return {
+                ...state,
+                globalCount: 0,
+                resultCount: 0
             }
         default:
             return state

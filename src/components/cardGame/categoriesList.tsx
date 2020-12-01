@@ -51,7 +51,7 @@ function CategoriesList() {
     
     return (
         <div className="card_table_wrapper card_selection"> 
-            <h3>Please, choose pleasant category</h3>
+            <h3>Please, choose a category</h3>
             <div className="card_table_row"> 
                 {categoriesList.map(item => <CategoryItem
                     key={item.id}

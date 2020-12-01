@@ -2,31 +2,31 @@
 	"games": [
 		{ 
 			"title": "One of Three",
-			"url": "https://home.bt.com/images/5-healing-herbs-you-need-to-eat-more-of-136403301409603901-160111131911.jpg",
+			"url": "/images/db/games/choose_one.png",
 			"id": 1
 		},
 		{
 			"title": "Write a Word",
-			"url": "https://www.foodwriters.org.nz/wp-content/uploads/2019/05/605f8bcd-eb00-4971-929c-5338850cb002_shutterstock_440843308_266cd66a_490x330.jpg",
+			"url": "/images/db/games/write_it.png",
 			"id": 2
 		} 
 	],
 	"categories": [
 		{ 
 			"title": "food",
-			"url": "https://www.foodwriters.org.nz/wp-content/uploads/2019/05/605f8bcd-eb00-4971-929c-5338850cb002_shutterstock_440843308_266cd66a_490x330.jpg",
+			"url": "/images/db/categories/food.jpg",
 			"id": 1
 		},
 		{
 			"title": "plants and herbs",
-			"url": "https://home.bt.com/images/5-healing-herbs-you-need-to-eat-more-of-136403301409603901-160111131911.jpg",
+			"url": "/images/db/categories/plants_and_herbs.jpg",
 			"id": 2
 		} 
 	],
 	"cards": [
 		{
 			"title": "bread",
-			"url": "https://food-images.files.bbci.co.uk/food/recipes/paul_hollywoods_crusty_83536_16x9.jpg",
+			"url": "/images/db/food/bread.jpg",
             "pronunciation": "/bred/",
             "translation": "хлеб",
 			"id": 1,
@@ -34,7 +34,7 @@
 		},
 		{
 			"title": "breakfast",
-			"url": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/stressfreefullenglis_67721_16x9.jpg",
+			"url": "/images/db/food/breakfast.jpg",
 			"pronunciation": "/ˈbrek.fəst/",
             "translation": "завтрак",
 			"id": 2,
@@ -42,7 +42,7 @@
 		},
 		{
 			"title": "cheese",
-			"url": "https://s.wsj.net/public/resources/images/BN-MY590_cheese_TOP_20160307164754.jpg",
+			"url": "/images/db/food/cheese.jpg",
 			"pronunciation": "/tʃiːz/",
             "translation": "сыр",
 			"id": 3,
@@ -50,7 +50,7 @@
 		},
 		{
 			"title": "coconut",
-			"url": "https://i.ndtvimg.com/i/2017-06/coconut-oil-pure-home-made_620x350_51498649683.jpg",
+			"url": "/images/db/food/coconut.jpg",
 			"pronunciation": "/ˈkoʊ.kə.nʌt/",
             "translation": "кокос",
 			"id": 4,
@@ -58,7 +58,7 @@
 		},
 		{
 			"title": "egg",
-			"url": "https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy82NDYxMjk1L29yaWdpbi5qcGciLCJleHBpcmVzX2F0IjoxNjA3ODEyMjc0fQ.PUHb55bmdwFRdELM6ZKVYFZV3T4XFW-9s5joHczv_54/img.jpg",
+			"url": "/images/db/food/egg.jpg",
 			"pronunciation": "/eɡ/",
             "translation": "яйцо",
 			"id": 5,
@@ -66,7 +66,7 @@
 		},
 		{
 			"title": "fork",
-			"url": "https://www.spruengli.ch/components/com_mijoshop/opencart/image/cache/catalog/product/40499-590x590.jpg",
+			"url": "/images/db/food/fork.jpg",
             "pronunciation": "/fɔːrk/",
             "translation": "вилка",
 			"id": 6,
@@ -74,7 +74,7 @@
 		},
 		{
 			"title": "fruit",
-			"url": "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/325253_2200-732x549.jpg",
+			"url": "/images/db/food/fruit.jpg",
             "pronunciation": "/fruːt/",
             "translation": "фрукт",
 			"id": 7,
@@ -82,7 +82,7 @@
 		},
 		{
 			"title": "lemon",
-			"url": "https://backend.sabziwala.online/media/catalog/product/l/e/lemon_1_1.jpg",
+			"url": "/images/db/food/lemon.jpg",
 			"pronunciation": "/ˈlem.ən/",
             "translation": "лимон",
 			"id": 8,
@@ -90,7 +90,7 @@
 		},
 		{
 			"title": "ham",
-			"url": "https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/17423-cider-glazed-honey-baked-ham-600x600.jpg",
+			"url": "/images/db/food/ham.jpg",
 			"pronunciation": "/hæm/",
             "translation": "ветчина",
 			"id": 9,
@@ -98,7 +98,7 @@
 		},
 		{
 			"title": "salmon",
-			"url": "https://www.abelandcole.co.uk/media/9366_25684_z.jpg",
+			"url": "/images/db/food/salmon.jpg",
 			"pronunciation": "/ˈsæm.ən/",
             "translation": "лосось",
 			"id": 10,
@@ -106,7 +106,7 @@
 		},
 		{
 			"title": "sausage",
-			"url": "https://www.foxandbriar.com/wp-content/uploads/2020/02/Sheet-Pan-Sausage-and-Peppers-6-of-7-500x500.jpg",
+			"url": "/images/db/food/sausage.jpg",
 			"pronunciation": "/ˈsɑː.sɪdʒ/",
             "translation": "колбаса, сосиска",
 			"id": 11,
@@ -114,7 +114,7 @@
 		},
 		{
 			"title": "yogurt",
-			"url": "https://nowcookthis.com/wp-content/uploads/2019/03/easy-instant-pot-vanilla-yogurt-4.jpg",
+			"url": "/images/db/food/yogurt.jpg",
             "pronunciation": "/ˈjoʊ.ɡɚt/",
             "translation": "йогурт",
 			"id": 12,
@@ -122,7 +122,7 @@
 		},
 		{
 			"title": "catnip",
-			"url": "https://images-na.ssl-images-amazon.com/images/I/51aJXZMiT6L._AC_SY450_.jpg",
+			"url": "/images/db/plants_and_herbs/catnip.jpg",
             "pronunciation": "/ˈkæt.nɪp/",
             "translation": "кошачья мята",
 			"id": 13,
@@ -130,7 +130,7 @@
 		},
 		{
 			"title": "spring onion",
-			"url": "https://vitalseeds.co.uk/wp-content/uploads/2018/10/Spring-Onion-White-Lisbon.jpg",
+			"url": "/images/db/plants_and_herbs/spring_onion.jpg",
 			"pronunciation": "/ˌsprɪŋ ˈʌn.jən/",
             "translation": "зеленый лук",
 			"id": 14,
@@ -138,7 +138,7 @@
 		},
 		{
 			"title": "clove",
-			"url": "https://cahayakhatulistiwapersada.com/wp-content/uploads/2020/02/clove-01.jpg",
+			"url": "/images/db/plants_and_herbs/clove.jpg",
 			"pronunciation": "/kloʊv/",
             "translation": "гвоздика",
 			"id": 15,
@@ -146,7 +146,7 @@
 		},
 		{
 			"title": "fennel",
-			"url": "https://cdn.loveandlemons.com/wp-content/uploads/2020/03/fennel-500x500.jpg",
+			"url": "/images/db/plants_and_herbs/fennel.jpg",
 			"pronunciation": "/ˈfen.əl/",
             "translation": "фенхель",
 			"id": 16,
@@ -154,7 +154,7 @@
 		},
 		{
 			"title": "ginseng",
-			"url": "https://img1.exportersindia.com/product_images/bc-full/dir_112/3353392/ginsing-root-1621289.jpg",
+			"url": "/images/db/plants_and_herbs/ginseng.jpg",
 			"pronunciation": "/ˈdʒɪn.seŋ/",
             "translation": "женьшень",
 			"id": 17,
@@ -162,7 +162,7 @@
 		},
 		{
 			"title": "horseradish",
-			"url": "https://www.veseys.com/media/catalog/product/cache/image/700x700/e9c3970ab036de70892d86c6d221abfe/3/7/37803-37803-image-horseradish.jpeg",
+			"url": "/images/db/plants_and_herbs/horseradish.jpg",
             "pronunciation": "/ˈhɔːrsˌræd.ɪʃ/",
             "translation": "хрен",
 			"id": 18,
@@ -170,7 +170,7 @@
 		},
 		{
 			"title": "lavender",
-			"url": "https://www.americanmeadows.com/media/catalog/product/l/a/lavendula-hidcote-lavender_1.jpg",
+			"url": "/images/db/plants_and_herbs/lavender.jpg",
             "pronunciation": "/ˈlæv.ɪn.dɚ/",
             "translation": "лаванда",
 			"id": 19,
@@ -178,7 +178,7 @@
 		},
 		{
 			"title": "cinnamon",
-			"url": "https://post.healthline.com/wp-content/uploads/2020/09/scoop-of-cinnamon-thumb.jpg",
+			"url": "/images/db/plants_and_herbs/cinnamon.jpg",
 			"pronunciation": "/ˈsɪn.ə.mən/",
             "translation": "корица",
 			"id": 20,
@@ -186,7 +186,7 @@
 		},
 		{
 			"title": "marjoram",
-			"url": "https://www.gardeningknowhow.com/wp-content/uploads/2008/12/marjoram2.jpg",
+			"url": "/images/db/plants_and_herbs/marjoram.jpg",
 			"pronunciation": "/ˈmɑːr.dʒɚ.əm/",
             "translation": "майоран",
 			"id": 21,
@@ -194,7 +194,7 @@
 		},
 		{
 			"title": "basil",
-			"url": "https://cdn0.wideopeneats.com/wp-content/uploads/2018/08/Preserve-Fresh-Basil.jpg",
+			"url": "/images/db/plants_and_herbs/basil.jpg",
 			"pronunciation": "/ˈbeɪ.zəl/",
             "translation": "привлекать",
 			"id": 22,
@@ -202,7 +202,7 @@
 		},
 		{
 			"title": "sage",
-			"url": "https://media.karousell.com/media/photos/products/2020/7/1/sage_herb_1593609256_1dcb82aa_progressive.jpg",
+			"url": "/images/db/plants_and_herbs/sage.jpg",
 			"pronunciation": "/seɪdʒ/",
             "translation": "шалфей",
 			"id": 23,
@@ -210,7 +210,7 @@
 		},
 		{
 			"title": "thyme",
-			"url": "https://www.veseys.com/media/catalog/product/cache/image/700x700/e9c3970ab036de70892d86c6d221abfe/g/e/germanwinter-germanwinter-image-45690-french%20thyme.jpg",
+			"url": "/images/db/plants_and_herbs/thyme.jpg",
             "pronunciation": "/taɪm/",
             "translation": "тимьян",
 			"id": 24,

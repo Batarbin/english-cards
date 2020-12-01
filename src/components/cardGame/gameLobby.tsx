@@ -65,9 +65,9 @@ function GameLobby() {
     }
 
     return (
-        <div className="card_table_wrapper card_selection">
+        <div className="card_table_wrapper card_selection game_lobby">
             <BackToCategoriesButton />
-            <h3>Please, choose game mode</h3>
+            <h3>Please, choose a game mode</h3>
             <div className="card_table_row"> 
                 {gameList.map(games => <GameList key={games.id} {...games}/>)}
             </div>

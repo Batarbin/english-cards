@@ -60,6 +60,22 @@ $input-border-c-blue: rgb(139, 180, 204);
         background-color: rgb(79, 122, 98);
     }
 }
+%button_theme_blue {
+    color: white;
+    border: 1px solid rgb(77, 55, 95);
+    border-radius: 5px;
+    background-color: rgb(117, 150, 180);
+    font-family: 'Noto Sans';
+    padding: 7.5px 7.5px;
+    &:hover {
+        background-color: rgb(79, 96, 122);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        background-color: rgb(79, 96, 122);
+    }
+}
 %input {
     font-family: 'Open Sans';
     padding: 10px 15px;
@@ -328,7 +344,7 @@ html, body {
     }
 }
 .card_selection {
-    .card { 
+    .card {
         height: 350px;
         cursor: pointer;
         span {
@@ -351,6 +367,10 @@ html, body {
         margin-right: 0 !important;
     }
 }
+
+
+/* gameLobby.tsx */
+
 
 
 /* card_game_global_styles */
@@ -545,10 +565,10 @@ html, body {
 
 /* buttons */
 .back_button {
-    @extend %button_theme_green;
+    @extend %button_theme_blue;
 }
 .continue_button {
-    @extend %button_theme_green;
+    @extend %button_theme_blue;
 }
 .playgame_button {
     @extend %button_theme_green;

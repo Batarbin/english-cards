@@ -20,12 +20,12 @@ interface DispatchButtonI {
 
 export const BackToCategoriesButton = () => {
     return (
-        <DispatchButton className={'back_button'} firstFunction={OnBackToCategories} secondFunction={GetCategoriesList} text={'Choose another category'}/>
+        <DispatchButton className={'back_button'} firstFunction={OnBackToCategories} secondFunction={GetCategoriesList} text={'Change category'}/>
     )
 }
 export const BackToGameModesButton = () => {
     return (
-        <DispatchButton className={'continue_button'} firstFunction={ContinueWithThisCategory} text={'Choose another game mode'}/>
+        <DispatchButton className={'continue_button'} firstFunction={ContinueWithThisCategory} text={'Change game mode'}/>
     )
 }
 

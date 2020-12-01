@@ -32,8 +32,9 @@ export const CardCollectionAccordion: FC<CardCollectionAccordionI> = ({ title, c
                 <img draggable="false" src="/images/items-down-arrow.png" className={`${rotate}`} alt="Cards toggler" />
             </div>
           <div ref={divContent} style={{ maxHeight: `${height}` }} className="card_collection_item_content" >
-            {contentArr.filter((x) => x.type === title)
-                .map((x) => (
+            {contentArr.filter(x => x.type === title)
+                .sort((a, b) => (a.title > b.title) ? 1 : -1)
+                .map(x => (
                     <CardItem key={x.id} {...x} />
                 ))
             }

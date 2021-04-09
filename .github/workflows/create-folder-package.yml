@@ -1,0 +1,25 @@
+name: Create Folder Package
+on:
+  workflow_dispatch:
+    inputs:
+      folder_name:
+        description: 'Folder name'
+        required: true
+        default: ''
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Zip Release
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          path: "./src/${{ github.event.inputs.folder_name }}"
+          filename: "${{ github.event.inputs.folder_name }}.zip"
+          exclusions: "*/_sketch/* */_src/* */_stock/* .eslintignore .eslintrc.js .gitignore *.config.js package.json *.md *.lock"
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ github.event.inputs.folder_name }}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
